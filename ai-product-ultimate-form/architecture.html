@@ -7,35 +7,36 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23059669'/><path d='M16 6c-4.4 0-8 3.6-8 8 0 2.5 1.2 4.8 3 6.2V24l5-3 5 3v-3.8c1.8-1.4 3-3.7 3-6.2 0-4.4-3.6-8-8-8z' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><line x1='16' y1='10' x2='16' y2='15' stroke='white' stroke-width='2' stroke-linecap='round'/><circle cx='16' cy='18' r='1' fill='white'/></svg>">
     <style>
         :root {
-            --c-product: #0969DA;
-            --c-agent: #1A7F37;
-            --c-agent-light: #2DA44E;
+            --c-product: #2563EB;
+            --c-agent: #059669;
+            --c-agent-light: #10B981;
             --c-os: #24292F;
             --c-os-light: #3D444D;
-            --c-native: #2DA44E;
+            --c-native: #10B981;
             --c-tool: #7C3AED;
             --c-task: #EA580C;
-            --c-flow: #0969DA;
-            --c-text: #1F2328;
-            --c-text-2: #4D5561;
-            --c-text-3: #656D76;
-            --c-border: #D0D7DE;
-            --c-border-light: #E8ECF0;
-            --c-bg: #F6F8FA;
+            --c-flow: #2563EB;
+            --c-text: #1C1917;
+            --c-text-2: #57534E;
+            --c-text-3: #78716C;
+            --c-border: #E7E5E4;
+            --c-border-light: #F5F5F4;
+            --c-bg: #F8FAFB;
             --c-card: #FFFFFF;
-            --shadow-sm: 0 1px 3px rgba(31,35,40,.06);
-            --shadow-card: 0 2px 8px rgba(31,35,40,.06), 0 1px 2px rgba(31,35,40,.04);
-            --shadow-hover: 0 8px 24px rgba(31,35,40,.12);
-            --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-full: 999px;
-            --font: -apple-system, "system-ui", "Segoe UI", "Noto Sans SC", Helvetica, Arial, sans-serif;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
+            --shadow-card: 0 2px 8px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+            --shadow-hover: 0 8px 24px rgba(0,0,0,.12);
+            --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 20px; --r-full: 9999px;
+            --font: -apple-system, "SF Pro Display", "system-ui", "Segoe UI", "Noto Sans SC", Helvetica, Arial, sans-serif;
             --ease: cubic-bezier(0.25, 1, 0.5, 1);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: var(--font); font-size: 15px; line-height: 1.6;
+            font-family: var(--font); font-size: 15px; line-height: 1.65;
             color: var(--c-text-2); background: var(--c-bg);
-            background-image: radial-gradient(at 20% 20%, rgba(26,127,55,0.06) 0%, transparent 50%),
-                              radial-gradient(at 80% 80%, rgba(9,105,218,0.05) 0%, transparent 50%);
+            background-image: radial-gradient(at 20% 20%, rgba(5,150,105,0.08) 0%, transparent 50%),
+                              radial-gradient(at 80% 80%, rgba(37,99,235,0.06) 0%, transparent 50%),
+                              radial-gradient(at 50% 50%, rgba(124,58,237,0.04) 0%, transparent 50%);
             background-attachment: fixed;
             -webkit-font-smoothing: antialiased;
         }
@@ -62,9 +63,9 @@
         }
         .tab-btn:hover { background: var(--c-bg); color: var(--c-text); }
         .tab-btn.active {
-            background: linear-gradient(135deg, #0969DA 0%, #54AEFF 100%);
+            background: linear-gradient(135deg, #059669 0%, #10B981 100%);
             color: #fff; font-weight: 600;
-            box-shadow: 0 2px 8px rgba(9,105,218,.25);
+            box-shadow: 0 4px 14px rgba(5,150,105,0.15);
         }
 
         /* === HEADER === */
@@ -72,7 +73,7 @@
         .header-badge {
             display: inline-flex; align-items: center; gap: 6px;
             padding: 4px 14px; border-radius: var(--r-full);
-            background: linear-gradient(135deg, #E6F7ED 0%, #E1F0F8 100%);
+            background: linear-gradient(135deg, #ECFDF5 0%, #EFF6FF 100%);
             color: var(--c-product); font-size: 12px; font-weight: 600;
             margin-bottom: 10px;
         }
@@ -145,25 +146,25 @@
         .layer-body { padding: 16px 18px; }
 
         /* Product layer */
-        .layer.product .layer-header { background: linear-gradient(135deg, rgba(9,105,218,0.04) 0%, rgba(84,174,255,0.04) 100%); }
-        .layer.product .layer-tag { background: linear-gradient(135deg, #0969DA, #54AEFF); }
+        .layer.product .layer-header { background: linear-gradient(135deg, rgba(37,99,235,0.04) 0%, rgba(84,174,255,0.04) 100%); }
+        .layer.product .layer-tag { background: linear-gradient(135deg, #2563EB, #3B82F6); }
 
         .products-row {
             display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
         }
         .product-chip {
             padding: 6px 14px; border-radius: var(--r-md);
-            border: 1px solid rgba(9,105,218,0.2);
-            background: rgba(9,105,218,0.04);
+            border: 1px solid rgba(37,99,235,0.2);
+            background: rgba(37,99,235,0.04);
             font-size: 12px; font-weight: 600; color: var(--c-product);
             transition: all 200ms var(--ease);
         }
         .product-chip.dimmed { opacity: 0.35; }
-        .product-chip.active { background: rgba(9,105,218,0.12); border-color: var(--c-product); box-shadow: 0 0 0 2px rgba(9,105,218,0.1); }
+        .product-chip.active { background: rgba(37,99,235,0.12); border-color: var(--c-product); box-shadow: 0 0 0 2px rgba(37,99,235,0.1); }
         .product-chip.more { border-style: dashed; color: var(--c-text-3); background: transparent; }
         .adapt-chip {
             margin-left: auto; padding: 5px 10px; border-radius: var(--r-sm);
-            background: rgba(9,105,218,0.04); border: 1px solid rgba(9,105,218,0.15);
+            background: rgba(37,99,235,0.04); border: 1px solid rgba(37,99,235,0.15);
             font-size: 10px; font-weight: 600; color: var(--c-product);
         }
 
@@ -183,13 +184,13 @@
         .layer-connector.active .conn-label { border-color: currentColor; color: inherit; background: rgba(45,164,78,0.06); }
 
         /* Agent layer */
-        .layer.agent .layer-header { background: linear-gradient(135deg, rgba(26,127,55,0.04) 0%, rgba(45,164,78,0.04) 100%); }
-        .layer.agent .layer-tag { background: linear-gradient(135deg, #1A7F37, #2DA44E); }
+        .layer.agent .layer-header { background: linear-gradient(135deg, rgba(5,150,105,0.04) 0%, rgba(45,164,78,0.04) 100%); }
+        .layer.agent .layer-tag { background: linear-gradient(135deg, #059669, #10B981); }
 
         .agent-core {
             display: flex; align-items: center; gap: 12px;
             padding: 10px 14px; margin-bottom: 14px;
-            background: linear-gradient(135deg, rgba(26,127,55,0.06) 0%, rgba(45,164,78,0.03) 100%);
+            background: linear-gradient(135deg, rgba(5,150,105,0.08) 0%, rgba(45,164,78,0.03) 100%);
             border: 1px solid rgba(45,164,78,0.15);
             border-radius: var(--r-md);
         }
@@ -279,11 +280,11 @@
             padding: 4px 10px; border-radius: var(--r-full);
             font-size: 10px; font-weight: 600; border: 1px solid;
         }
-        .crosscut-pill.cc-eval { background: #FFF7ED; color: #9A6700; border-color: rgba(154,103,0,0.2); }
-        .crosscut-pill.cc-security { background: #FFF1F0; color: #CF222E; border-color: rgba(207,34,46,0.2); }
+        .crosscut-pill.cc-eval { background: #FFF7ED; color: #B45309; border-color: rgba(154,103,0,0.2); }
+        .crosscut-pill.cc-security { background: #FFF1F0; color: #E11D48; border-color: rgba(207,34,46,0.2); }
         .crosscut-pill.cc-observe { background: #F5F3FF; color: #7C3AED; border-color: rgba(124,58,237,0.2); }
-        .crosscut-pill.cc-memory { background: #E6F7ED; color: #1A7F37; border-color: rgba(26,127,55,0.2); }
-        .crosscut-pill.cc-skill { background: #E1F0F8; color: #0969DA; border-color: rgba(9,105,218,0.2); }
+        .crosscut-pill.cc-memory { background: #ECFDF5; color: #059669; border-color: rgba(5,150,105,0.2); }
+        .crosscut-pill.cc-skill { background: #EFF6FF; color: #2563EB; border-color: rgba(37,99,235,0.2); }
 
         /* OS layer */
         .layer.os .layer-header { background: linear-gradient(135deg, rgba(36,41,47,0.04) 0%, rgba(61,68,77,0.04) 100%); }
@@ -305,7 +306,7 @@
             border: 1px solid var(--c-border-light); background: #fff;
             transition: all 200ms var(--ease); position: relative;
         }
-        .rt-adapter.active { box-shadow: 0 0 0 2px rgba(9,105,218,0.2); border-color: var(--c-product); }
+        .rt-adapter.active { box-shadow: 0 0 0 2px rgba(37,99,235,0.2); border-color: var(--c-product); }
         .rt-adapter-icon { font-size: 16px; flex: none; }
         .rt-adapter-info { flex: 1; min-width: 0; }
         .rt-adapter-name { font-size: 10px; font-weight: 700; color: var(--c-text); white-space: nowrap; }
@@ -315,9 +316,9 @@
             padding: 1px 5px; border-radius: var(--r-full);
             white-space: nowrap;
         }
-        .rt-local .rt-adapter-tag { background: #2DA44E; }
+        .rt-local .rt-adapter-tag { background: #10B981; }
         .rt-sandbox .rt-adapter-tag { background: #EA580C; }
-        .rt-service .rt-adapter-tag { background: #0969DA; }
+        .rt-service .rt-adapter-tag { background: #2563EB; }
         .os-block {
             padding: 10px 12px; border-radius: var(--r-sm);
             border: 1px solid var(--c-border-light); background: var(--c-bg);
@@ -334,7 +335,7 @@
         }
         .os-caps-inline .os-cap {
             padding: 2px 7px; border-radius: var(--r-full);
-            font-size: 10px; font-weight: 600; background: #F3F5F7;
+            font-size: 10px; font-weight: 600; background: #FAFAF9;
             color: var(--c-text-2);
         }
         .os-caps {
@@ -343,13 +344,13 @@
         }
         .os-cap {
             padding: 2px 7px; border-radius: var(--r-full);
-            font-size: 9px; font-weight: 600; background: #F3F5F7;
+            font-size: 9px; font-weight: 600; background: #FAFAF9;
             color: var(--c-text-3);
         }
 
         /* Growth loop */
         .growth {
-            background: linear-gradient(135deg, rgba(5,150,105,0.04) 0%, rgba(9,105,218,0.04) 100%);
+            background: linear-gradient(135deg, rgba(5,150,105,0.04) 0%, rgba(37,99,235,0.04) 100%);
             border: 1px solid rgba(5,150,105,0.15);
             border-radius: var(--r-lg); padding: 14px 18px; margin-top: 12px;
         }
@@ -377,7 +378,7 @@
         }
         .growth-level {
             font-size: 10px; color: var(--c-text-2); padding: 3px 10px;
-            border-radius: var(--r-full); background: rgba(5,150,105,0.06);
+            border-radius: var(--r-full); background: rgba(5,150,105,0.08);
             border: 1px solid rgba(5,150,105,0.12);
         }
 
@@ -439,9 +440,9 @@
             padding: 2px 7px; border-radius: var(--r-full);
             font-size: 9px; font-weight: 600;
         }
-        .idc-bind.skill { background: #E6F7ED; color: #1A7F37; }
+        .idc-bind.skill { background: #ECFDF5; color: #059669; }
         .idc-bind.tool { background: #F5F3FF; color: #7C3AED; }
-        .idc-bind.memory { background: #FFF7ED; color: #9A6700; }
+        .idc-bind.memory { background: #FFF7ED; color: #B45309; }
         .inst-detail-card .idc-status {
             display: flex; align-items: center; gap: 4px;
             margin-top: 6px; font-size: 10px; font-weight: 600;
@@ -497,7 +498,7 @@
             background: rgba(255,255,255,0.97);
             border: 1px solid rgba(208,215,222,0.9);
             border-radius: var(--r-md);
-            box-shadow: 0 12px 28px rgba(31,35,40,0.14);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.14);
             font-size: 12px; line-height: 1.5;
             pointer-events: none; opacity: 0;
             transform: translateY(6px);
@@ -532,7 +533,7 @@
             align-items: center; justify-content: center;
             padding: 14px 8px; border-radius: var(--r-lg);
             border: 1.5px dashed var(--c-border);
-            background: linear-gradient(180deg, rgba(9,105,218,0.03) 0%, rgba(36,41,47,0.03) 100%);
+            background: linear-gradient(180deg, rgba(37,99,235,0.03) 0%, rgba(36,41,47,0.03) 100%);
             position: relative;
         }
         .deploy-sidebar .ds-title {
@@ -602,7 +603,7 @@
             transition: all 200ms var(--ease);
         }
         .toggle-btn:hover { border-color: var(--c-border); color: var(--c-text); }
-        .toggle-btn.active { background: #FFF7ED; border-color: rgba(154,103,0,0.3); color: #9A6700; }
+        .toggle-btn.active { background: #FFF7ED; border-color: rgba(154,103,0,0.3); color: #B45309; }
         .toggle-switch {
             width: 28px; height: 16px; border-radius: 8px;
             background: var(--c-border); position: relative;
@@ -613,7 +614,7 @@
             border-radius: 50%; background: #fff; top: 2px; left: 2px;
             transition: transform 200ms var(--ease);
         }
-        .toggle-btn.active .toggle-switch { background: #9A6700; }
+        .toggle-btn.active .toggle-switch { background: #B45309; }
         .toggle-btn.active .toggle-switch::after { transform: translateX(12px); }
 
         /* Game elements visibility */
@@ -954,7 +955,7 @@
                 <span class="ds-sub">统一大脑</span>
                 <div class="ds-cloud-split">
                     <div class="ds-cloud-item"><span class="ds-cloud-dot" style="background:#EA580C"></span>沙箱 <span class="ds-cloud-note">Code</span></div>
-                    <div class="ds-cloud-item"><span class="ds-cloud-dot" style="background:#0969DA"></span>服务 <span class="ds-cloud-note">Biz</span></div>
+                    <div class="ds-cloud-item"><span class="ds-cloud-dot" style="background:#2563EB"></span>服务 <span class="ds-cloud-note">Biz</span></div>
                 </div>
             </div>
         </div>
@@ -1018,19 +1019,19 @@ const DATA = {
     s1: {
         type: 'native', title: '"帮我写个调研报告"',
         subtitle: '原生Skill · 1个独立实例（会话形式）完成全过程',
-        color: '#2DA44E', product: 'cf',
+        color: '#10B981', product: 'cf',
         steps: [
-            { label: '语义理解', desc: '识别意图=调研', color: '#2DA44E' },
-            { label: '查Memory', desc: '偏好:清爽报告', color: '#2DA44E' },
-            { label: '匹配Skill', desc: 'industry-research', color: '#2DA44E' },
-            { label: '派实例', desc: '1个独立工作实例', color: '#2DA44E' },
-            { label: '搜索+撰写', desc: '自主执行全流程', color: '#2DA44E' },
-            { label: '经验回流', desc: '实例销毁→Memory', color: '#2DA44E' },
+            { label: '语义理解', desc: '识别意图=调研', color: '#10B981' },
+            { label: '查Memory', desc: '偏好:清爽报告', color: '#10B981' },
+            { label: '匹配Skill', desc: 'industry-research', color: '#10B981' },
+            { label: '派实例', desc: '1个独立工作实例', color: '#10B981' },
+            { label: '搜索+撰写', desc: '自主执行全流程', color: '#10B981' },
+            { label: '经验回流', desc: '实例销毁→Memory', color: '#10B981' },
         ],
         instances: [{
             name: '调研实例', sub: '独立工作会话',
             binds: [{ type: 'skill', label: 'industry-research' }],
-            status: '执行中', statusColor: '#2DA44E'
+            status: '执行中', statusColor: '#10B981'
         }],
         insight: '最轻量的Skill类型：无需外部服务、无需并行。用户可通过自然语言"教"Agent新技能，直接变成原生Skill。',
         osHighlight: ['os-core', 'os-instance-mgr'],
@@ -1078,18 +1079,18 @@ const DATA = {
     s4: {
         type: 'flow', title: '"帮我把需求做到上线"',
         subtitle: '流程Skill · 1总控实例（Flow形式）编排6个阶段',
-        color: '#0969DA', product: 'cf',
+        color: '#2563EB', product: 'cf',
         steps: [
-            { label: '语义理解', desc: '识别=全链路', color: '#0969DA' },
-            { label: '查Memory', desc: '项目上下文', color: '#0969DA' },
-            { label: '匹配Skill', desc: 'dev-pipeline Flow', color: '#0969DA' },
-            { label: '总控编排', desc: '分解6阶段', color: '#0969DA' },
-            { label: '逐阶段派遣', desc: '每阶段不同实例', color: '#0969DA' },
-            { label: '经验回流', desc: '项目经验→Memory', color: '#0969DA' },
+            { label: '语义理解', desc: '识别=全链路', color: '#2563EB' },
+            { label: '查Memory', desc: '项目上下文', color: '#2563EB' },
+            { label: '匹配Skill', desc: 'dev-pipeline Flow', color: '#2563EB' },
+            { label: '总控编排', desc: '分解6阶段', color: '#2563EB' },
+            { label: '逐阶段派遣', desc: '每阶段不同实例', color: '#2563EB' },
+            { label: '经验回流', desc: '项目经验→Memory', color: '#2563EB' },
         ],
         flowStages: [
             { name: '需求分析', type: 'Task', typeColor: '#EA580C' },
-            { name: '代码开发', type: 'Native', typeColor: '#2DA44E' },
+            { name: '代码开发', type: 'Native', typeColor: '#10B981' },
             { name: 'CR 审查', type: 'Task', typeColor: '#EA580C' },
             { name: '测试生成', type: 'Tool', typeColor: '#7C3AED' },
             { name: 'CI/CD', type: 'Tool', typeColor: '#7C3AED' },
@@ -1230,7 +1231,7 @@ function renderDetail(id) {
 // ============ TOOLTIPS ============
 const TIPS = {
     'layer-product': {
-        color: '#0969DA', title: '产品层（Product Layer）',
+        color: '#2563EB', title: '产品层（Product Layer）',
         rows: [
             ['核心思想', '多产品共享同一Agent内核 + 产品适配层做差异化'],
             ['类比', '不同游戏（FPS/RPG/策略）共用同一游戏引擎'],
@@ -1238,7 +1239,7 @@ const TIPS = {
         ]
     },
     'layer-agent': {
-        color: '#1A7F37', title: 'Agent 层（统一大脑）',
+        color: '#059669', title: 'Agent 层（统一大脑）',
         rows: [
             ['主Agent', '决策指挥中枢，只做调度不执行——跨产品共享同一套决策逻辑'],
             ['四类Skill', 'Native / Tool / Task / Flow 覆盖全复杂度，跨产品复用'],
@@ -1247,7 +1248,7 @@ const TIPS = {
         ]
     },
     'main-agent': {
-        color: '#1A7F37', title: '主 Agent（决策指挥中枢）',
+        color: '#059669', title: '主 Agent（决策指挥中枢）',
         rows: [
             ['角色', '理解用户意图、选择合适的Skill、派遣工作实例'],
             ['关键', '只做决策调度，不执行具体任务——这保证了架构的统一性'],
@@ -1272,7 +1273,7 @@ const TIPS = {
         ]
     },
     'adapter-local': {
-        color: '#2DA44E', title: 'LocalAdapter（本地运行时）',
+        color: '#10B981', title: 'LocalAdapter（本地运行时）',
         rows: [
             ['场景', 'IDE内嵌入的Agent，如CodeFlicker本地模式'],
             ['运行方式', '本地进程，直接访问文件系统、终端、IDE接口'],
@@ -1291,7 +1292,7 @@ const TIPS = {
         ]
     },
     'adapter-service': {
-        color: '#0969DA', title: 'ServiceAdapter（服务端运行时）',
+        color: '#2563EB', title: 'ServiceAdapter（服务端运行时）',
         rows: [
             ['场景', '服务端Agent，如企业数字员工、数据分析、客服'],
             ['运行方式', '微服务或Serverless函数，轻量级、IO密集'],
@@ -1301,7 +1302,7 @@ const TIPS = {
         ]
     },
     'deploy-sidebar': {
-        color: '#4D5561', title: '部署模式（跨层架构决策）',
+        color: '#57534E', title: '部署模式（跨层架构决策）',
         rows: [
             ['核心思想', '部署模式是整个技术栈的选择，不是某一层的属性'],
             ['本地模式', 'IDE嵌入，数据私有，零网络依赖，单机版'],

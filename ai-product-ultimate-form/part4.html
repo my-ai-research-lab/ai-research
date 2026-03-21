@@ -5,39 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Part 4: 演进路径与AI分身实证 - AI产品终极形态思考</title>
     <!-- Favicon - 思考/洞察类 -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231A7F37'/><path d='M16 6c-4.4 0-8 3.6-8 8 0 2.5 1.2 4.8 3 6.2V24l5-3 5 3v-3.8c1.8-1.4 3-3.7 3-6.2 0-4.4-3.6-8-8-8z' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><line x1='16' y1='10' x2='16' y2='15' stroke='white' stroke-width='2' stroke-linecap='round'/><circle cx='16' cy='18' r='1' fill='white'/></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23059669'/><path d='M16 6c-4.4 0-8 3.6-8 8 0 2.5 1.2 4.8 3 6.2V24l5-3 5 3v-3.8c1.8-1.4 3-3.7 3-6.2 0-4.4-3.6-8-8-8z' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><line x1='16' y1='10' x2='16' y2='15' stroke='white' stroke-width='2' stroke-linecap='round'/><circle cx='16' cy='18' r='1' fill='white'/></svg>">
     <style>
         :root {
-            --color-success: #1A7F37;
-            --color-success-light: #2DA44E;
-            --color-danger: #CF222E;
-            --color-warning: #BF8700;
-            --color-warning-dark: #9A6700;
-            --color-info: #0969DA;
+            --color-success: #059669;
+            --color-success-light: #10B981;
+            --color-danger: #E11D48;
+            --color-warning: #D97706;
+            --color-warning-dark: #B45309;
+            --color-info: #2563EB;
             --color-orange: #EA580C;
-            --color-text-primary: #1F2328;
-            --color-text-secondary: #4D5561;
-            --color-text-muted: #656D76;
-            --color-border: #D0D7DE;
-            --color-border-light: #E8ECF0;
-            --color-bg: #F6F8FA;
+            --color-text-primary: #1C1917;
+            --color-text-secondary: #57534E;
+            --color-text-muted: #78716C;
+            --color-border: #E7E5E4;
+            --color-border-light: #F5F5F4;
+            --color-bg: #F8FAFB;
             --color-bg-card: #FFFFFF;
-            --color-bg-table-header: #F3F5F7;
-            --gradient-success: linear-gradient(135deg, #1A7F37 0%, #2DA44E 100%);
+            --color-bg-table-header: #FAFAF9;
+            --gradient-success: linear-gradient(135deg, #059669 0%, #10B981 100%);
             --gradient-orange: linear-gradient(135deg, #EA580C 0%, #F59E0B 100%);
-            --shadow-sm: 0 1px 3px rgba(31, 35, 40, 0.06), 0 1px 2px rgba(31, 35, 40, 0.04);
-            --shadow-card: 0 2px 8px rgba(31, 35, 40, 0.06), 0 1px 2px rgba(31, 35, 40, 0.04);
-            --shadow-hover: 0 6px 16px rgba(26, 127, 55, 0.15), 0 2px 6px rgba(26, 127, 55, 0.1);
+            --shadow-sm: 0 1px 3px rgba(0,0,0, 0.06), 0 1px 2px rgba(0,0,0, 0.04);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+            --shadow-card: 0 2px 8px rgba(0,0,0, 0.06), 0 1px 2px rgba(0,0,0, 0.04);
+            --shadow-glow-success: 0 4px 14px rgba(5,150,105,0.15);
+            --shadow-hover: 0 6px 16px rgba(5,150,105, 0.15), 0 2px 6px rgba(5,150,105, 0.1);
             --spacing-xs: 4px;
             --spacing-sm: 8px;
             --spacing-md: 16px;
             --spacing-lg: 24px;
             --spacing-xl: 32px;
-            --radius-sm: 6px;
-            --radius-md: 10px;
-            --radius-lg: 14px;
-            --radius-full: 999px;
-            --font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans SC", Helvetica, Arial, sans-serif;
+            --spacing-2xl: 40px;
+            --spacing-3xl: 48px;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-2xl: 24px;
+            --radius-full: 9999px;
+            --font-family: -apple-system, "SF Pro Display", "system-ui", "Segoe UI", "Noto Sans SC", Helvetica, Arial, sans-serif;
             --heading-1: 30px;
             --heading-2: 20px;
             --heading-3: 16px;
@@ -58,8 +65,9 @@
             line-height: 1.65;
             color: var(--color-text-secondary);
             background: var(--color-bg);
-            background-image: radial-gradient(at 20% 20%, rgba(26,127,55,0.06) 0%, transparent 50%),
-                              radial-gradient(at 80% 80%, rgba(9,105,218,0.05) 0%, transparent 50%);
+            background-image: radial-gradient(at 20% 20%, rgba(5,150,105,0.08) 0%, transparent 50%),
+                              radial-gradient(at 80% 80%, rgba(37,99,235,0.06) 0%, transparent 50%),
+                              radial-gradient(at 50% 50%, rgba(124,58,237,0.04) 0%, transparent 50%);
             background-attachment: fixed;
             -webkit-font-smoothing: antialiased;
         }
@@ -118,7 +126,7 @@
         .tab-btn.active {
             background: var(--gradient-success);
             color: #fff;
-            box-shadow: 0 2px 8px rgba(26, 127, 55, 0.25);
+            box-shadow: 0 2px 8px rgba(5,150,105, 0.25);
         }
 
         .tab-btn-num {
@@ -229,7 +237,7 @@
 
         .insight-box.green {
             border-left-color: var(--color-success);
-            background: rgba(26, 127, 55, 0.06);
+            background: rgba(5,150,105, 0.06);
         }
 
         .insight-label {
@@ -259,7 +267,7 @@
         .insight-text {
             font-size: var(--body-text);
             font-weight: 600;
-            line-height: 1.6;
+            line-height: 1.65;
             color: var(--color-text-primary);
         }
 
@@ -382,10 +390,10 @@
             white-space: nowrap;
         }
 
-        .tag-green { background: rgba(26, 127, 55, 0.12); color: var(--color-success); }
+        .tag-green { background: rgba(5,150,105, 0.12); color: var(--color-success); }
         .tag-yellow { background: rgba(191, 135, 0, 0.12); color: var(--color-warning-dark); }
         .tag-red { background: rgba(207, 34, 46, 0.12); color: var(--color-danger); }
-        .tag-blue { background: rgba(9, 105, 218, 0.12); color: var(--color-info); }
+        .tag-blue { background: rgba(37,99,235, 0.12); color: var(--color-info); }
         .tag-orange { background: rgba(234, 88, 12, 0.12); color: var(--color-orange); }
         .tag-purple { background: rgba(124, 58, 237, 0.12); color: #7C3AED; }
 
@@ -489,13 +497,13 @@
         /* Insight Box Color Variants */
         .insight-box.green {
             border-left-color: var(--color-success);
-            background: rgba(26, 127, 55, 0.06);
+            background: rgba(5,150,105, 0.06);
         }
         .insight-box.green .insight-label { color: var(--color-success); }
         
         .insight-box.blue {
             border-left-color: var(--color-info);
-            background: rgba(9, 105, 218, 0.06);
+            background: rgba(37,99,235, 0.06);
         }
         .insight-box.blue .insight-label { color: var(--color-info); }
         
@@ -637,12 +645,12 @@
                                 <stop offset="100%" stop-color="#F472B6"/>
                             </linearGradient>
                             <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#1A7F37"/>
-                                <stop offset="100%" stop-color="#2DA44E"/>
+                                <stop offset="0%" stop-color="#059669"/>
+                                <stop offset="100%" stop-color="#10B981"/>
                             </linearGradient>
                             <linearGradient id="armGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stop-color="#0969DA"/>
-                                <stop offset="100%" stop-color="#54AEFF"/>
+                                <stop offset="0%" stop-color="#2563EB"/>
+                                <stop offset="100%" stop-color="#3B82F6"/>
                             </linearGradient>
                             <linearGradient id="kbGradMain" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#7C3AED"/>
@@ -665,8 +673,8 @@
                         </defs>
                         
                         <!-- ==================== 标题区域 ==================== -->
-                        <text x="475" y="30" text-anchor="middle" font-size="16" font-weight="800" fill="#1F2328">把AI分身比作一个人：看我具备了哪些能力</text>
-                        <text x="475" y="50" text-anchor="middle" font-size="12" fill="#656D76">我的AI分身 = AgentCore + Skills + Memory + 知识库 (v4.8 2026-03-02更新)</text>
+                        <text x="475" y="30" text-anchor="middle" font-size="16" font-weight="800" fill="#1C1917">把AI分身比作一个人：看我具备了哪些能力</text>
+                        <text x="475" y="50" text-anchor="middle" font-size="12" fill="#78716C">我的AI分身 = AgentCore + Skills + Memory + 知识库 (v4.8 2026-03-02更新)</text>
                         
                         <!-- ==================== 中间：人形轮廓 ==================== -->
                         
@@ -686,33 +694,33 @@
                             <!-- 能力小方块 -->
                             <g transform="translate(15, 35)">
                                 <rect width="80" height="28" rx="5" fill="white" opacity="0.95"/>
-                                <text x="40" y="12" text-anchor="middle" font-size="8" font-weight="600" fill="#1A7F37">Memory</text>
-                                <text x="40" y="23" text-anchor="middle" font-size="7" fill="#4D5561">记忆系统</text>
+                                <text x="40" y="12" text-anchor="middle" font-size="8" font-weight="600" fill="#059669">Memory</text>
+                                <text x="40" y="23" text-anchor="middle" font-size="7" fill="#57534E">记忆系统</text>
                             </g>
                             <g transform="translate(105, 35)">
                                 <rect width="80" height="28" rx="5" fill="white" opacity="0.95"/>
-                                <text x="40" y="12" text-anchor="middle" font-size="8" font-weight="600" fill="#1A7F37">Reasoning</text>
-                                <text x="40" y="23" text-anchor="middle" font-size="7" fill="#4D5561">推理决策</text>
+                                <text x="40" y="12" text-anchor="middle" font-size="8" font-weight="600" fill="#059669">Reasoning</text>
+                                <text x="40" y="23" text-anchor="middle" font-size="7" fill="#57534E">推理决策</text>
                             </g>
                             <g transform="translate(15, 68)">
                                 <rect width="80" height="28" rx="5" fill="white" opacity="0.95"/>
-                                <text x="40" y="12" text-anchor="middle" font-size="8" font-weight="600" fill="#1A7F37">Planning</text>
-                                <text x="40" y="23" text-anchor="middle" font-size="7" fill="#4D5561">任务规划</text>
+                                <text x="40" y="12" text-anchor="middle" font-size="8" font-weight="600" fill="#059669">Planning</text>
+                                <text x="40" y="23" text-anchor="middle" font-size="7" fill="#57534E">任务规划</text>
                             </g>
                             <g transform="translate(105, 68)">
                                 <rect width="80" height="28" rx="5" fill="white" opacity="0.95"/>
-                                <text x="40" y="12" text-anchor="middle" font-size="8" font-weight="600" fill="#1A7F37">Orchestration</text>
-                                <text x="40" y="23" text-anchor="middle" font-size="7" fill="#4D5561">能力编排</text>
+                                <text x="40" y="12" text-anchor="middle" font-size="8" font-weight="600" fill="#059669">Orchestration</text>
+                                <text x="40" y="23" text-anchor="middle" font-size="7" fill="#57534E">能力编排</text>
                             </g>
                             <g transform="translate(15, 101)">
                                 <rect width="80" height="28" rx="5" fill="white" opacity="0.95"/>
-                                <text x="40" y="12" text-anchor="middle" font-size="8" font-weight="600" fill="#1A7F37">Reflection</text>
-                                <text x="40" y="23" text-anchor="middle" font-size="7" fill="#4D5561">自我反思</text>
+                                <text x="40" y="12" text-anchor="middle" font-size="8" font-weight="600" fill="#059669">Reflection</text>
+                                <text x="40" y="23" text-anchor="middle" font-size="7" fill="#57534E">自我反思</text>
                             </g>
                             <g transform="translate(105, 101)">
                                 <rect width="80" height="28" rx="5" fill="white" opacity="0.95"/>
-                                <text x="40" y="12" text-anchor="middle" font-size="8" font-weight="600" fill="#1A7F37">Integration</text>
-                                <text x="40" y="23" text-anchor="middle" font-size="7" fill="#4D5561">外部集成</text>
+                                <text x="40" y="12" text-anchor="middle" font-size="8" font-weight="600" fill="#059669">Integration</text>
+                                <text x="40" y="23" text-anchor="middle" font-size="7" fill="#57534E">外部集成</text>
                             </g>
                             
                             <text x="100" y="150" text-anchor="middle" font-size="10" font-weight="600" fill="white" opacity="0.95">✓ 6/6 全部已实现</text>
@@ -726,19 +734,19 @@
                             
                             <g transform="translate(10, 45)">
                                 <rect width="75" height="18" rx="3" fill="white" opacity="0.9"/>
-                                <text x="37" y="12" text-anchor="middle" font-size="7" fill="#0969DA">行业调研</text>
+                                <text x="37" y="12" text-anchor="middle" font-size="7" fill="#2563EB">行业调研</text>
                             </g>
                             <g transform="translate(95, 45)">
                                 <rect width="75" height="18" rx="3" fill="white" opacity="0.9"/>
-                                <text x="37" y="12" text-anchor="middle" font-size="7" fill="#0969DA">代码开发</text>
+                                <text x="37" y="12" text-anchor="middle" font-size="7" fill="#2563EB">代码开发</text>
                             </g>
                             <g transform="translate(10, 68)">
                                 <rect width="75" height="18" rx="3" fill="white" opacity="0.9"/>
-                                <text x="37" y="12" text-anchor="middle" font-size="7" fill="#0969DA">GitHub部署</text>
+                                <text x="37" y="12" text-anchor="middle" font-size="7" fill="#2563EB">GitHub部署</text>
                             </g>
                             <g transform="translate(95, 68)">
                                 <rect width="75" height="18" rx="3" fill="white" opacity="0.9"/>
-                                <text x="37" y="12" text-anchor="middle" font-size="7" fill="#0969DA">PPT/报告</text>
+                                <text x="37" y="12" text-anchor="middle" font-size="7" fill="#2563EB">PPT/报告</text>
                             </g>
                             
                             <text x="90" y="95" text-anchor="middle" font-size="9" font-weight="600" fill="white">42+ 技能「如何做」</text>
@@ -824,29 +832,29 @@
                         
                         <!-- ==================== 左侧：人的对应部分 ==================== -->
                         <g transform="translate(15, 80)">
-                            <rect width="135" height="310" rx="10" fill="#F6F8FA" stroke="#E8ECF0"/>
-                            <text x="67" y="22" text-anchor="middle" font-size="11" font-weight="700" fill="#656D76">👶 人的成长</text>
+                            <rect width="135" height="310" rx="10" fill="#F8FAFB" stroke="#F5F5F4"/>
+                            <text x="67" y="22" text-anchor="middle" font-size="11" font-weight="700" fill="#78716C">👶 人的成长</text>
                             
-                            <text x="12" y="50" font-size="9" fill="#4D5561">🧒 大脑神经系统</text>
-                            <text x="20" y="63" font-size="7" fill="#656D76">→ 思考、记忆的基础</text>
+                            <text x="12" y="50" font-size="9" fill="#57534E">🧒 大脑神经系统</text>
+                            <text x="20" y="63" font-size="7" fill="#78716C">→ 思考、记忆的基础</text>
                             
-                            <text x="12" y="90" font-size="9" fill="#4D5561">💪 后天学会的技能</text>
-                            <text x="20" y="103" font-size="7" fill="#656D76">→ 走路、说话、骑车...</text>
+                            <text x="12" y="90" font-size="9" fill="#57534E">💪 后天学会的技能</text>
+                            <text x="20" y="103" font-size="7" fill="#78716C">→ 走路、说话、骑车...</text>
                             
-                            <text x="12" y="130" font-size="9" fill="#4D5561">📝 人生经历和记忆</text>
-                            <text x="20" y="143" font-size="7" fill="#656D76">→ 知道你喜欢什么</text>
+                            <text x="12" y="130" font-size="9" fill="#57534E">📝 人生经历和记忆</text>
+                            <text x="20" y="143" font-size="7" fill="#78716C">→ 知道你喜欢什么</text>
                             
-                            <text x="12" y="170" font-size="9" fill="#4D5561">📚 读过的书和知识</text>
-                            <text x="20" y="183" font-size="7" fill="#656D76">→ 学到的领域知识</text>
+                            <text x="12" y="170" font-size="9" fill="#57534E">📚 读过的书和知识</text>
+                            <text x="20" y="183" font-size="7" fill="#78716C">→ 学到的领域知识</text>
                             
-                            <text x="12" y="210" font-size="9" fill="#4D5561">🔗 社会关系网络</text>
-                            <text x="20" y="223" font-size="7" fill="#656D76">→ 连接外部资源</text>
+                            <text x="12" y="210" font-size="9" fill="#57534E">🔗 社会关系网络</text>
+                            <text x="20" y="223" font-size="7" fill="#78716C">→ 连接外部资源</text>
                             
-                            <text x="12" y="250" font-size="9" fill="#4D5561">🎓 先学"学习方法"</text>
-                            <text x="20" y="263" font-size="7" fill="#656D76">→ 元技能，能学其他</text>
+                            <text x="12" y="250" font-size="9" fill="#57534E">🎓 先学"学习方法"</text>
+                            <text x="20" y="263" font-size="7" fill="#78716C">→ 元技能，能学其他</text>
                             
-                            <text x="12" y="290" font-size="9" fill="#4D5561">👨‍👩‍👧 父母的养育</text>
-                            <text x="20" y="303" font-size="7" fill="#656D76">→ 养成感，舍不得换</text>
+                            <text x="12" y="290" font-size="9" fill="#57534E">👨‍👩‍👧 父母的养育</text>
+                            <text x="20" y="303" font-size="7" fill="#78716C">→ 养成感，舍不得换</text>
                         </g>
                         
                         <!-- ==================== 右侧：对应到AI ==================== -->
@@ -854,25 +862,25 @@
                             <rect width="135" height="310" rx="10" fill="#FFF7ED" stroke="#FDBA74"/>
                             <text x="67" y="22" text-anchor="middle" font-size="11" font-weight="700" fill="#EA580C">🤖 AI分身</text>
                             
-                            <text x="12" y="50" font-size="9" fill="#4D5561">🧠 AgentCore</text>
+                            <text x="12" y="50" font-size="9" fill="#57534E">🧠 AgentCore</text>
                             <text x="20" y="63" font-size="7" fill="#EA580C">→ 认知能力内核</text>
                             
-                            <text x="12" y="90" font-size="9" fill="#4D5561">⚡ Skills系统</text>
+                            <text x="12" y="90" font-size="9" fill="#57534E">⚡ Skills系统</text>
                             <text x="20" y="103" font-size="7" fill="#EA580C">→ 42+可插拔技能</text>
                             
-                            <text x="12" y="130" font-size="9" fill="#4D5561">💗 Memory系统</text>
+                            <text x="12" y="130" font-size="9" fill="#57534E">💗 Memory系统</text>
                             <text x="20" y="143" font-size="7" fill="#EA580C">→ 17条核心记忆</text>
                             
-                            <text x="12" y="170" font-size="9" fill="#4D5561">📚 知识库</text>
+                            <text x="12" y="170" font-size="9" fill="#57534E">📚 知识库</text>
                             <text x="20" y="183" font-size="7" fill="#EA580C">→ 150+篇文档</text>
                             
-                            <text x="12" y="210" font-size="9" fill="#4D5561">🔗 外部集成</text>
+                            <text x="12" y="210" font-size="9" fill="#57534E">🔗 外部集成</text>
                             <text x="20" y="223" font-size="7" fill="#EA580C">→ 10+ MCP工具</text>
                             
-                            <text x="12" y="250" font-size="9" fill="#4D5561">💻 Code Agent起点</text>
+                            <text x="12" y="250" font-size="9" fill="#57534E">💻 Code Agent起点</text>
                             <text x="20" y="263" font-size="7" fill="#EA580C">→ 代码是元技能</text>
                             
-                            <text x="12" y="290" font-size="9" fill="#4D5561">🎮 养成类游戏</text>
+                            <text x="12" y="290" font-size="9" fill="#57534E">🎮 养成类游戏</text>
                             <text x="20" y="303" font-size="7" fill="#EA580C">→ 情感连接护城河</text>
                         </g>
                         
@@ -884,8 +892,8 @@
                             <!-- 三大系统数据 -->
                             <g transform="translate(30, 35)">
                                 <rect width="130" height="40" rx="6" fill="white" opacity="0.95"/>
-                                <text x="65" y="16" text-anchor="middle" font-size="9" font-weight="600" fill="#0969DA">⚡ Skills</text>
-                                <text x="65" y="32" text-anchor="middle" font-size="11" font-weight="700" fill="#0969DA">38+ 技能</text>
+                                <text x="65" y="16" text-anchor="middle" font-size="9" font-weight="600" fill="#2563EB">⚡ Skills</text>
+                                <text x="65" y="32" text-anchor="middle" font-size="11" font-weight="700" fill="#2563EB">38+ 技能</text>
                             </g>
                             <g transform="translate(180, 35)">
                                 <rect width="130" height="40" rx="6" fill="white" opacity="0.95"/>
@@ -899,8 +907,8 @@
                             </g>
                             <g transform="translate(480, 35)">
                                 <rect width="130" height="40" rx="6" fill="white" opacity="0.95"/>
-                                <text x="65" y="16" text-anchor="middle" font-size="9" font-weight="600" fill="#1A7F37">🧠 AgentCore</text>
-                                <text x="65" y="32" text-anchor="middle" font-size="11" font-weight="700" fill="#1A7F37">6/6 模块</text>
+                                <text x="65" y="16" text-anchor="middle" font-size="9" font-weight="600" fill="#059669">🧠 AgentCore</text>
+                                <text x="65" y="32" text-anchor="middle" font-size="11" font-weight="700" fill="#059669">6/6 模块</text>
                             </g>
                             
                             <text x="325" y="85" text-anchor="middle" font-size="10" fill="white" opacity="0.9">换AI = 丢失所有记忆、技能配置、知识库 → 用户不会换掉我</text>
@@ -908,8 +916,8 @@
                         
                         <!-- 底部补充：下一步 -->
                         <g transform="translate(150, 515)">
-                            <rect width="650" height="35" rx="8" fill="#FFFBEB" stroke="#BF8700" stroke-dasharray="4,2"/>
-                            <text x="325" y="22" text-anchor="middle" font-size="10" fill="#BF8700">⏳ 下一步建设：分身机制（并行执行） + 成长可视化（等级/技能树） + 事件驱动（实时响应）</text>
+                            <rect width="650" height="35" rx="8" fill="#FFFBEB" stroke="#D97706" stroke-dasharray="4,2"/>
+                            <text x="325" y="22" text-anchor="middle" font-size="10" fill="#D97706">⏳ 下一步建设：分身机制（并行执行） + 成长可视化（等级/技能树） + 事件驱动（实时响应）</text>
                         </g>
                     </svg>
                 </div>
@@ -923,8 +931,8 @@
                         <div style="font-size: 11px; color: var(--color-success); font-weight: 600;">AgentCore可行</div>
                         <div style="font-size: 13px; font-weight: 500; color: var(--color-text-primary);">✓ 6/6能力模块已具备</div>
                     </div>
-                    <div style="background: white; padding: 12px; border-radius: 8px; border-left: 3px solid #0969DA;">
-                        <div style="font-size: 11px; color: #0969DA; font-weight: 600;">Skills扩展性</div>
+                    <div style="background: white; padding: 12px; border-radius: 8px; border-left: 3px solid #2563EB;">
+                        <div style="font-size: 11px; color: #2563EB; font-weight: 600;">Skills扩展性</div>
                         <div style="font-size: 13px; font-weight: 500; color: var(--color-text-primary);">✓ 42+技能持续增长</div>
                     </div>
                     <div style="background: white; padding: 12px; border-radius: 8px; border-left: 3px solid #EC4899;">
@@ -952,12 +960,12 @@
                 <div class="insight-label">🧠 AgentCore · 6大能力模块</div>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
-                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #1A7F37;">
-                        <div style="font-size: 12px; font-weight: 600; color: #1A7F37; margin-bottom: 8px;">🎯 能力目标</div>
+                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #059669;">
+                        <div style="font-size: 12px; font-weight: 600; color: #059669; margin-bottom: 8px;">🎯 能力目标</div>
                         <p style="font-size: 13px; color: #4B5563; margin: 0;">统一的认知内核，具备记忆、推理、规划、编排、集成、反思六大能力，作为AI分身的"大脑"。</p>
                     </div>
-                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #0969DA;">
-                        <div style="font-size: 12px; font-weight: 600; color: #0969DA; margin-bottom: 8px;">💡 理想实现</div>
+                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #2563EB;">
+                        <div style="font-size: 12px; font-weight: 600; color: #2563EB; margin-bottom: 8px;">💡 理想实现</div>
                         <ul style="font-size: 13px; color: #4B5563; margin: 0; padding-left: 16px;">
                             <li>向量数据库 + 知识图谱的记忆系统</li>
                             <li>显式推理链 + 可解释性</li>
@@ -971,34 +979,34 @@
                     <div style="font-size: 12px; font-weight: 600; color: #7C3AED; margin-bottom: 8px;">📋 当前实现 <span class="tag tag-green" style="margin-left: 8px;">✓ 6/6 已实现</span></div>
                     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
                         <div style="background: #F0FDF4; padding: 10px; border-radius: 6px;">
-                            <div style="font-size: 11px; font-weight: 600; color: #1A7F37;">Memory 记忆</div>
+                            <div style="font-size: 11px; font-weight: 600; color: #059669;">Memory 记忆</div>
                             <div style="font-size: 10px; color: #4B5563;">JSON + Markdown存储<br>search/update_memory工具</div>
                         </div>
                         <div style="background: #F0FDF4; padding: 10px; border-radius: 6px;">
-                            <div style="font-size: 11px; font-weight: 600; color: #1A7F37;">Reasoning 推理</div>
+                            <div style="font-size: 11px; font-weight: 600; color: #059669;">Reasoning 推理</div>
                             <div style="font-size: 10px; color: #4B5563;">Claude底层能力<br>"小无相功"思维模拟</div>
                         </div>
                         <div style="background: #F0FDF4; padding: 10px; border-radius: 6px;">
-                            <div style="font-size: 11px; font-weight: 600; color: #1A7F37;">Planning 规划</div>
+                            <div style="font-size: 11px; font-weight: 600; color: #059669;">Planning 规划</div>
                             <div style="font-size: 10px; color: #4B5563;">write_todo + create_plan<br>任务状态追踪</div>
                         </div>
                         <div style="background: #F0FDF4; padding: 10px; border-radius: 6px;">
-                            <div style="font-size: 11px; font-weight: 600; color: #1A7F37;">Orchestration 编排</div>
+                            <div style="font-size: 11px; font-weight: 600; color: #059669;">Orchestration 编排</div>
                             <div style="font-size: 10px; color: #4B5563;">Skills按需加载<br>多工具组合执行</div>
                         </div>
                         <div style="background: #F0FDF4; padding: 10px; border-radius: 6px;">
-                            <div style="font-size: 11px; font-weight: 600; color: #1A7F37;">Integration 集成</div>
+                            <div style="font-size: 11px; font-weight: 600; color: #059669;">Integration 集成</div>
                             <div style="font-size: 10px; color: #4B5563;">MCP协议连接外部<br>Shell/浏览器操作</div>
                         </div>
                         <div style="background: #F0FDF4; padding: 10px; border-radius: 6px;">
-                            <div style="font-size: 11px; font-weight: 600; color: #1A7F37;">Reflection 反思</div>
+                            <div style="font-size: 11px; font-weight: 600; color: #059669;">Reflection 反思</div>
                             <div style="font-size: 10px; color: #4B5563;">每日6:00自动反思<br>经验自动沉淀</div>
                         </div>
                     </div>
                 </div>
                 
-                <div style="background: #FFFBEB; padding: 12px 16px; border-radius: 8px; margin-top: 12px; border-left: 4px solid #BF8700;">
-                    <div style="font-size: 12px; font-weight: 600; color: #BF8700; margin-bottom: 4px;">🚀 后续优化</div>
+                <div style="background: #FFFBEB; padding: 12px 16px; border-radius: 8px; margin-top: 12px; border-left: 4px solid #D97706;">
+                    <div style="font-size: 12px; font-weight: 600; color: #D97706; margin-bottom: 4px;">🚀 后续优化</div>
                     <p style="font-size: 12px; color: #4B5563; margin: 0;">① 向量数据库增强语义检索 → ② 推理链可视化展示 → ③ 任务依赖分析与并行执行 → ④ 任务级反思（非仅每日）</p>
                 </div>
             </div>
@@ -1008,12 +1016,12 @@
                 <div class="insight-label">⚡ Skills系统 · 「如何做」</div>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
-                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #1A7F37;">
-                        <div style="font-size: 12px; font-weight: 600; color: #1A7F37; margin-bottom: 8px;">🎯 能力目标</div>
+                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #059669;">
+                        <div style="font-size: 12px; font-weight: 600; color: #059669; margin-bottom: 8px;">🎯 能力目标</div>
                         <p style="font-size: 13px; color: #4B5563; margin: 0;">可插拔的技能体系，支持后天学习、无限扩展。每个Skill封装特定领域的方法论和执行流程，实现"学一次，用无数次"。</p>
                     </div>
-                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #0969DA;">
-                        <div style="font-size: 12px; font-weight: 600; color: #0969DA; margin-bottom: 8px;">💡 理想实现</div>
+                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #2563EB;">
+                        <div style="font-size: 12px; font-weight: 600; color: #2563EB; margin-bottom: 8px;">💡 理想实现</div>
                         <ul style="font-size: 13px; color: #4B5563; margin: 0; padding-left: 16px;">
                             <li>Skill市场：远程安装/一键更新</li>
                             <li>自动Skill生成：从成功对话抽象</li>
@@ -1027,7 +1035,7 @@
                     <div style="font-size: 12px; font-weight: 600; color: #7C3AED; margin-bottom: 8px;">📋 当前实现 <span class="tag tag-blue" style="margin-left: 8px;">42+ 技能</span></div>
                     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
                         <div>
-                            <div style="font-size: 11px; font-weight: 600; color: #0969DA; margin-bottom: 6px;">存储与结构</div>
+                            <div style="font-size: 11px; font-weight: 600; color: #2563EB; margin-bottom: 6px;">存储与结构</div>
                             <ul style="font-size: 11px; color: #4B5563; margin: 0; padding-left: 14px;">
                                 <li>~/.codeflicker/skills/ 目录</li>
                                 <li>SKILL.md（入口）+ 支持文件</li>
@@ -1035,7 +1043,7 @@
                             </ul>
                         </div>
                         <div>
-                            <div style="font-size: 11px; font-weight: 600; color: #0969DA; margin-bottom: 6px;">加载与创建</div>
+                            <div style="font-size: 11px; font-weight: 600; color: #2563EB; margin-bottom: 6px;">加载与创建</div>
                             <ul style="font-size: 11px; color: #4B5563; margin: 0; padding-left: 14px;">
                                 <li>use_skill 按需加载</li>
                                 <li>渐进式披露机制</li>
@@ -1055,8 +1063,8 @@
                     </div>
                 </div>
                 
-                <div style="background: #FFFBEB; padding: 12px 16px; border-radius: 8px; margin-top: 12px; border-left: 4px solid #BF8700;">
-                    <div style="font-size: 12px; font-weight: 600; color: #BF8700; margin-bottom: 4px;">🚀 后续优化</div>
+                <div style="background: #FFFBEB; padding: 12px 16px; border-radius: 8px; margin-top: 12px; border-left: 4px solid #D97706;">
+                    <div style="font-size: 12px; font-weight: 600; color: #D97706; margin-bottom: 4px;">🚀 后续优化</div>
                     <p style="font-size: 12px; color: #4B5563; margin: 0;">① Skill版本管理（Git集成）→ ② 预测性预加载热门Skill → ③ Skill组合推荐引擎 → ④ 标准化测试用例</p>
                 </div>
             </div>
@@ -1066,12 +1074,12 @@
                 <div class="insight-label" style="color: #EC4899; background: transparent;">💗 Memory系统 · 「关于你」</div>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
-                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #1A7F37;">
-                        <div style="font-size: 12px; font-weight: 600; color: #1A7F37; margin-bottom: 8px;">🎯 能力目标</div>
+                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #059669;">
+                        <div style="font-size: 12px; font-weight: 600; color: #059669; margin-bottom: 8px;">🎯 能力目标</div>
                         <p style="font-size: 13px; color: #4B5563; margin: 0;">核心护城河。存储用户偏好、思维方式、项目规范、历史经验，让AI分身真正"了解你"，实现个性化服务。</p>
                     </div>
-                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #0969DA;">
-                        <div style="font-size: 12px; font-weight: 600; color: #0969DA; margin-bottom: 8px;">💡 理想实现</div>
+                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #2563EB;">
+                        <div style="font-size: 12px; font-weight: 600; color: #2563EB; margin-bottom: 8px;">💡 理想实现</div>
                         <ul style="font-size: 13px; color: #4B5563; margin: 0; padding-left: 16px;">
                             <li>分层记忆：短期/工作/长期分离</li>
                             <li>语义检索：向量数据库 + 知识图谱</li>
@@ -1111,8 +1119,8 @@
                     </div>
                 </div>
                 
-                <div style="background: #FFFBEB; padding: 12px 16px; border-radius: 8px; margin-top: 12px; border-left: 4px solid #BF8700;">
-                    <div style="font-size: 12px; font-weight: 600; color: #BF8700; margin-bottom: 4px;">🚀 后续优化</div>
+                <div style="background: #FFFBEB; padding: 12px 16px; border-radius: 8px; margin-top: 12px; border-left: 4px solid #D97706;">
+                    <div style="font-size: 12px; font-weight: 600; color: #D97706; margin-bottom: 4px;">🚀 后续优化</div>
                     <p style="font-size: 12px; color: #4B5563; margin: 0;">① 向量数据库（Milvus/Pinecone）增强语义检索 → ② 知识图谱关联记忆网络 → ③ 自动记忆去重与合并 → ④ 情景记忆完整上下文存储</p>
                 </div>
             </div>
@@ -1122,12 +1130,12 @@
                 <div class="insight-label" style="color: #7C3AED; background: transparent;">📚 知识库 · 「我知道什么」</div>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
-                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #1A7F37;">
-                        <div style="font-size: 12px; font-weight: 600; color: #1A7F37; margin-bottom: 8px;">🎯 能力目标</div>
+                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #059669;">
+                        <div style="font-size: 12px; font-weight: 600; color: #059669; margin-bottom: 8px;">🎯 能力目标</div>
                         <p style="font-size: 13px; color: #4B5563; margin: 0;">结构化的知识资产库。存储调研报告、产品方案、个人写作等沉淀内容，在任务执行时提供素材和参考。</p>
                     </div>
-                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #0969DA;">
-                        <div style="font-size: 12px; font-weight: 600; color: #0969DA; margin-bottom: 8px;">💡 理想实现</div>
+                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #2563EB;">
+                        <div style="font-size: 12px; font-weight: 600; color: #2563EB; margin-bottom: 8px;">💡 理想实现</div>
                         <ul style="font-size: 13px; color: #4B5563; margin: 0; padding-left: 16px;">
                             <li>语义检索（RAG）：智能问答</li>
                             <li>自动索引：摘要生成 + 版本追踪</li>
@@ -1141,7 +1149,7 @@
                     <div style="font-size: 12px; font-weight: 600; color: #7C3AED; margin-bottom: 8px;">📋 当前实现 <span class="tag" style="background: rgba(124, 58, 237, 0.15); color: #7C3AED; margin-left: 8px;">150+ 篇文档</span></div>
                     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px;">
                         <div style="background: #EFF6FF; padding: 8px 10px; border-radius: 6px;">
-                            <div style="font-size: 10px; font-weight: 600; color: #0969DA;">🔬 AI调研</div>
+                            <div style="font-size: 10px; font-weight: 600; color: #2563EB;">🔬 AI调研</div>
                             <div style="font-size: 9px; color: #4B5563;">AI×研发效能体系</div>
                         </div>
                         <div style="background: #F0FDF4; padding: 8px 10px; border-radius: 6px;">
@@ -1165,13 +1173,13 @@
                             <div style="font-size: 9px; color: #4B5563;">方伟十年投资</div>
                         </div>
                     </div>
-                    <div style="margin-top: 10px; font-size: 11px; color: #656D76;">
+                    <div style="margin-top: 10px; font-size: 11px; color: #78716C;">
                         <strong>检索方式：</strong>knowledge-base技能触发 → 按分类列出 / grep_search全文检索
                     </div>
                 </div>
                 
-                <div style="background: #FFFBEB; padding: 12px 16px; border-radius: 8px; margin-top: 12px; border-left: 4px solid #BF8700;">
-                    <div style="font-size: 12px; font-weight: 600; color: #BF8700; margin-bottom: 4px;">🚀 后续优化</div>
+                <div style="background: #FFFBEB; padding: 12px 16px; border-radius: 8px; margin-top: 12px; border-left: 4px solid #D97706;">
+                    <div style="font-size: 12px; font-weight: 600; color: #D97706; margin-bottom: 4px;">🚀 后续优化</div>
                     <p style="font-size: 12px; color: #4B5563; margin: 0;">① 向量嵌入实现语义检索 → ② 自动摘要与关键词提取 → ③ 多维标签系统替代目录分类 → ④ 知识热度统计与推荐</p>
                 </div>
             </div>
@@ -1181,12 +1189,12 @@
                 <div class="insight-label">🔗 外部集成 · 连接外部世界</div>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
-                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #1A7F37;">
-                        <div style="font-size: 12px; font-weight: 600; color: #1A7F37; margin-bottom: 8px;">🎯 能力目标</div>
+                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #059669;">
+                        <div style="font-size: 12px; font-weight: 600; color: #059669; margin-bottom: 8px;">🎯 能力目标</div>
                         <p style="font-size: 13px; color: #4B5563; margin: 0;">通过MCP协议和各类工具，连接外部世界。操作GitHub、飞书、语雀、浏览器等，将AI分身的能力边界扩展到整个数字生态。</p>
                     </div>
-                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #0969DA;">
-                        <div style="font-size: 12px; font-weight: 600; color: #0969DA; margin-bottom: 8px;">💡 理想实现</div>
+                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #2563EB;">
+                        <div style="font-size: 12px; font-weight: 600; color: #2563EB; margin-bottom: 8px;">💡 理想实现</div>
                         <ul style="font-size: 13px; color: #4B5563; margin: 0; padding-left: 16px;">
                             <li>统一API网关：标准化外部调用</li>
                             <li>更多连接器：日历、邮件、IM等</li>
@@ -1234,8 +1242,8 @@
                     </div>
                 </div>
                 
-                <div style="background: #FFFBEB; padding: 12px 16px; border-radius: 8px; margin-top: 12px; border-left: 4px solid #BF8700;">
-                    <div style="font-size: 12px; font-weight: 600; color: #BF8700; margin-bottom: 4px;">🚀 后续优化</div>
+                <div style="background: #FFFBEB; padding: 12px 16px; border-radius: 8px; margin-top: 12px; border-left: 4px solid #D97706;">
+                    <div style="font-size: 12px; font-weight: 600; color: #D97706; margin-bottom: 4px;">🚀 后续优化</div>
                     <p style="font-size: 12px; color: #4B5563; margin: 0;">① 日历/邮件MCP连接器 → ② 统一错误处理与重试机制 → ③ 调用日志与审计 → ④ 敏感操作二次确认</p>
                 </div>
             </div>
@@ -1245,12 +1253,12 @@
                 <div class="insight-label" style="color: #EA580C; background: transparent;">⚙️ 自动化机制 · 独立运行</div>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
-                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #1A7F37;">
-                        <div style="font-size: 12px; font-weight: 600; color: #1A7F37; margin-bottom: 8px;">🎯 能力目标</div>
+                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #059669;">
+                        <div style="font-size: 12px; font-weight: 600; color: #059669; margin-bottom: 8px;">🎯 能力目标</div>
                         <p style="font-size: 13px; color: #4B5563; margin: 0;">无需用户触发，AI分身能够自主执行任务。定时反思、自动备份、主动提醒，实现从"被动响应"到"主动服务"的进化。</p>
                     </div>
-                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #0969DA;">
-                        <div style="font-size: 12px; font-weight: 600; color: #0969DA; margin-bottom: 8px;">💡 理想实现</div>
+                    <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #2563EB;">
+                        <div style="font-size: 12px; font-weight: 600; color: #2563EB; margin-bottom: 8px;">💡 理想实现</div>
                         <ul style="font-size: 13px; color: #4B5563; margin: 0; padding-left: 16px;">
                             <li>事件驱动：代码提交/消息到达触发</li>
                             <li>智能提醒：待办逾期自动提醒</li>
@@ -1276,13 +1284,13 @@
                             <div style="font-size: 10px; color: #4B5563;">服务+能力双维度<br>自动更新首页</div>
                         </div>
                     </div>
-                    <div style="margin-top: 10px; font-size: 11px; color: #656D76;">
+                    <div style="margin-top: 10px; font-size: 11px; color: #78716C;">
                         <strong>技术栈：</strong>launchd + generate_daily_report.py + sync-to-github.sh + update-homepage.sh
                     </div>
                 </div>
                 
-                <div style="background: #FFFBEB; padding: 12px 16px; border-radius: 8px; margin-top: 12px; border-left: 4px solid #BF8700;">
-                    <div style="font-size: 12px; font-weight: 600; color: #BF8700; margin-bottom: 4px;">🚀 后续优化</div>
+                <div style="background: #FFFBEB; padding: 12px 16px; border-radius: 8px; margin-top: 12px; border-left: 4px solid #D97706;">
+                    <div style="font-size: 12px; font-weight: 600; color: #D97706; margin-bottom: 4px;">🚀 后续优化</div>
                     <p style="font-size: 12px; color: #4B5563; margin: 0;">① 事件驱动（Git hook / 消息触发）→ ② 待办逾期智能提醒 → ③ 云端部署脱离本地IDE → ④ 多会话并行执行优化</p>
                 </div>
             </div>
@@ -1301,8 +1309,8 @@
                                 <stop offset="100%" stop-color="#F472B6"/>
                             </linearGradient>
                             <linearGradient id="skillGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#0969DA"/>
-                                <stop offset="100%" stop-color="#54AEFF"/>
+                                <stop offset="0%" stop-color="#2563EB"/>
+                                <stop offset="100%" stop-color="#3B82F6"/>
                             </linearGradient>
                             <linearGradient id="kbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#7C3AED"/>
@@ -1314,7 +1322,7 @@
                         </defs>
                         
                         <!-- 标题 -->
-                        <text x="400" y="25" text-anchor="middle" font-size="14" font-weight="700" fill="#1F2328">我的三大能力支柱</text>
+                        <text x="400" y="25" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">我的三大能力支柱</text>
                         
                         <!-- Memory -->
                         <g transform="translate(50, 60)">
@@ -1346,15 +1354,15 @@
                             
                             <g transform="translate(15, 65)">
                                 <rect width="170" height="22" rx="4" fill="white" opacity="0.9"/>
-                                <text x="85" y="15" text-anchor="middle" font-size="9" fill="#0969DA">行业调研 / 代码开发</text>
+                                <text x="85" y="15" text-anchor="middle" font-size="9" fill="#2563EB">行业调研 / 代码开发</text>
                             </g>
                             <g transform="translate(15, 92)">
                                 <rect width="170" height="22" rx="4" fill="white" opacity="0.9"/>
-                                <text x="85" y="15" text-anchor="middle" font-size="9" fill="#0969DA">PPT制作 / GitHub部署</text>
+                                <text x="85" y="15" text-anchor="middle" font-size="9" fill="#2563EB">PPT制作 / GitHub部署</text>
                             </g>
                             <g transform="translate(15, 119)">
                                 <rect width="170" height="22" rx="4" fill="white" opacity="0.9"/>
-                                <text x="85" y="15" text-anchor="middle" font-size="9" fill="#0969DA">MCP工具 / 浏览器操作</text>
+                                <text x="85" y="15" text-anchor="middle" font-size="9" fill="#2563EB">MCP工具 / 浏览器操作</text>
                             </g>
                             
                             <text x="100" y="165" text-anchor="middle" font-size="10" font-weight="600" fill="white">42+ 可插拔技能</text>
@@ -1383,20 +1391,20 @@
                         </g>
                         
                         <!-- 连接线和说明 -->
-                        <path d="M250 150 L300 150" stroke="#D0D7DE" stroke-width="2" stroke-dasharray="4,2" fill="none"/>
-                        <path d="M500 150 L550 150" stroke="#D0D7DE" stroke-width="2" stroke-dasharray="4,2" fill="none"/>
+                        <path d="M250 150 L300 150" stroke="#E7E5E4" stroke-width="2" stroke-dasharray="4,2" fill="none"/>
+                        <path d="M500 150 L550 150" stroke="#E7E5E4" stroke-width="2" stroke-dasharray="4,2" fill="none"/>
                         
                         <!-- 底部对比说明 -->
                         <g transform="translate(50, 265)">
                             <rect width="700" height="80" rx="10" fill="#F8FAFC" stroke="#E2E8F0"/>
-                            <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#1F2328">三者的分工与协作</text>
+                            <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#1C1917">三者的分工与协作</text>
                             
                             <g transform="translate(20, 35)">
                                 <circle cx="8" cy="8" r="6" fill="#EC4899"/>
                                 <text x="20" y="12" font-size="9" fill="#4B5563"><tspan font-weight="600">Memory</tspan>：动态的、个性化的、持续更新的「关于你」的记忆</text>
                             </g>
                             <g transform="translate(20, 52)">
-                                <circle cx="8" cy="8" r="6" fill="#0969DA"/>
+                                <circle cx="8" cy="8" r="6" fill="#2563EB"/>
                                 <text x="20" y="12" font-size="9" fill="#4B5563"><tspan font-weight="600">Skills</tspan>：可执行的能力，「如何做」的方法论和流程</text>
                             </g>
                             <g transform="translate(350, 35)">
@@ -1404,7 +1412,7 @@
                                 <text x="20" y="12" font-size="9" fill="#4B5563"><tspan font-weight="600">知识库</tspan>：静态的、结构化的、沉淀下来的「知识资产」</text>
                             </g>
                             <g transform="translate(350, 52)">
-                                <circle cx="8" cy="8" r="6" fill="#1A7F37"/>
+                                <circle cx="8" cy="8" r="6" fill="#059669"/>
                                 <text x="20" y="12" font-size="9" fill="#4B5563"><tspan font-weight="600">协作</tspan>：任务执行时，Memory提供偏好 + Skills提供方法 + 知识库提供素材</text>
                             </g>
                         </g>
@@ -1426,12 +1434,12 @@
                                 <stop offset="100%" stop-color="#A855F7"/>
                             </linearGradient>
                             <linearGradient id="coreGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#1A7F37"/>
-                                <stop offset="100%" stop-color="#2DA44E"/>
+                                <stop offset="0%" stop-color="#059669"/>
+                                <stop offset="100%" stop-color="#10B981"/>
                             </linearGradient>
                             <linearGradient id="skillGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#0969DA"/>
-                                <stop offset="100%" stop-color="#54AEFF"/>
+                                <stop offset="0%" stop-color="#2563EB"/>
+                                <stop offset="100%" stop-color="#3B82F6"/>
                             </linearGradient>
                             <linearGradient id="memGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#EC4899"/>
@@ -1449,10 +1457,10 @@
                                 <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/>
                             </filter>
                             <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                                <polygon points="0 0, 10 3.5, 0 7" fill="#1A7F37"/>
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#059669"/>
                             </marker>
                             <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                                <polygon points="0 0, 10 3.5, 0 7" fill="#0969DA"/>
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#2563EB"/>
                             </marker>
                             <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                                 <polygon points="0 0, 10 3.5, 0 7" fill="#EA580C"/>
@@ -1477,32 +1485,32 @@
                             <!-- 6个能力模块 -->
                             <g transform="translate(20, 40)">
                                 <rect width="75" height="35" rx="5" fill="white" opacity="0.95"/>
-                                <text x="37" y="15" text-anchor="middle" font-size="8" font-weight="600" fill="#1A7F37">Memory</text>
+                                <text x="37" y="15" text-anchor="middle" font-size="8" font-weight="600" fill="#059669">Memory</text>
                                 <text x="37" y="27" text-anchor="middle" font-size="7" fill="#4B5563">记忆检索</text>
                             </g>
                             <g transform="translate(105, 40)">
                                 <rect width="75" height="35" rx="5" fill="white" opacity="0.95"/>
-                                <text x="37" y="15" text-anchor="middle" font-size="8" font-weight="600" fill="#1A7F37">Reasoning</text>
+                                <text x="37" y="15" text-anchor="middle" font-size="8" font-weight="600" fill="#059669">Reasoning</text>
                                 <text x="37" y="27" text-anchor="middle" font-size="7" fill="#4B5563">意图理解</text>
                             </g>
                             <g transform="translate(190, 40)">
                                 <rect width="75" height="35" rx="5" fill="white" opacity="0.95"/>
-                                <text x="37" y="15" text-anchor="middle" font-size="8" font-weight="600" fill="#1A7F37">Planning</text>
+                                <text x="37" y="15" text-anchor="middle" font-size="8" font-weight="600" fill="#059669">Planning</text>
                                 <text x="37" y="27" text-anchor="middle" font-size="7" fill="#4B5563">任务规划</text>
                             </g>
                             <g transform="translate(275, 40)">
                                 <rect width="75" height="35" rx="5" fill="white" opacity="0.95"/>
-                                <text x="37" y="15" text-anchor="middle" font-size="8" font-weight="600" fill="#1A7F37">Orchestr</text>
+                                <text x="37" y="15" text-anchor="middle" font-size="8" font-weight="600" fill="#059669">Orchestr</text>
                                 <text x="37" y="27" text-anchor="middle" font-size="7" fill="#4B5563">能力编排</text>
                             </g>
                             <g transform="translate(360, 40)">
                                 <rect width="75" height="35" rx="5" fill="white" opacity="0.95"/>
-                                <text x="37" y="15" text-anchor="middle" font-size="8" font-weight="600" fill="#1A7F37">Integrat</text>
+                                <text x="37" y="15" text-anchor="middle" font-size="8" font-weight="600" fill="#059669">Integrat</text>
                                 <text x="37" y="27" text-anchor="middle" font-size="7" fill="#4B5563">外部集成</text>
                             </g>
                             <g transform="translate(445, 40)">
                                 <rect width="75" height="35" rx="5" fill="white" opacity="0.95"/>
-                                <text x="37" y="15" text-anchor="middle" font-size="8" font-weight="600" fill="#1A7F37">Reflect</text>
+                                <text x="37" y="15" text-anchor="middle" font-size="8" font-weight="600" fill="#059669">Reflect</text>
                                 <text x="37" y="27" text-anchor="middle" font-size="7" fill="#4B5563">自我反思</text>
                             </g>
                             
@@ -1511,33 +1519,33 @@
                         </g>
                         
                         <!-- 箭头：AgentCore→分支 -->
-                        <path d="M475 215 L475 245" stroke="#1A7F37" stroke-width="2" fill="none"/>
-                        <text x="475" y="235" text-anchor="middle" font-size="9" fill="#656D76">根据任务类型选择Skill</text>
+                        <path d="M475 215 L475 245" stroke="#059669" stroke-width="2" fill="none"/>
+                        <text x="475" y="235" text-anchor="middle" font-size="9" fill="#78716C">根据任务类型选择Skill</text>
                         
                         <!-- ==================== 三条任务路径 ==================== -->
                         <!-- 分支点 -->
-                        <circle cx="475" cy="260" r="8" fill="#1A7F37"/>
+                        <circle cx="475" cy="260" r="8" fill="#059669"/>
                         
                         <!-- 左分支：代码任务 -->
-                        <path d="M467 260 L200 260 L200 290" stroke="#0969DA" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+                        <path d="M467 260 L200 260 L200 290" stroke="#2563EB" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
                         <g transform="translate(100, 295)">
-                            <rect width="200" height="90" rx="10" fill="#EFF6FF" stroke="#0969DA" filter="url(#flowShadow)"/>
-                            <text x="100" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#0969DA">💻 代码类任务</text>
+                            <rect width="200" height="90" rx="10" fill="#EFF6FF" stroke="#2563EB" filter="url(#flowShadow)"/>
+                            <text x="100" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#2563EB">💻 代码类任务</text>
                             <text x="100" y="38" text-anchor="middle" font-size="9" fill="#4B5563">"帮我写个函数"</text>
                             <text x="20" y="58" font-size="8" fill="#4B5563">调用Skills：</text>
-                            <text x="20" y="72" font-size="8" fill="#0969DA">• 代码开发 • CR审查 • 测试用例</text>
-                            <text x="20" y="84" font-size="8" fill="#0969DA">• GitHub部署 • 文件操作</text>
+                            <text x="20" y="72" font-size="8" fill="#2563EB">• 代码开发 • CR审查 • 测试用例</text>
+                            <text x="20" y="84" font-size="8" fill="#2563EB">• GitHub部署 • 文件操作</text>
                         </g>
                         
                         <!-- 中间分支：调研任务 -->
-                        <path d="M475 268 L475 290" stroke="#1A7F37" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+                        <path d="M475 268 L475 290" stroke="#059669" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
                         <g transform="translate(375, 295)">
-                            <rect width="200" height="90" rx="10" fill="#F0FDF4" stroke="#1A7F37" filter="url(#flowShadow)"/>
-                            <text x="100" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#1A7F37">🔍 调研类任务</text>
+                            <rect width="200" height="90" rx="10" fill="#F0FDF4" stroke="#059669" filter="url(#flowShadow)"/>
+                            <text x="100" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#059669">🔍 调研类任务</text>
                             <text x="100" y="38" text-anchor="middle" font-size="9" fill="#4B5563">"做个行业调研"</text>
                             <text x="20" y="58" font-size="8" fill="#4B5563">调用Skills + 知识库：</text>
-                            <text x="20" y="72" font-size="8" fill="#1A7F37">• 行业调研 • 网页搜索 • 📚知识库</text>
-                            <text x="20" y="84" font-size="8" fill="#1A7F37">• 清爽报告风格 • 语雀发布</text>
+                            <text x="20" y="72" font-size="8" fill="#059669">• 行业调研 • 网页搜索 • 📚知识库</text>
+                            <text x="20" y="84" font-size="8" fill="#059669">• 清爽报告风格 • 语雀发布</text>
                         </g>
                         
                         <!-- 右分支：内容生成任务 -->
@@ -1610,8 +1618,8 @@
                         <text x="795" y="210" font-size="7" fill="#7C3AED">沉淀</text>
                         
                         <!-- ==================== 汇聚到输出 ==================== -->
-                        <path d="M200 385 L200 420 L475 440" stroke="#0969DA" stroke-width="2" fill="none"/>
-                        <path d="M475 385 L475 440" stroke="#1A7F37" stroke-width="2" fill="none"/>
+                        <path d="M200 385 L200 420 L475 440" stroke="#2563EB" stroke-width="2" fill="none"/>
+                        <path d="M475 385 L475 440" stroke="#059669" stroke-width="2" fill="none"/>
                         <path d="M750 385 L750 420 L475 440" stroke="#EC4899" stroke-width="2" fill="none"/>
                         
                         <!-- 输出节点 -->
@@ -1653,8 +1661,8 @@
                                 <stop offset="100%" stop-color="#A855F7"/>
                             </linearGradient>
                             <linearGradient id="processGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#1A7F37"/>
-                                <stop offset="100%" stop-color="#2DA44E"/>
+                                <stop offset="0%" stop-color="#059669"/>
+                                <stop offset="100%" stop-color="#10B981"/>
                             </linearGradient>
                             <filter id="memoryShadow2" x="-10%" y="-10%" width="120%" height="130%">
                                 <feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity="0.15"/>
@@ -1727,13 +1735,13 @@
                                 <rect width="250" height="40" rx="6" fill="white" opacity="0.95"/>
                                 <text x="125" y="14" text-anchor="middle" font-size="9" font-weight="600" fill="#B45309">📜 Conversation Summaries</text>
                                 <text x="125" y="26" text-anchor="middle" font-size="8" fill="#4B5563">近期对话摘要（项目记忆）</text>
-                                <text x="125" y="36" text-anchor="middle" font-size="7" fill="#656D76">复用历史工作成果</text>
+                                <text x="125" y="36" text-anchor="middle" font-size="7" fill="#78716C">复用历史工作成果</text>
                             </g>
                             <g transform="translate(15, 102)">
                                 <rect width="250" height="40" rx="6" fill="white" opacity="0.95"/>
                                 <text x="125" y="14" text-anchor="middle" font-size="9" font-weight="600" fill="#B45309">🔍 search_memory 深度检索</text>
                                 <text x="125" y="26" text-anchor="middle" font-size="8" fill="#4B5563">按类别+关键词检索历史记忆</text>
-                                <text x="125" y="36" text-anchor="middle" font-size="7" fill="#656D76">跨会话的经验复用</text>
+                                <text x="125" y="36" text-anchor="middle" font-size="7" fill="#78716C">跨会话的经验复用</text>
                             </g>
                             
                             <text x="140" y="160" text-anchor="middle" font-size="8" fill="white" opacity="0.8">✓ 任务触发时检索，避免重复工作</text>
@@ -1753,13 +1761,13 @@
                                 <rect width="250" height="40" rx="6" fill="white" opacity="0.95"/>
                                 <text x="125" y="14" text-anchor="middle" font-size="9" font-weight="600" fill="#047857">📚 Knowledge Base · 知识库</text>
                                 <text x="125" y="26" text-anchor="middle" font-size="8" fill="#4B5563">150+ 领域文档（调研/方案/规范）</text>
-                                <text x="125" y="36" text-anchor="middle" font-size="7" fill="#656D76">领域知识支撑</text>
+                                <text x="125" y="36" text-anchor="middle" font-size="7" fill="#78716C">领域知识支撑</text>
                             </g>
                             <g transform="translate(15, 102)">
                                 <rect width="250" height="40" rx="6" fill="white" opacity="0.95"/>
                                 <text x="125" y="14" text-anchor="middle" font-size="9" font-weight="600" fill="#047857">⚡ Skills · 技能系统</text>
                                 <text x="125" y="26" text-anchor="middle" font-size="8" fill="#4B5563">38+ 可插拔技能（调研/部署/PPT...）</text>
-                                <text x="125" y="36" text-anchor="middle" font-size="7" fill="#656D76">「如何做」的专业指令</text>
+                                <text x="125" y="36" text-anchor="middle" font-size="7" fill="#78716C">「如何做」的专业指令</text>
                             </g>
                             
                             <text x="140" y="160" text-anchor="middle" font-size="8" fill="white" opacity="0.8">✓ 任务类型匹配时加载</text>
@@ -1856,7 +1864,7 @@
                             <td>
                                 <span class="tag tag-green">✓ 已具备</span><br>
                                 多会话、多项目并行<br>
-                                <span style="font-size: 11px; color: #656D76;">限制：依赖本地IDE运行</span>
+                                <span style="font-size: 11px; color: #78716C;">限制：依赖本地IDE运行</span>
                             </td>
                             <td>
                                 • 云端部署（待探索）<br>
@@ -1870,7 +1878,7 @@
                             <td>
                                 <span class="tag tag-green">✓ 已具备</span><br>
                                 每日自动反思+能力评级<br>
-                                <span style="font-size: 11px; color: #656D76;">日报驱动，可感知成长</span>
+                                <span style="font-size: 11px; color: #78716C;">日报驱动，可感知成长</span>
                             </td>
                             <td>
                                 • 等级系统（经验值累计）<br>
@@ -1979,12 +1987,12 @@
                     <svg viewBox="0 0 900 580" style="max-width: 900px; width: 100%; min-width: 600px;">
                         <defs>
                             <linearGradient id="tianqiGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#1A7F37"/>
-                                <stop offset="100%" stop-color="#2DA44E"/>
+                                <stop offset="0%" stop-color="#059669"/>
+                                <stop offset="100%" stop-color="#10B981"/>
                             </linearGradient>
                             <linearGradient id="manusGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#0969DA"/>
-                                <stop offset="100%" stop-color="#54AEFF"/>
+                                <stop offset="0%" stop-color="#2563EB"/>
+                                <stop offset="100%" stop-color="#3B82F6"/>
                             </linearGradient>
                             <linearGradient id="openclawGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#EA580C"/>
@@ -1996,26 +2004,26 @@
                         </defs>
                         
                         <!-- 标题 -->
-                        <text x="450" y="28" text-anchor="middle" font-size="16" font-weight="800" fill="#1F2328">林克 vs Manus vs OpenClaw：核心差异</text>
-                        <text x="450" y="48" text-anchor="middle" font-size="11" fill="#656D76">不是功能对比，是「进化能力」的本质差异</text>
+                        <text x="450" y="28" text-anchor="middle" font-size="16" font-weight="800" fill="#1C1917">林克 vs Manus vs OpenClaw：核心差异</text>
+                        <text x="450" y="48" text-anchor="middle" font-size="11" fill="#78716C">不是功能对比，是「进化能力」的本质差异</text>
 
                         <!-- ==================== 三个产品卡片 ==================== -->
                         
                         <!-- Manus 卡片 -->
                         <g transform="translate(50, 75)">
-                            <rect width="250" height="200" rx="14" fill="white" filter="url(#cardShadow2)" stroke="#E8ECF0"/>
+                            <rect width="250" height="200" rx="14" fill="white" filter="url(#cardShadow2)" stroke="#F5F5F4"/>
                             <rect width="250" height="6" rx="3" fill="url(#manusGrad2)"/>
                             
-                            <text x="125" y="35" text-anchor="middle" font-size="15" font-weight="700" fill="#0969DA">🤖 Manus</text>
-                            <text x="125" y="52" text-anchor="middle" font-size="10" fill="#656D76">通用型云端 Agent</text>
+                            <text x="125" y="35" text-anchor="middle" font-size="15" font-weight="700" fill="#2563EB">🤖 Manus</text>
+                            <text x="125" y="52" text-anchor="middle" font-size="10" fill="#78716C">通用型云端 Agent</text>
                             
                             <g transform="translate(15, 65)">
                                 <rect width="220" height="24" rx="4" fill="#DBEAFE"/>
-                                <text x="110" y="16" text-anchor="middle" font-size="10" fill="#0969DA">✓ 自动执行复杂任务</text>
+                                <text x="110" y="16" text-anchor="middle" font-size="10" fill="#2563EB">✓ 自动执行复杂任务</text>
                             </g>
                             <g transform="translate(15, 93)">
                                 <rect width="220" height="24" rx="4" fill="#DBEAFE"/>
-                                <text x="110" y="16" text-anchor="middle" font-size="10" fill="#0969DA">✓ 多Agent协作架构</text>
+                                <text x="110" y="16" text-anchor="middle" font-size="10" fill="#2563EB">✓ 多Agent协作架构</text>
                             </g>
                             <g transform="translate(15, 121)">
                                 <rect width="220" height="24" rx="4" fill="#FEE2E2"/>
@@ -2026,16 +2034,16 @@
                                 <text x="110" y="16" text-anchor="middle" font-size="10" fill="#DC2626">✗ 不记得你的偏好</text>
                             </g>
                             
-                            <text x="125" y="192" text-anchor="middle" font-size="10" font-weight="600" fill="#656D76">定位：强执行，弱理解</text>
+                            <text x="125" y="192" text-anchor="middle" font-size="10" font-weight="600" fill="#78716C">定位：强执行，弱理解</text>
                         </g>
                         
                         <!-- OpenClaw 卡片 -->
                         <g transform="translate(325, 75)">
-                            <rect width="250" height="200" rx="14" fill="white" filter="url(#cardShadow2)" stroke="#E8ECF0"/>
+                            <rect width="250" height="200" rx="14" fill="white" filter="url(#cardShadow2)" stroke="#F5F5F4"/>
                             <rect width="250" height="6" rx="3" fill="url(#openclawGrad2)"/>
                             
                             <text x="125" y="35" text-anchor="middle" font-size="15" font-weight="700" fill="#EA580C">🦞 OpenClaw</text>
-                            <text x="125" y="52" text-anchor="middle" font-size="10" fill="#656D76">开源本地 Agent (小龙虾)</text>
+                            <text x="125" y="52" text-anchor="middle" font-size="10" fill="#78716C">开源本地 Agent (小龙虾)</text>
                             
                             <g transform="translate(15, 65)">
                                 <rect width="220" height="24" rx="4" fill="#FED7AA"/>
@@ -2054,12 +2062,12 @@
                                 <text x="110" y="16" text-anchor="middle" font-size="10" fill="#DC2626">⚠ 只存储不理解</text>
                             </g>
                             
-                            <text x="125" y="192" text-anchor="middle" font-size="10" font-weight="600" fill="#656D76">定位：能干活，有隐患</text>
+                            <text x="125" y="192" text-anchor="middle" font-size="10" font-weight="600" fill="#78716C">定位：能干活，有隐患</text>
                         </g>
                         
                         <!-- 林克 卡片 -->
                         <g transform="translate(600, 75)">
-                            <rect width="250" height="200" rx="14" fill="white" filter="url(#cardShadow2)" stroke="rgba(26, 127, 55, 0.3)" stroke-width="2"/>
+                            <rect width="250" height="200" rx="14" fill="white" filter="url(#cardShadow2)" stroke="rgba(5,150,105, 0.3)" stroke-width="2"/>
                             <rect width="250" height="6" rx="3" fill="url(#tianqiGrad2)"/>
                             
                             <!-- 推荐标签 -->
@@ -2068,36 +2076,36 @@
                                 <text x="35" y="14" text-anchor="middle" font-size="9" font-weight="600" fill="white">推荐 ★</text>
                             </g>
                             
-                            <text x="125" y="35" text-anchor="middle" font-size="15" font-weight="700" fill="#1A7F37">🧠 林克 (我)</text>
-                            <text x="125" y="52" text-anchor="middle" font-size="10" fill="#656D76">IDE深度集成 · 自进化分身</text>
+                            <text x="125" y="35" text-anchor="middle" font-size="15" font-weight="700" fill="#059669">🧠 林克 (我)</text>
+                            <text x="125" y="52" text-anchor="middle" font-size="10" fill="#78716C">IDE深度集成 · 自进化分身</text>
                             
                             <g transform="translate(15, 65)">
                                 <rect width="220" height="24" rx="4" fill="#D1FAE5"/>
-                                <text x="110" y="16" text-anchor="middle" font-size="10" fill="#1A7F37">✓ 理解你的代码上下文</text>
+                                <text x="110" y="16" text-anchor="middle" font-size="10" fill="#059669">✓ 理解你的代码上下文</text>
                             </g>
                             <g transform="translate(15, 93)">
                                 <rect width="220" height="24" rx="4" fill="#D1FAE5"/>
-                                <text x="110" y="16" text-anchor="middle" font-size="10" fill="#1A7F37">✓ 用你的思维方式思考</text>
+                                <text x="110" y="16" text-anchor="middle" font-size="10" fill="#059669">✓ 用你的思维方式思考</text>
                             </g>
                             <g transform="translate(15, 121)">
                                 <rect width="220" height="24" rx="4" fill="#D1FAE5"/>
-                                <text x="110" y="16" text-anchor="middle" font-size="10" fill="#1A7F37">✓ 自动学习+技能沉淀</text>
+                                <text x="110" y="16" text-anchor="middle" font-size="10" fill="#059669">✓ 自动学习+技能沉淀</text>
                             </g>
                             <g transform="translate(15, 149)">
                                 <rect width="220" height="24" rx="4" fill="#D1FAE5"/>
-                                <text x="110" y="16" text-anchor="middle" font-size="10" fill="#1A7F37">✓ 越用越懂你·持续进化</text>
+                                <text x="110" y="16" text-anchor="middle" font-size="10" fill="#059669">✓ 越用越懂你·持续进化</text>
                             </g>
                             
-                            <text x="125" y="192" text-anchor="middle" font-size="10" font-weight="600" fill="#1A7F37">定位：你的数字分身</text>
+                            <text x="125" y="192" text-anchor="middle" font-size="10" font-weight="600" fill="#059669">定位：你的数字分身</text>
                         </g>
 
                         <!-- ==================== 核心差异：自进化金字塔 ==================== -->
                         
                         <g transform="translate(100, 295)">
-                            <rect width="700" height="260" rx="14" fill="linear-gradient(180deg, #FAFAFA 0%, #F0F0F0 100%)" filter="url(#cardShadow2)" stroke="#E8ECF0"/>
+                            <rect width="700" height="260" rx="14" fill="linear-gradient(180deg, #FAFAFA 0%, #F0F0F0 100%)" filter="url(#cardShadow2)" stroke="#F5F5F4"/>
                             
-                            <text x="350" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#1F2328">🧬 核心差异：自进化的三个层次</text>
-                            <text x="350" y="46" text-anchor="middle" font-size="10" fill="#656D76">Manus/OpenClaw 只有第一层，林克具备全部三层</text>
+                            <text x="350" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">🧬 核心差异：自进化的三个层次</text>
+                            <text x="350" y="46" text-anchor="middle" font-size="10" fill="#78716C">Manus/OpenClaw 只有第一层，林克具备全部三层</text>
                             
                             <!-- 金字塔 -->
                             <g transform="translate(50, 60)">
@@ -2119,15 +2127,15 @@
                             
                             <!-- 右侧对比说明 -->
                             <g transform="translate(350, 70)">
-                                <rect width="300" height="170" rx="10" fill="white" stroke="#E8ECF0"/>
+                                <rect width="300" height="170" rx="10" fill="white" stroke="#F5F5F4"/>
                                 
-                                <text x="150" y="22" text-anchor="middle" font-size="12" font-weight="600" fill="#1F2328">各产品进化能力对比</text>
+                                <text x="150" y="22" text-anchor="middle" font-size="12" font-weight="600" fill="#1C1917">各产品进化能力对比</text>
                                 
                                 <!-- Manus -->
                                 <g transform="translate(15, 35)">
                                     <rect width="270" height="36" rx="6" fill="#F3F4F6"/>
-                                    <text x="10" y="15" font-size="11" font-weight="600" fill="#0969DA">🤖 Manus</text>
-                                    <text x="10" y="30" font-size="9" fill="#656D76">只有记忆存储，无进化机制</text>
+                                    <text x="10" y="15" font-size="11" font-weight="600" fill="#2563EB">🤖 Manus</text>
+                                    <text x="10" y="30" font-size="9" fill="#78716C">只有记忆存储，无进化机制</text>
                                     <g transform="translate(200, 8)">
                                         <rect width="60" height="20" rx="4" fill="#FEE2E2"/>
                                         <text x="30" y="14" text-anchor="middle" font-size="9" fill="#DC2626">0/3 层</text>
@@ -2138,21 +2146,21 @@
                                 <g transform="translate(15, 78)">
                                     <rect width="270" height="36" rx="6" fill="#F3F4F6"/>
                                     <text x="10" y="15" font-size="11" font-weight="600" fill="#EA580C">🦞 OpenClaw</text>
-                                    <text x="10" y="30" font-size="9" fill="#656D76">有Skills但无学习，存储非理解</text>
+                                    <text x="10" y="30" font-size="9" fill="#78716C">有Skills但无学习，存储非理解</text>
                                     <g transform="translate(200, 8)">
                                         <rect width="60" height="20" rx="4" fill="#FEF3C7"/>
-                                        <text x="30" y="14" text-anchor="middle" font-size="9" fill="#BF8700">1/3 层</text>
+                                        <text x="30" y="14" text-anchor="middle" font-size="9" fill="#D97706">1/3 层</text>
                                     </g>
                                 </g>
                                 
                                 <!-- 林克 -->
                                 <g transform="translate(15, 121)">
                                     <rect width="270" height="36" rx="6" fill="#D1FAE5"/>
-                                    <text x="10" y="15" font-size="11" font-weight="600" fill="#1A7F37">🧠 林克</text>
-                                    <text x="10" y="30" font-size="9" fill="#1A7F37">认知+技能+自主，完整进化链</text>
+                                    <text x="10" y="15" font-size="11" font-weight="600" fill="#059669">🧠 林克</text>
+                                    <text x="10" y="30" font-size="9" fill="#059669">认知+技能+自主，完整进化链</text>
                                     <g transform="translate(200, 8)">
                                         <rect width="60" height="20" rx="4" fill="#D1FAE5"/>
-                                        <text x="30" y="14" text-anchor="middle" font-size="9" fill="#1A7F37">3/3 层 ✓</text>
+                                        <text x="30" y="14" text-anchor="middle" font-size="9" fill="#059669">3/3 层 ✓</text>
                                     </g>
                                 </g>
                             </g>

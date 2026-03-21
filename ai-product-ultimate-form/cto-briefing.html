@@ -6,38 +6,44 @@
     <title>AI产品终极形态洞察 - CTO汇报</title>
     <style>
         :root {
-            --color-primary: #1A7F37;
-            --color-primary-light: #2DA44E;
-            --color-danger: #CF222E;
-            --color-warning: #BF8700;
-            --color-info: #0969DA;
+            --color-success: #059669;
+            --color-success-light: #10B981;
+            --color-danger: #E11D48;
+            --color-warning: #D97706;
+            --color-info: #2563EB;
             --color-purple: #7C3AED;
-            --color-text: #1F2328;
-            --color-text-secondary: #4D5561;
-            --color-text-muted: #656D76;
-            --color-border: #D0D7DE;
-            --color-border-light: #E8ECF0;
-            --color-bg: #F6F8FA;
+            --color-text-primary: #1C1917;
+            --color-text-secondary: #57534E;
+            --color-text-muted: #78716C;
+            --color-border: #E7E5E4;
+            --color-border-light: #F5F5F4;
+            --color-bg: #F8FAFB;
             --color-bg-card: #FFFFFF;
-            --color-bg-table-header: #F3F5F7;
-            --gradient-primary: linear-gradient(135deg, #1A7F37 0%, #2DA44E 100%);
+            --color-bg-table-header: #FAFAF9;
+            --gradient-success: linear-gradient(135deg, #059669 0%, #10B981 100%);
             --gradient-purple: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
-            --gradient-blue: linear-gradient(135deg, #0969DA 0%, #54AEFF 100%);
-            --gradient-orange: linear-gradient(135deg, #BF8700 0%, #F59E0B 100%);
-            --gradient-hero: linear-gradient(135deg, rgba(26,127,55,0.06) 0%, rgba(124,58,237,0.04) 100%);
+            --gradient-blue: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
+            --gradient-orange: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+            --gradient-badge: linear-gradient(135deg, #ECFDF5 0%, #EFF6FF 100%);
+            --gradient-hero: linear-gradient(135deg, #059669 0%, #2563EB 50%, #7C3AED 100%);
             --gradient-mesh:
-                radial-gradient(at 20% 20%, rgba(26,127,55,0.06) 0%, transparent 50%),
-                radial-gradient(at 80% 80%, rgba(9,105,218,0.05) 0%, transparent 50%);
-            --shadow-xs: 0 1px 2px rgba(31,35,40,0.04);
-            --shadow-sm: 0 1px 3px rgba(31, 35, 40, 0.06), 0 1px 2px rgba(31,35,40,0.04);
-            --shadow-card: 0 2px 8px rgba(31,35,40,0.06), 0 1px 2px rgba(31,35,40,0.04);
-            --shadow-md: 0 4px 12px rgba(31, 35, 40, 0.08), 0 2px 4px rgba(31,35,40,0.04);
-            --shadow-lg: 0 8px 24px rgba(31, 35, 40, 0.12), 0 4px 8px rgba(31,35,40,0.06);
-            --shadow-hover: 0 6px 16px rgba(26,127,55,0.15), 0 2px 6px rgba(26,127,55,0.1);
+                radial-gradient(at 20% 20%, rgba(5,150,105,0.08) 0%, transparent 50%),
+                radial-gradient(at 80% 80%, rgba(37,99,235,0.06) 0%, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(124,58,237,0.04) 0%, transparent 50%);
+            --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-sm: 0 1px 3px rgba(0,0,0, 0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-card: 0 2px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0, 0.08), 0 2px 4px rgba(0,0,0,0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+            --shadow-glow-success: 0 4px 14px rgba(5,150,105,0.15);
+            --shadow-glow-info: 0 4px 14px rgba(37,99,235,0.15);
+            --shadow-hover: 0 6px 16px rgba(5,150,105,0.15), 0 2px 6px rgba(5,150,105,0.1);
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
-            --radius-full: 999px;
+            --radius-xl: 20px;
+            --radius-2xl: 24px;
+            --radius-full: 9999px;
             --spacing-xs: 4px;
             --spacing-sm: 8px;
             --spacing-md: 16px;
@@ -47,7 +53,11 @@
             --content-max-width: 980px;
             --body-text: 15px;
             --caption: 12px;
+            --heading-1: 30px;
+            --heading-2: 20px;
+            --heading-3: 16px;
             --heading-4: 14px;
+            --body-small: 14px;
             --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
             --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -87,7 +97,7 @@
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 3px;
-            background: var(--gradient-primary);
+            background: var(--gradient-success);
         }
 
         .header-badge {
@@ -96,13 +106,13 @@
             gap: 8px;
             padding: 5px 14px;
             background: rgba(255,255,255,0.9);
-            color: var(--color-primary);
+            color: var(--color-success);
             border-radius: var(--radius-full);
             font-size: var(--caption);
             font-weight: 600;
             margin-bottom: 16px;
             box-shadow: var(--shadow-xs);
-            border: 1px solid rgba(26,127,55,0.15);
+            border: 1px solid rgba(5,150,105,0.15);
         }
 
         .header-title {
@@ -111,7 +121,7 @@
             line-height: 1.3;
             margin-bottom: 12px;
             letter-spacing: -0.02em;
-            background: var(--gradient-primary);
+            background: var(--gradient-hero);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -122,17 +132,17 @@
             color: var(--color-text-secondary);
             max-width: 580px;
             margin: 0 auto;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
         .header-subtitle strong {
-            color: var(--color-primary);
+            color: var(--color-success);
         }
 
         /* Core Insight Box */
         .core-insight {
             background: var(--color-bg-card);
-            border-left: 4px solid var(--color-primary);
+            border-left: 4px solid var(--color-success);
             border-radius: 0 var(--radius-md) var(--radius-md) 0;
             padding: var(--spacing-lg);
             margin-bottom: var(--spacing-2xl);
@@ -144,7 +154,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--color-primary);
+            color: var(--color-success);
             margin-bottom: 12px;
         }
 
@@ -152,11 +162,11 @@
             font-size: 20px;
             font-weight: 600;
             line-height: 1.5;
-            color: var(--color-text);
+            color: var(--color-text-primary);
         }
 
         .core-insight-text em {
-            color: var(--color-primary);
+            color: var(--color-success);
             font-style: normal;
         }
 
@@ -180,7 +190,7 @@
         .section-number {
             width: 40px;
             height: 40px;
-            background: var(--gradient-primary);
+            background: var(--gradient-success);
             color: white;
             border-radius: 50%;
             display: flex;
@@ -194,13 +204,13 @@
         .section-title {
             font-size: 22px;
             font-weight: 700;
-            color: var(--color-text);
+            color: var(--color-text-primary);
         }
 
         .subsection-title {
             font-size: 17px;
             font-weight: 600;
-            color: var(--color-text);
+            color: var(--color-text-primary);
             margin: 28px 0 16px;
             padding-bottom: 8px;
             border-bottom: 2px solid var(--color-border);
@@ -233,7 +243,7 @@
         }
 
         .stat-value.red { color: var(--color-danger); }
-        .stat-value.green { color: var(--color-primary); }
+        .stat-value.green { color: var(--color-success); }
         .stat-value.blue { color: var(--color-info); }
         .stat-value.purple { color: var(--color-purple); }
 
@@ -263,11 +273,11 @@
         th {
             background: var(--color-bg);
             font-weight: 600;
-            color: var(--color-text);
+            color: var(--color-text-primary);
         }
 
         tr:hover td {
-            background: rgba(26, 127, 55, 0.03);
+            background: rgba(5,150,105, 0.03);
         }
 
         /* Comparison Grid */
@@ -293,8 +303,8 @@
         }
 
         .comparison-card.good {
-            background: rgba(26, 127, 55, 0.05);
-            border-left: 4px solid var(--color-primary);
+            background: rgba(5,150,105, 0.05);
+            border-left: 4px solid var(--color-success);
         }
 
         .comparison-title {
@@ -307,7 +317,7 @@
         }
 
         .comparison-card.bad .comparison-title { color: var(--color-danger); }
-        .comparison-card.good .comparison-title { color: var(--color-primary); }
+        .comparison-card.good .comparison-title { color: var(--color-success); }
 
         .comparison-list {
             list-style: none;
@@ -328,7 +338,7 @@
         }
 
         .comparison-card.bad .comparison-list li::before { color: var(--color-danger); }
-        .comparison-card.good .comparison-list li::before { color: var(--color-primary); }
+        .comparison-card.good .comparison-list li::before { color: var(--color-success); }
 
         /* Diagram Box */
         .diagram-box {
@@ -355,7 +365,7 @@
 
         /* Quote Box */
         .quote-box {
-            background: linear-gradient(135deg, rgba(9, 105, 218, 0.08), rgba(124, 58, 237, 0.06));
+            background: linear-gradient(135deg, rgba(37,99,235, 0.08), rgba(124, 58, 237, 0.06));
             border-left: 4px solid var(--color-info);
             border-radius: 0 var(--radius-md) var(--radius-md) 0;
             padding: 20px 24px;
@@ -365,7 +375,7 @@
         .quote-text {
             font-size: 15px;
             font-style: italic;
-            color: var(--color-text);
+            color: var(--color-text-primary);
             line-height: 1.7;
         }
 
@@ -397,7 +407,7 @@
         }
 
         .feature-card:hover {
-            border-color: var(--color-primary);
+            border-color: var(--color-success);
             box-shadow: var(--shadow-md);
             transform: translateY(-2px);
         }
@@ -405,7 +415,7 @@
         .feature-icon {
             width: 44px;
             height: 44px;
-            background: var(--gradient-primary);
+            background: var(--gradient-success);
             border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
@@ -417,7 +427,7 @@
         .feature-title {
             font-size: 15px;
             font-weight: 600;
-            color: var(--color-text);
+            color: var(--color-text-primary);
             margin-bottom: 8px;
         }
 
@@ -439,8 +449,8 @@
         }
 
         .tag-green {
-            background: rgba(26, 127, 55, 0.1);
-            color: var(--color-primary);
+            background: rgba(5,150,105, 0.1);
+            color: var(--color-success);
         }
 
         .tag-yellow {
@@ -498,7 +508,7 @@
         }
 
         .timeline-dot.done {
-            background: var(--color-primary);
+            background: var(--color-success);
             color: white;
         }
 
@@ -515,7 +525,7 @@
         .timeline-title {
             font-size: 14px;
             font-weight: 600;
-            color: var(--color-text);
+            color: var(--color-text-primary);
             margin-bottom: 6px;
         }
 
@@ -527,7 +537,7 @@
 
         /* Conclusion */
         .conclusion {
-            background: var(--gradient-primary);
+            background: var(--gradient-success);
             color: white;
             border-radius: var(--radius-lg);
             padding: 40px;
@@ -926,7 +936,7 @@
                 </table>
             </div>
 
-            <p style="text-align: center; color: var(--color-primary); font-weight: 600; margin-top: 24px;">
+            <p style="text-align: center; color: var(--color-success); font-weight: 600; margin-top: 24px;">
                 ✓ 我们的思路与全球顶尖AI实验室的方向完全一致
             </p>
         </section>
@@ -1031,17 +1041,17 @@
 
             <div class="feature-grid">
                 <div class="feature-card">
-                    <div class="feature-icon" style="background: var(--gradient-primary);">✓</div>
+                    <div class="feature-icon" style="background: var(--gradient-success);">✓</div>
                     <div class="feature-title">单一Agent + 多Skills可行</div>
                     <div class="feature-desc">林克一个Agent，已具备代码、调研、文档、网页等多种能力</div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon" style="background: var(--gradient-primary);">✓</div>
+                    <div class="feature-icon" style="background: var(--gradient-success);">✓</div>
                     <div class="feature-title">Memory系统是核心</div>
                     <div class="feature-desc">用户明显感知到"林克认识我"，这是粘性来源</div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon" style="background: var(--gradient-primary);">✓</div>
+                    <div class="feature-icon" style="background: var(--gradient-success);">✓</div>
                     <div class="feature-title">Code Agent可以扩展</div>
                     <div class="feature-desc">从代码能力出发，自然扩展到文档、网页、自动化</div>
                 </div>
