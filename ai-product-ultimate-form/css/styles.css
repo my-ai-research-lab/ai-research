@@ -70,7 +70,7 @@
 
     --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
     --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    --content-max-width: 980px;
+    --content-max-width: 1120px;
 
     /* Architecture-specific colors */
     --c-skill-native: #2DA44E;
