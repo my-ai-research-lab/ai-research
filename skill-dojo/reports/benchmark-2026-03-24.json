@@ -66,7 +66,7 @@
         {
           "type": "file",
           "name": "生成图片",
-          "value": "outputs/ai-images/robot-coding.jpg",
+          "value": "ks-design-image-gen-001.jpg",
           "description": "AI生成的科技风格配图",
           "valid": true,
           "validation_error": ""
@@ -113,7 +113,7 @@
         {
           "type": "file",
           "name": "信息图",
-          "value": "/Users/shenlang/Documents/Codeflicker/Test/infographic/ai-model-evolution-2024-2025/infographic.jpg",
+          "value": "ks-design-infographic-001.jpg",
           "description": "AI 技术演进时间线信息图（technical-schematic 风格，2K 分辨率）",
           "valid": true,
           "validation_error": ""
@@ -176,7 +176,7 @@
         {
           "type": "file",
           "name": "PPT文件",
-          "value": "/Users/shenlang/Documents/Codeflicker/Test/研发团队Q1工作总结.pptx",
+          "value": "ks-design-ppt-001.pptx",
           "description": "工作汇报风格季度总结 PPT",
           "valid": true,
           "validation_error": ""
