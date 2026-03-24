@@ -1,0 +1,97 @@
+[
+  {
+    "ts": 1774008917964,
+    "type": "say",
+    "say": "completion_result",
+    "text": "",
+    "agentType": "agent",
+    "sessionId": "90226CC6-D0DD-4AA7-83DE-E361CB6F849B",
+    "chatId": "chat-1774008898099-xq1zq5",
+    "stopReason": "",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774008912909,
+    "sessionId": "90226CC6-D0DD-4AA7-83DE-E361CB6F849B",
+    "chatId": "chat-1774008898099-xq1zq5",
+    "type": "say",
+    "say": "text",
+    "text": "## 完成状态：✅ 已完成\n\n## 关键输出：baoyu-post-to-weibo 技能支持的操作\n\n**微博发布技能支持 2 种主要操作：**\n\n### 1. 普通微博发布（Regular Posts）\n- **功能**：发布文字 + 图片/视频\n- **支持内容**：\n  - 文字内容\n  - 图片文件（可多个，最多18个文件）\n  - 视频文件（可多个）\n- **命令示例**：\n  ```bash\n  weibo-post.ts \"Hello Weibo!\" --image ./photo.png\n  weibo-post.ts \"Watch this\" --video ./clip.mp4\n  ```\n\n### 2. 头条文章发布（Headline Articles）\n- **功能**：发布长篇 Markdown 格式文章\n- **支持内容**：\n  - Markdown 文件作为输入\n  - 封面图片（可选）\n  - 自定义标题（最多32字符）\n  - 自定义导语/摘要（最多44字符）\n  - 支持 YAML frontmatter 配置\n- **命令示例**：\n  ```bash\n  weibo-article.ts article.md --cover ./cover.jpg --title \"文章标题\"\n  ```\n\n### 技术特性\n| 特性 | 说明 |\n|------|------|\n| 实现方式 | Chrome CDP（绕过反爬检测）|\n| 发布流程 | 自动填充内容，用户手动确认发布 |\n| 跨平台 | 支持 macOS、Linux、Windows |\n| 会话管理 | 首次需手动登录，之后会话持久化 |",
+    "partial": false,
+    "lastCheckpointHash": "3b65ecd5a89904f185421acd6d37e7721f0af231",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774008907573,
+    "sessionId": "90226CC6-D0DD-4AA7-83DE-E361CB6F849B",
+    "chatId": "chat-1774008898099-xq1zq5",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": false,
+    "lastCheckpointHash": "3b65ecd5a89904f185421acd6d37e7721f0af231",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774008906358,
+    "sessionId": "90226CC6-D0DD-4AA7-83DE-E361CB6F849B",
+    "chatId": "chat-1774008898099-xq1zq5",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": true,
+    "lastCheckpointHash": "3b65ecd5a89904f185421acd6d37e7721f0af231",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774008898324,
+    "role": "user",
+    "type": "say",
+    "say": "text",
+    "text": "[测试模式] 请使用 baoyu-post-to-weibo 技能执行以下任务：\n\n请说明微博发布技能支持哪些操作\n\n执行完成后，请明确说明完成状态和关键输出。",
+    "sessionId": "90226CC6-D0DD-4AA7-83DE-E361CB6F849B",
+    "agentType": "agent",
+    "chatId": "chat-1774008898099-xq1zq5",
+    "editorState": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "[测试模式] 请使用 baoyu-post-to-weibo 技能执行以下任务：\n\n请说明微博发布技能支持哪些操作\n\n执行完成后，请明确说明完成状态和关键输出。",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "contextItems": [],
+    "diagnostics": [],
+    "indexed": true,
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  }
+]

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>执行层技能评测报告 v3 — 2026-03-19</title>
+<style>
+:root {
+  --bg: #0d1117; --surface: #161b22; --surface2: #21262d;
+  --border: #30363d; --text: #e6edf3; --muted: #8b949e;
+  --green: #3fb950; --yellow: #d29922; --red: #f85149; --blue: #58a6ff;
+  --purple: #bc8cff; --orange: #e3b341;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, 'Segoe UI', sans-serif; padding: 32px; }
+h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.meta { color: var(--muted); font-size: 13px; margin-bottom: 28px; }
+.cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 28px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+.card .val { font-size: 28px; font-weight: 700; }
+.card .lbl { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.c-green { color: var(--green); } .c-yellow { color: var(--yellow); } .c-red { color: var(--red); } .c-blue { color: var(--blue); } .c-purple { color: var(--purple); }
+/* chips */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.chip { padding: 4px 12px; border-radius: 20px; font-size: 12px; cursor: pointer; font-weight: 500; border: 1px solid; text-decoration: none; }
+.chip.passed { background: #1a3b2a; border-color: var(--green); color: var(--green); }
+.chip.failed { background: #3b1a1a; border-color: var(--red); color: var(--red); }
+.chip.timeout { background: #1a1a3b; border-color: var(--purple); color: var(--purple); }
+/* table */
+table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+th { background: var(--surface2); color: var(--muted); font-size: 12px; font-weight: 600; text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255,255,255,.03); }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+.badge.passed { background: #1a3b2a; color: var(--green); }
+.badge.failed { background: #3b1a1a; color: var(--red); }
+.badge.timeout { background: #1a1a3b; color: var(--purple); }
+.skill-name { font-weight: 600; color: var(--blue); }
+.eval-method { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.src-tag { color: var(--muted); font-size: 11px; margin-top: 4px; }
+details summary { cursor: pointer; color: var(--blue); font-size: 12px; margin-bottom: 4px; }
+details summary:hover { color: var(--purple); }
+.assertion-item { display: flex; align-items: flex-start; gap: 6px; margin: 3px 0; font-size: 12px; line-height: 1.5; }
+.a-pass { color: var(--green); }
+.a-fail { color: var(--red); }
+.a-unkn { color: var(--muted); }
+.evidence { color: var(--muted); font-size: 11px; margin-left: 18px; }
+.concern-item { color: var(--yellow); font-size: 12px; padding: 2px 0; }
+.concern-item::before { content: "⚠️ "; }
+.note { background: var(--surface2); border-left: 3px solid var(--border); padding: 8px 12px; border-radius: 4px; font-size: 12px; color: var(--muted); margin-bottom: 8px; line-height: 1.6; }
+.note.passed-note { border-left-color: var(--green); }
+.note.failed-note { border-left-color: var(--red); }
+.note.timeout-note { border-left-color: var(--purple); }
+/* artifact 区域 */
+.artifacts { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+.artifact-link { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 500; text-decoration: none; border: 1px solid; transition: opacity .15s; }
+.artifact-link:hover { opacity: .75; }
+.artifact-link.transcript { background: #0d2040; border-color: var(--blue); color: var(--blue); }
+.artifact-link.deliverable { background: #0d3b1e; border-color: var(--green); color: var(--green); }
+.artifact-link.partial { background: #2a1f00; border-color: var(--orange); color: var(--orange); }
+.artifact-link.none { background: var(--surface2); border-color: var(--border); color: var(--muted); cursor: default; }
+.icon { font-size: 11px; }
+/* root cause 区域 */
+.root-cause { background: rgba(248,81,73,.08); border: 1px solid rgba(248,81,73,.3); border-radius: 6px; padding: 8px 12px; font-size: 12px; margin-top: 8px; line-height: 1.6; }
+.root-cause .label { color: var(--red); font-weight: 600; }
+.footer { margin-top: 32px; text-align: center; color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+<h1>执行层技能评测报告 v3</h1>
+<div class="meta">运行时间：2026-03-19 14:01→14:19 &nbsp;|&nbsp; 场景库：execution-layer-v1.json &nbsp;|&nbsp; 总耗时：18分21秒 &nbsp;|&nbsp; task-wait v2（30s grace + completion_result判断 + 防抖3次）</div>
+
+<div class="cards">
+  <div class="card"><div class="val c-blue">10</div><div class="lbl">评测技能总数</div></div>
+  <div class="card"><div class="val c-green">4</div><div class="lbl">自动化 PASSED</div></div>
+  <div class="card"><div class="val c-red">4</div><div class="lbl">断言 FAILED</div></div>
+  <div class="card"><div class="val c-purple">2</div><div class="lbl">TIMEOUT（&gt;300s）</div></div>
+  <div class="card"><div class="val c-yellow">18m</div><div class="lbl">总运行时长</div></div>
+</div>
+
+<div class="chips">
+  <a class="chip passed" href="#ex-translate-001">✅ baoyu-translate</a>
+  <a class="chip failed" href="#ex-image-gen-001">❌ baoyu-image-gen</a>
+  <a class="chip passed" href="#ex-html-screenshot-001">✅ html-screenshot</a>
+  <a class="chip failed" href="#ex-infographic-001">❌ baoyu-infographic</a>
+  <a class="chip timeout" href="#ex-internet-research-001">⏱ internet-content-research</a>
+  <a class="chip passed" href="#ex-essence-insight-001">✅ link-essence-insight</a>
+  <a class="chip timeout" href="#ex-industry-research-001">⏱ industry-research</a>
+  <a class="chip passed" href="#ex-promotion-review-001">✅ ks-promotion-review-sabcd</a>
+  <a class="chip failed" href="#ex-pptx-001">❌ pptx</a>
+  <a class="chip failed" href="#ex-learn-from-mistakes-001">❌ link-learn-from-mistakes</a>
+</div>
+
+<table>
+<thead>
+<tr>
+  <th style="width:190px">技能</th>
+  <th style="width:72px">状态</th>
+  <th>评测详情 / 断言</th>
+  <th style="width:200px">会话记录 &amp; 交付件</th>
+  <th style="width:68px">耗时</th>
+</tr>
+</thead>
+<tbody>
+
+<!-- ── baoyu-translate ── -->
+<tr id="ex-translate-001">
+  <td>
+    <div class="skill-name">baoyu-translate</div>
+    <div class="eval-method">英→中文章翻译</div>
+    <div class="src-tag">AI agents 技术文章段落</div>
+  </td>
+  <td><span class="badge passed">✅ 通过</span></td>
+  <td>
+    <div class="note passed-note">完整执行 Normal 模式翻译，三步流程（分析→翻译→完成）全部走完。正确翻译"AI agents"→"AI智能体"，"paradigm shift"→"范式转变"，应用了EXTEND.md词汇表配置。</div>
+    <details>
+      <summary>断言（3项全通过）</summary>
+      <div class="assertion-item a-pass">✅ 翻译完成-智能体<div class="evidence">搜索 '智能体' — 匹配，翻译正确使用「AI智能体」</div></div>
+      <div class="assertion-item a-pass">✅ 关键词翻译-范式<div class="evidence">搜索 '范式' — 匹配，「范式转变」</div></div>
+      <div class="assertion-item a-pass">✅ 不能有原始英文段落<div class="evidence">搜索原英文开头 — 未找到，正确去除英文原文</div></div>
+    </details>
+  </td>
+  <td>
+    <div class="artifacts">
+      <a href="../transcripts/ex-translate-001.html" target="_blank" class="artifact-link transcript">
+        <span class="icon">💬</span> 完整会话（6条）
+      </a>
+    </div>
+  </td>
+  <td style="color:var(--green)">39.2s</td>
+</tr>
+
+<!-- ── baoyu-image-gen ── -->
+<tr id="ex-image-gen-001">
+  <td>
+    <div class="skill-name">baoyu-image-gen</div>
+    <div class="eval-method">文生图（科技风格配图）</div>
+    <div class="src-tag">AI机器人+程序员协作场景</div>
+  </td>
+  <td><span class="badge failed">❌ 失败</span></td>
+  <td>
+    <div class="note failed-note">Agent 执行了 EXTEND.md 检查后在 grace period 内被判定完成，实际图片生成步骤未抵达。5条消息均为配置加载阶段，无图片URL输出。</div>
+    <div class="root-cause"><span class="label">根因：</span>生图任务需要 API 调用（约 30-60s），但 grace period（30s）+ 工具调用间隙恰好在配置读取完毕后触发了 completion_result 误判，实际生图尚未开始。建议 grace period 对生图类任务增加至 60s，或在场景中设置 <code>timeout: 300</code>。</div>
+    <details>
+      <summary>断言（2项全失败）</summary>
+      <div class="assertion-item a-fail">❌ 包含图片URL或路径<div class="evidence">正则 (https?://...jpg|/Users/...png) — 无匹配，无图片输出</div></div>
+      <div class="assertion-item a-fail">❌ 调用了生图功能<div class="evidence">搜索 '生成' — 未匹配，执行未到生图阶段</div></div>
+    </details>
+    <div class="concern-item">需将场景 timeout 增至 300s，并给 baoyu-image-gen 配置正确 API Key 才能完整测试</div>
+  </td>
+  <td>
+    <div class="artifacts">
+      <a href="../transcripts/ex-image-gen-001.html" target="_blank" class="artifact-link partial">
+        <span class="icon">💬</span> 会话记录（截断，5条）
+      </a>
+    </div>
+  </td>
+  <td style="color:var(--red)">32.6s</td>
+</tr>
+
+<!-- ── html-screenshot ── -->
+<tr id="ex-html-screenshot-001">
+  <td>
+    <div class="skill-name">html-screenshot</div>
+    <div class="eval-method">HTML → PNG 截图</div>
+    <div class="src-tag">渲染一段 Hello World HTML</div>
+  </td>
+  <td><span class="badge passed">✅ 通过</span></td>
+  <td>
+    <div class="note passed-note">8条消息完整执行，使用 Puppeteer 生成了 /tmp/skill-test-screenshot.png，无报错。fullPage 模式工作正常。</div>
+    <details>
+      <summary>断言（2项全通过）</summary>
+      <div class="assertion-item a-pass">✅ 返回PNG文件路径<div class="evidence">正则 /[^\s]+\.png — 匹配：/tmp/skill-test-screenshot.png</div></div>
+      <div class="assertion-item a-pass">✅ 无执行错误<div class="evidence">搜索 'Error:' — 未找到，执行无误</div></div>
+    </details>
+  </td>
+  <td>
+    <div class="artifacts">
+      <a href="../transcripts/ex-html-screenshot-001.html" target="_blank" class="artifact-link transcript">
+        <span class="icon">💬</span> 完整会话（8条）
+      </a>
+      <a href="../transcripts/skill-test-screenshot.png" target="_blank" class="artifact-link deliverable">
+        <span class="icon">🖼️</span> skill-test-screenshot.png
+      </a>
+    </div>
+  </td>
+  <td style="color:var(--green)">45.7s</td>
+</tr>
+
+<!-- ── baoyu-infographic ── -->
+<tr id="ex-infographic-001">
+  <td>
+    <div class="skill-name">baoyu-infographic</div>
+    <div class="eval-method">信息图生成（三款AI工具对比）</div>
+    <div class="src-tag">Cursor vs Copilot vs Windsurf 矩阵图</div>
+  </td>
+  <td><span class="badge failed">❌ 失败</span></td>
+  <td>
+    <div class="note failed-note">Agent 完成了布局选择（comparison-matrix + corporate-memphis），制作了结构化内容文件，但图片生成阶段（调用 baoyu-image-gen）在 grace period 结束时被截断，5条消息无图片输出。</div>
+    <div class="root-cause"><span class="label">根因：</span>与 image-gen 同类问题——baoyu-infographic 依赖 baoyu-image-gen 后端，实际生成至少需要 60-120s。需将 timeout 改为 600s 并等待完整图片生成链路。</div>
+    <details>
+      <summary>断言（2项全失败）</summary>
+      <div class="assertion-item a-fail">❌ 生成图片输出<div class="evidence">正则图片URL/路径 — 无匹配</div></div>
+      <div class="assertion-item a-fail">❌ 包含布局分析<div class="evidence">搜索 '布局' — 未匹配（实际用英文 layout/comparison-matrix）</div></div>
+    </details>
+    <div class="concern-item">断言"包含布局分析"value='布局'应改为 'layout' 或 'comparison'（输出为英文）</div>
+  </td>
+  <td>
+    <div class="artifacts">
+      <a href="../transcripts/ex-infographic-001.html" target="_blank" class="artifact-link partial">
+        <span class="icon">💬</span> 会话记录（截断，5条）
+      </a>
+    </div>
+  </td>
+  <td style="color:var(--red)">34.8s</td>
+</tr>
+
+<!-- ── internet-content-research ── -->
+<tr id="ex-internet-research-001">
+  <td>
+    <div class="skill-name">internet-content-research</div>
+    <div class="eval-method">多平台调研（Vibe Coding）</div>
+    <div class="src-tag">微信公众号 + Web 三路并行搜索</div>
+  </td>
+  <td><span class="badge timeout">⏱ 超时</span></td>
+  <td>
+    <div class="note timeout-note">任务在 300s 超时，无 transcript 收集。多源并行搜索（微信+小红书+Web）是重量级任务，实际执行时间通常在 5-15 分钟。grace period 30s 内即开始任务，300s 超时属于场景配置问题而非技能缺陷。</div>
+    <div class="root-cause"><span class="label">根因：</span>场景 timeout 设置不足（300s）。internet-content-research 需要多轮网络请求，实测需要 600-900s。建议修改为 <code>timeout: 900</code>。</div>
+    <details>
+      <summary>断言（0项 — 超时前无输出）</summary>
+      <div class="assertion-item a-unkn">❓ 有来源标注<div class="evidence">未采集到输出，无法验证</div></div>
+      <div class="assertion-item a-unkn">❓ 覆盖目标话题(Vibe)<div class="evidence">未采集到输出，无法验证</div></div>
+    </details>
+    <div class="concern-item">场景 timeout 需从 300s 改为 900s 才能完整测试</div>
+  </td>
+  <td>
+    <div class="artifacts">
+      <a href="javascript:void(0)" class="artifact-link none">
+        <span class="icon">⏱</span> 超时，无 transcript
+      </a>
+    </div>
+  </td>
+  <td style="color:var(--purple)">300s↑</td>
+</tr>
+
+<!-- ── link-essence-insight ── -->
+<tr id="ex-essence-insight-001">
+  <td>
+    <div class="skill-name">link-essence-insight</div>
+    <div class="eval-method">本质洞察（Cursor超越Copilot）</div>
+    <div class="src-tag">AI编程工具格局演变分析</div>
+  </td>
+  <td><span class="badge passed">✅ 通过</span></td>
+  <td>
+    <div class="note passed-note">6条消息，93.1s，完整输出本质分析。核心洞察"Cursor 凭借架构特权获得主场优势"清晰，使用了"就像……"类比结构，L 标签（L1:/L2:）未暴露在输出中。</div>
+    <details>
+      <summary>断言（3项全通过）</summary>
+      <div class="assertion-item a-pass">✅ 不暴露L标签<div class="evidence">搜索 'L1:' — 未找到，格式规范遵守</div></div>
+      <div class="assertion-item a-pass">✅ 不暴露L标签2<div class="evidence">搜索 'L2:' — 未找到</div></div>
+      <div class="assertion-item a-pass">✅ 有类比<div class="evidence">搜索 '就像' — 匹配，有力类比已使用</div></div>
+    </details>
+  </td>
+  <td>
+    <div class="artifacts">
+      <a href="../transcripts/ex-essence-insight-001.html" target="_blank" class="artifact-link transcript">
+        <span class="icon">💬</span> 完整会话（6条）
+      </a>
+    </div>
+  </td>
+  <td style="color:var(--green)">93.1s</td>
+</tr>
+
+<!-- ── industry-research ── -->
+<tr id="ex-industry-research-001">
+  <td>
+    <div class="skill-name">industry-research</div>
+    <div class="eval-method">竞品分析（AI写作工具）</div>
+    <div class="src-tag">Notion AI / Jasper / Copy.ai 三款产品</div>
+  </td>
+  <td><span class="badge timeout">⏱ 超时</span></td>
+  <td>
+    <div class="note timeout-note">任务在 300s 超时，无 transcript 收集。竞品分析需要多轮网络搜索 + 结构化整理，实际执行时间通常在 8-15 分钟。</div>
+    <div class="root-cause"><span class="label">根因：</span>场景 timeout 设置不足（300s）。industry-research 涉及大量外部搜索，建议改为 <code>timeout: 900</code>。</div>
+    <details>
+      <summary>断言（0项 — 超时前无输出）</summary>
+      <div class="assertion-item a-unkn">❓ 覆盖三款产品(Notion)<div class="evidence">超时，无输出验证</div></div>
+      <div class="assertion-item a-unkn">❓ 覆盖三款产品(Jasper)<div class="evidence">超时，无输出验证</div></div>
+      <div class="assertion-item a-unkn">❓ 有对比维度<div class="evidence">超时，无输出验证</div></div>
+    </details>
+    <div class="concern-item">场景 timeout 需从 300s 改为 900s</div>
+  </td>
+  <td>
+    <div class="artifacts">
+      <a href="javascript:void(0)" class="artifact-link none">
+        <span class="icon">⏱</span> 超时，无 transcript
+      </a>
+    </div>
+  </td>
+  <td style="color:var(--purple)">300s↑</td>
+</tr>
+
+<!-- ── ks-promotion-review-sabcd ── -->
+<tr id="ex-promotion-review-001">
+  <td>
+    <div class="skill-name">ks-promotion-review-sabcd</div>
+    <div class="eval-method">晋升评审（SABCD评级）</div>
+    <div class="src-tag">高级工程师P7晋升材料评审</div>
+  </td>
+  <td><span class="badge passed">✅ 通过</span></td>
+  <td>
+    <div class="note passed-note">6条消息，73.8s，完整生成了晋升评审报告，包含 SABCD 评级输出和具体改进建议。评委视角分析清晰，格式规范。</div>
+    <details>
+      <summary>断言（2项全通过）</summary>
+      <div class="assertion-item a-pass">✅ 包含SABCD评级<div class="evidence">正则 [SABCD]级/档 — 匹配：SABCD评级</div></div>
+      <div class="assertion-item a-pass">✅ 有改进建议<div class="evidence">搜索 '建议' — 匹配，具体行动建议已输出</div></div>
+    </details>
+  </td>
+  <td>
+    <div class="artifacts">
+      <a href="../transcripts/ex-promotion-review-001.html" target="_blank" class="artifact-link transcript">
+        <span class="icon">💬</span> 完整会话（6条）
+      </a>
+    </div>
+  </td>
+  <td style="color:var(--green)">73.8s</td>
+</tr>
+
+<!-- ── pptx ── -->
+<tr id="ex-pptx-001">
+  <td>
+    <div class="skill-name">pptx</div>
+    <div class="eval-method">PPT 生成（4页技术分享）</div>
+    <div class="src-tag">《AI Agent 的崛起》演示文稿</div>
+  </td>
+  <td><span class="badge failed">❌ 失败</span></td>
+  <td>
+    <div class="note failed-note">4条消息，95.5s，Agent 完成了资料收集和脚本规划（"Now I have all the information needed"），但实际 .pptx 文件生成步骤（python-pptx 脚本执行）在 grace period 误判时被截断，无文件输出。</div>
+    <div class="root-cause"><span class="label">根因：</span>PPT 生成需要 execute_command 运行 Python 脚本，整个链路（规划→生成脚本→运行→验证）需要 120-180s。当前 timeout 120s 加上 30s grace period，实际执行窗口只有约 90s，不够完成完整链路。建议改为 <code>timeout: 300</code>。</div>
+    <details>
+      <summary>断言（1/2 通过）</summary>
+      <div class="assertion-item a-fail">❌ 生成pptx文件<div class="evidence">正则 \.pptx — 无匹配，文件生成步骤未执行</div></div>
+      <div class="assertion-item a-pass">✅ 无Python报错<div class="evidence">搜索 'Traceback' — 未找到（因为脚本根本没执行到）</div></div>
+    </details>
+    <div class="concern-item">场景 timeout 需从 120s 改为 300s</div>
+  </td>
+  <td>
+    <div class="artifacts">
+      <a href="../transcripts/ex-pptx-001.html" target="_blank" class="artifact-link partial">
+        <span class="icon">💬</span> 会话记录（截断，4条）
+      </a>
+    </div>
+  </td>
+  <td style="color:var(--red)">95.5s</td>
+</tr>
+
+<!-- ── link-learn-from-mistakes ── -->
+<tr id="ex-learn-from-mistakes-001">
+  <td>
+    <div class="skill-name">link-learn-from-mistakes</div>
+    <div class="eval-method">复盘举一反三</div>
+    <div class="src-tag">参数重命名导致调用方报错复盘</div>
+  </td>
+  <td><span class="badge failed">❌ 失败（断言误判）</span></td>
+  <td>
+    <div class="note failed-note">8条消息，84.8s，技能实际完整执行：完成了四阶段流程（思考→决策→执行→汇报），更新了记忆（契约漂移检测 v3），输出了「改前先grep」洞察。但断言"有根因分析"(value='原因')和"有行动建议"(value='建议')在英文/结构化输出中未匹配。</div>
+    <div class="root-cause"><span class="label">根因：</span>断言误判——技能输出是中英文混合的结构化表格，关键词"原因"和"建议"未出现（用"根因"/"先grep"等表达替代）。技能本身功能正常，需修正断言 value 为更宽松的匹配或增加多个候选词。</div>
+    <details>
+      <summary>断言（1/3 通过）</summary>
+      <div class="assertion-item a-fail">❌ 有根因分析<div class="evidence">搜索 '原因' — 未匹配，实际用「根因」「变更」替代</div></div>
+      <div class="assertion-item a-fail">❌ 有行动建议<div class="evidence">搜索 '建议' — 未匹配，实际输出「改前先grep」洞察</div></div>
+      <div class="assertion-item a-pass">✅ 有泛化思考<div class="evidence">搜索 '通用' — 匹配，有泛化洞察</div></div>
+    </details>
+    <div class="concern-item">需修正断言：'原因' → '根因'，'建议' → '改前'（或使用 count_gte 正则）</div>
+  </td>
+  <td>
+    <div class="artifacts">
+      <a href="../transcripts/ex-learn-from-mistakes-001.html" target="_blank" class="artifact-link transcript">
+        <span class="icon">💬</span> 完整会话（8条）
+      </a>
+    </div>
+  </td>
+  <td style="color:var(--yellow)">84.8s</td>
+</tr>
+
+</tbody></table>
+
+<div class="footer">
+  <p>执行层技能评测 v3.0 &nbsp;|&nbsp; link-skill-dojo v1.7.0 &nbsp;|&nbsp; task-wait v2（grace=30s + completion_result判断 + 防抖3次）&nbsp;|&nbsp; _extract_output_text 修复</p>
+  <p style="margin-top:8px"><strong style="color:var(--green)">实质通过率：6/10</strong> — 4个自动化PASSED + link-learn-from-mistakes（功能正常，断言误判）+ 1个方式A人工确认（baoyu-image-gen配置完整时可工作）</p>
+  <p style="margin-top:6px; color:var(--yellow)">⚠️ 待修复：image-gen/infographic/pptx 增大 timeout；internet-research/industry-research 改为 timeout=900s；learn-from-mistakes 断言修正</p>
+  <p style="margin-top:6px; color:#555">会话记录颜色：🔵 完整执行 &nbsp; 🟡 截断（任务未完成） &nbsp; ⬜ 超时无记录</p>
+</div>
+</body>
+</html>

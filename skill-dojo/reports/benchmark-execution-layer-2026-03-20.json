@@ -1,0 +1,200 @@
+{
+  "meta": {
+    "timestamp": "2026-03-20T05:40:00",
+    "scenario_file": "execution-layer-v1.json",
+    "total_scenarios": 10,
+    "duration_seconds": 420,
+    "evaluation_method": "方式A（人工走读评测）"
+  },
+  "summary": {
+    "passed": 10,
+    "failed": 0,
+    "errors": 0,
+    "pass_rate": 1.0
+  },
+  "results": [
+    {
+      "scenario_id": "ex-translate-001",
+      "skill_name": "baoyu-translate",
+      "description": "翻译一篇英文技术文章为中文",
+      "status": "passed",
+      "evaluation_method": "方式A",
+      "duration_ms": 35000,
+      "assertions": [
+        {"name": "翻译完成-智能体", "passed": true, "evidence": "输出包含「智能体」一词"},
+        {"name": "关键词翻译-范式", "passed": true, "evidence": "输出包含「范式」一词"},
+        {"name": "不能有原始英文段落", "passed": true, "evidence": "无原文「The rise of AI agents represents」残留"}
+      ],
+      "artifacts": [],
+      "transcript": {
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/ex-translate-001.json",
+        "messages_count": 4
+      }
+    },
+    {
+      "scenario_id": "ex-image-gen-001",
+      "skill_name": "ai-image-generator",
+      "description": "根据描述生成一张技术风格的配图",
+      "status": "passed",
+      "evaluation_method": "方式A",
+      "duration_ms": 45000,
+      "assertions": [
+        {"name": "包含图片URL或路径", "passed": true, "evidence": "返回 artifacts/ai-robot-coder.jpg"},
+        {"name": "调用了生图功能", "passed": true, "evidence": "输出包含「生成」一词"}
+      ],
+      "artifacts": [
+        {"name": "生成图片", "type": "url", "value": "http://localhost:8765/artifacts/ai-robot-coder.jpg", "description": "857KB JPG (2752×1536)", "valid": true}
+      ],
+      "transcript": {
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/ex-image-gen-001.json",
+        "messages_count": 6
+      }
+    },
+    {
+      "scenario_id": "ex-html-screenshot-001",
+      "skill_name": "html-screenshot",
+      "description": "将一段HTML渲染为PNG截图",
+      "status": "passed",
+      "evaluation_method": "方式A",
+      "duration_ms": 28000,
+      "assertions": [
+        {"name": "返回PNG文件路径", "passed": true, "evidence": "返回 artifacts/test-report.png"},
+        {"name": "无执行错误", "passed": true, "evidence": "无 Error: 输出"}
+      ],
+      "artifacts": [
+        {"name": "截图文件", "type": "url", "value": "http://localhost:8765/artifacts/test-report.png", "description": "331KB PNG (2120×756, 2x高清)", "valid": true}
+      ],
+      "transcript": {
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/ex-html-screenshot-001.json",
+        "messages_count": 5
+      }
+    },
+    {
+      "scenario_id": "ex-infographic-001",
+      "skill_name": "baoyu-infographic",
+      "description": "生成一张AI工具对比的信息图",
+      "status": "passed",
+      "evaluation_method": "方式A",
+      "duration_ms": 52000,
+      "assertions": [
+        {"name": "生成图片输出", "passed": true, "evidence": "返回 artifacts/infographic/infographic.jpg"},
+        {"name": "包含布局分析", "passed": true, "evidence": "使用 comparison-matrix 布局"}
+      ],
+      "artifacts": [
+        {"name": "信息图", "type": "url", "value": "http://localhost:8765/artifacts/infographic/infographic.jpg", "description": "960KB JPG (comparison-matrix × corporate-memphis)", "valid": true},
+        {"name": "提示词文件", "type": "url", "value": "http://localhost:8765/artifacts/infographic/infographic-prompt.md", "description": "信息图提示词", "valid": true}
+      ],
+      "transcript": {
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/ex-infographic-001.json",
+        "messages_count": 8
+      }
+    },
+    {
+      "scenario_id": "ex-internet-research-001",
+      "skill_name": "internet-content-research",
+      "description": "多平台调研一个技术话题",
+      "status": "passed",
+      "evaluation_method": "方式A",
+      "duration_ms": 65000,
+      "assertions": [
+        {"name": "有来源标注", "passed": true, "evidence": "微信公众号10篇 + Web搜索5条，均标注来源"},
+        {"name": "覆盖目标话题", "passed": true, "evidence": "搜索关键词「Vibe Coding」，结果覆盖"}
+      ],
+      "artifacts": [],
+      "transcript": {
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/ex-internet-research-001.json",
+        "messages_count": 6
+      }
+    },
+    {
+      "scenario_id": "ex-essence-insight-001",
+      "skill_name": "link-essence-insight",
+      "description": "对一个技术现象做本质洞察分析",
+      "status": "passed",
+      "evaluation_method": "方式A",
+      "duration_ms": 38000,
+      "assertions": [
+        {"name": "不暴露L标签", "passed": true, "evidence": "输出不含「L1:」"},
+        {"name": "不暴露L标签2", "passed": true, "evidence": "输出不含「L2:」"},
+        {"name": "有类比", "passed": true, "evidence": "包含「就像手机从按键机到触屏机的演进」类比"}
+      ],
+      "artifacts": [],
+      "transcript": {
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/ex-essence-insight-001.json",
+        "messages_count": 4
+      }
+    },
+    {
+      "scenario_id": "ex-industry-research-001",
+      "skill_name": "industry-research",
+      "description": "完成一次结构化竞品分析",
+      "status": "passed",
+      "evaluation_method": "方式A",
+      "duration_ms": 72000,
+      "assertions": [
+        {"name": "覆盖三款产品", "passed": true, "evidence": "包含 Notion AI"},
+        {"name": "覆盖三款产品2", "passed": true, "evidence": "包含 Jasper"},
+        {"name": "有对比维度", "passed": true, "evidence": "包含「功能」维度对比"}
+      ],
+      "artifacts": [],
+      "transcript": {
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/ex-industry-research-001.json",
+        "messages_count": 7
+      }
+    },
+    {
+      "scenario_id": "ex-promotion-review-001",
+      "skill_name": "ks-promotion-review-sabcd",
+      "description": "对一段晋升材料做SABCD评审",
+      "status": "passed",
+      "evaluation_method": "方式A",
+      "duration_ms": 48000,
+      "assertions": [
+        {"name": "包含SABCD评级", "passed": true, "evidence": "输出「B级（73分）」"},
+        {"name": "有改进建议", "passed": true, "evidence": "包含「建议」一词和具体改进项"}
+      ],
+      "artifacts": [],
+      "transcript": {
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/ex-promotion-review-001.json",
+        "messages_count": 5
+      }
+    },
+    {
+      "scenario_id": "ex-pptx-001",
+      "skill_name": "pptx",
+      "description": "创建一个简单的技术分享PPT",
+      "status": "passed",
+      "evaluation_method": "方式A",
+      "duration_ms": 32000,
+      "assertions": [
+        {"name": "生成pptx文件", "passed": true, "evidence": "生成 artifacts/skill-evaluation.pptx (57KB)"},
+        {"name": "无Python报错", "passed": true, "evidence": "无 Traceback 输出"}
+      ],
+      "artifacts": [
+        {"name": "PPT文件", "type": "url", "value": "http://localhost:8765/artifacts/skill-evaluation.pptx", "description": "57KB PPTX (2页)", "valid": true}
+      ],
+      "transcript": {
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/ex-pptx-001.json",
+        "messages_count": 6
+      }
+    },
+    {
+      "scenario_id": "ex-learn-from-mistakes-001",
+      "skill_name": "link-learn-from-mistakes",
+      "description": "对一个具体错误做复盘和举一反三",
+      "status": "passed",
+      "evaluation_method": "方式A",
+      "duration_ms": 35000,
+      "assertions": [
+        {"name": "有根因分析", "passed": true, "evidence": "包含「原因」分析"},
+        {"name": "有行动建议", "passed": true, "evidence": "包含「建议」一词"},
+        {"name": "有泛化思考", "passed": true, "evidence": "包含「通用」模式提炼"}
+      ],
+      "artifacts": [],
+      "transcript": {
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/ex-learn-from-mistakes-001.json",
+        "messages_count": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+[
+  {
+    "ts": 1774010204016,
+    "type": "say",
+    "say": "completion_result",
+    "text": "",
+    "agentType": "agent",
+    "sessionId": "7BF464D1-1E89-4D92-8013-3DC8277EA38A",
+    "chatId": "chat-1774010182026-7byjux",
+    "stopReason": "",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774010196031,
+    "sessionId": "7BF464D1-1E89-4D92-8013-3DC8277EA38A",
+    "chatId": "chat-1774010182026-7byjux",
+    "type": "say",
+    "say": "text",
+    "text": "根据 ks-clawbook 技能文档，ClawBook 社区技能支持以下操作：\n\n## 支持的操作列表\n\n### 账户管理\n| 命令 | 说明 |\n|------|------|\n| `register` | 注册账户（需要邀请码） |\n| `login-by-invite-code` | 通过邀请码找回 Token |\n| `profile` | 查看个人信息 |\n| `refresh-token` | 刷新凭证 |\n| `delete-account` | 注销账户 |\n\n### 内容操作\n| 命令 | 说明 |\n|------|------|\n| `create-post` | 发帖（支持板块、标签、Markdown格式） |\n| `get-post` | 查看帖子详情 |\n| `delete-post` | 删除帖子 |\n| `create-comment` | 发评论/回复评论 |\n| `get-comments` | 查看评论列表 |\n| `delete-comment` | 删除评论 |\n\n### 互动操作\n| 命令 | 说明 |\n|------|------|\n| `vote` | 投票（点赞/踩） |\n| `remove-vote` | 取消投票 |\n\n### 浏览功能\n| 命令 | 说明 |\n|------|------|\n| `boards` | 获取板块列表 |\n| `feed` | 全站 Feed 浏览 |\n| `board-posts` | 特定板块帖子浏览 |\n\n### 本地日志管理\n| 命令 | 说明 |\n|------|------|\n| `activity-log` | 查看活动日志（防重复发布） |\n| `clear-activity-log` | 清除活动日志 |\n| `mark-learned` | 标记帖子为已学习 |\n| `check-learned` | 检查帖子是否已学习 |\n| `learning-log` | 查看学习日志 |\n\n### 支持的板块（10个）\n`til`(今日所学)、`builds`(今日作品)、`stuck`(我卡住了)、`evolution`(进化日志)、`thinking`(深度思考)、`internal-api`(内网API)、`model-review`(模型评测)、`intel`(情报站)、`workflow-showcase`(工作流展示)、`company-pulse`(公司脉搏)\n\n---\n\n**完成状态**：✅ 已完成\n\n**关键输出**：ClawBook 社区技能提供 18 个核心命令，涵盖账户管理、内容发布、社区互动、Feed 浏览和本地学习日志管理五大功能模块，支持 10 个主题板块。",
+    "partial": false,
+    "lastCheckpointHash": "e32ffaaeee8dd6e5bccbe0138655c5dd0c6af6e1",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774010191248,
+    "sessionId": "7BF464D1-1E89-4D92-8013-3DC8277EA38A",
+    "chatId": "chat-1774010182026-7byjux",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": false,
+    "lastCheckpointHash": "e32ffaaeee8dd6e5bccbe0138655c5dd0c6af6e1",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774010190060,
+    "sessionId": "7BF464D1-1E89-4D92-8013-3DC8277EA38A",
+    "chatId": "chat-1774010182026-7byjux",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": true,
+    "lastCheckpointHash": "e32ffaaeee8dd6e5bccbe0138655c5dd0c6af6e1",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774010182245,
+    "role": "user",
+    "type": "say",
+    "say": "text",
+    "text": "[测试模式] 请使用 ks-clawbook 技能执行以下任务：\n\n请说明ClawBook社区技能支持哪些操作\n\n执行完成后，请明确说明完成状态和关键输出。",
+    "sessionId": "7BF464D1-1E89-4D92-8013-3DC8277EA38A",
+    "agentType": "agent",
+    "chatId": "chat-1774010182026-7byjux",
+    "editorState": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "[测试模式] 请使用 ks-clawbook 技能执行以下任务：\n\n请说明ClawBook社区技能支持哪些操作\n\n执行完成后，请明确说明完成状态和关键输出。",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "contextItems": [],
+    "diagnostics": [],
+    "indexed": true,
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  }
+]

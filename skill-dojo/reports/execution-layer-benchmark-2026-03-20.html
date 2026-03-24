@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>执行层技能评测报告 · 2026-03-20</title>
+  <style>
+    /* ── Reset & Base ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:         #0f1117;
+      --surface:    #1a1d27;
+      --surface2:   #21263a;
+      --border:     rgba(255,255,255,0.08);
+      --border2:    rgba(255,255,255,0.04);
+      --text:       #e2e4ef;
+      --text-muted: #6b7280;
+      --green:      #22c55e;
+      --red:        #ef4444;
+      --yellow:     #f59e0b;
+      --blue:       #3b82f6;
+      --cyan:       #06b6d4;
+      --purple:     #8b5cf6;
+      --accent:     #6366f1;
+    }
+    html { font-size: 14px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 20px 60px;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Layout ─────────────────────────────────── */
+    .page { max-width: 1100px; margin: 0 auto; }
+
+    /* ── Header ─────────────────────────────────── */
+    .page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-title { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+    .page-title span { color: var(--accent); }
+    .page-meta { text-align: right; color: var(--text-muted); font-size: 0.8rem; line-height: 1.8; }
+
+    /* ── Summary Bar ─────────────────────────────── */
+    .summary-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .stat-card {
+      flex: 1;
+      min-width: 100px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .stat-card.accent { border-color: rgba(99,102,241,0.4); background: rgba(99,102,241,0.08); }
+    .stat-value  { font-size: 1.6rem; font-weight: 700; line-height: 1; }
+    .stat-label  { font-size: 0.75rem; color: var(--text-muted); }
+    .color-pass  { color: var(--green); }
+    .color-fail  { color: var(--red); }
+    .color-warn  { color: var(--yellow); }
+    .color-acc   { color: var(--accent); }
+
+    /* ── Skill Overview ──────────────────────────── */
+    .skill-overview {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .section-heading {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 8px;
+    }
+    .skill-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .skill-chip:hover { background: rgba(255,255,255,0.05); }
+    .skill-chip-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-pass   { background: var(--green); box-shadow: 0 0 6px var(--green); }
+    .dot-fail   { background: var(--red);   box-shadow: 0 0 6px var(--red); }
+    .skill-chip-name  { font-size: 0.8rem; font-weight: 500; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    /* ── Category Section ──────────────────────────── */
+    .category-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .category-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      cursor: pointer;
+      user-select: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .category-header:hover { background: rgba(255,255,255,0.02); }
+    .category-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .category-icon { font-size: 1.2rem; }
+    .category-stats {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .category-badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .badge-green { background: rgba(34,197,94,0.15); color: var(--green); }
+    .badge-orange { background: rgba(245,158,11,0.15); color: var(--yellow); }
+    .badge-red { background: rgba(239,68,68,0.15); color: var(--red); }
+    .category-rate { font-size: 0.85rem; color: var(--text-muted); }
+    .chevron { font-size: 0.7rem; color: var(--text-muted); transition: transform 0.2s; }
+    .category-section.open .chevron { transform: rotate(180deg); }
+    .category-body { display: none; }
+    .category-section.open .category-body { display: block; }
+
+    /* ── Scenario Table ──────────────────────────── */
+    .scenario-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .scenario-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+    }
+    .scenario-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .scenario-table tr:last-child td { border-bottom: none; }
+    .scenario-table tr:hover { background: rgba(255,255,255,0.02); }
+
+    /* Column widths */
+    .col-skill { width: 22%; }
+    .col-status { width: 8%; }
+    .col-method { width: 8%; }
+    .col-detail { width: 30%; }
+    .col-artifacts { width: 22%; }
+    .col-time { width: 10%; }
+
+    /* Skill cell */
+    .skill-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+    .skill-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* Status badge */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .status-pass { background: rgba(34,197,94,0.15); color: var(--green); }
+    .status-fail { background: rgba(239,68,68,0.15); color: var(--red); }
+    .status-partial { background: rgba(245,158,11,0.15); color: var(--yellow); }
+
+    /* Method badge */
+    .method-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      background: rgba(99,102,241,0.15);
+      color: var(--accent);
+    }
+
+    /* Detail cell */
+    .detail-note { font-size: 0.8rem; margin-bottom: 8px; line-height: 1.5; }
+    .assertion-list { margin: 0; padding: 0; list-style: none; }
+    .assertion-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 6px 10px;
+      margin-bottom: 4px;
+      background: var(--surface2);
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+    .assertion-icon { flex-shrink: 0; }
+    .assertion-text { flex: 1; }
+    .assertion-evidence { color: var(--text-muted); font-size: 0.7rem; margin-top: 2px; }
+
+    /* Artifacts cell */
+    .artifact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      margin: 2px 4px 2px 0;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      transition: background 0.2s;
+    }
+    .artifact-link:hover { background: rgba(255,255,255,0.08); }
+    .artifact-transcript { background: rgba(59,130,246,0.15); color: var(--blue); }
+    .artifact-output { background: rgba(34,197,94,0.15); color: var(--green); }
+    .artifact-none { background: rgba(107,114,128,0.15); color: var(--text-muted); }
+
+    /* Time cell */
+    .time-value { font-size: 0.85rem; font-weight: 500; }
+    .time-pass { color: var(--green); }
+    .time-fail { color: var(--text-muted); }
+
+    /* ── Failed Summary ──────────────────────────── */
+    .failed-summary {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .failed-summary h3 {
+      color: var(--red);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .failed-list { margin: 0; padding: 0; list-style: none; }
+    .failed-item {
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      background: rgba(239,68,68,0.05);
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+    .failed-item:last-child { margin-bottom: 0; }
+    .failed-skill { font-weight: 600; color: var(--text); }
+    .failed-reason { color: var(--text-muted); margin-top: 4px; font-size: 0.8rem; }
+
+    /* ── Footer ──────────────────────────────────── */
+    .page-footer {
+      text-align: center;
+      padding-top: 32px;
+      margin-top: 32px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- Header -->
+  <header class="page-header">
+    <div>
+      <h1 class="page-title">🎯 执行层技能评测报告</h1>
+      <p style="color: var(--text-muted); margin-top: 8px; font-size: 0.85rem;">
+        方式B自动化评测 · 11个分类 · 72个技能
+      </p>
+    </div>
+    <div class="page-meta">
+      <div>评测时间: 2026-03-20 06:25 - 07:09</div>
+      <div>场景库: full-execution-layer-v1.json</div>
+      <div>评测方式: 方式B（独立Agent会话）</div>
+    </div>
+  </header>
+
+  <!-- Summary Stats -->
+  <div class="summary-bar">
+    <div class="stat-card accent">
+      <div class="stat-value color-acc">90.3%</div>
+      <div class="stat-label">总体通过率</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">72</div>
+      <div class="stat-label">测试技能数</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value color-pass">65</div>
+      <div class="stat-label">通过</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value color-fail">7</div>
+      <div class="stat-label">失败</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color: var(--cyan);">~45min</div>
+      <div class="stat-label">总耗时</div>
+    </div>
+  </div>
+  <!-- Skill Chips Overview -->
+  <div class="skill-overview">
+    <div class="section-heading">技能一览 · 点击跳转</div>
+    <div class="skill-grid">
+      <!-- Cat1: 信息获取 -->
+      <a href="#cat1" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">industry-research</span></a>
+      <a href="#cat1" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">baoyu-url-to-markdown</span></a>
+      <a href="#cat1" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">baoyu-danger-x-to-markdown</span></a>
+      <a href="#cat1" class="skill-chip"><span class="skill-chip-dot dot-fail"></span><span class="skill-chip-name">internet-content-research</span></a>
+      <a href="#cat1" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">xiaohongshu</span></a>
+      <a href="#cat1" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-kstack</span></a>
+      <!-- Cat2: 内容写作 -->
+      <a href="#cat2" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">sl-ai-column-writer</span></a>
+      <a href="#cat2" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">copywriting</span></a>
+      <a href="#cat2" class="skill-chip"><span class="skill-chip-dot dot-fail"></span><span class="skill-chip-name">humanize-writing</span></a>
+      <a href="#cat2" class="skill-chip"><span class="skill-chip-dot dot-fail"></span><span class="skill-chip-name">baoyu-translate</span></a>
+      <a href="#cat2" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">baoyu-format-markdown</span></a>
+      <a href="#cat2" class="skill-chip"><span class="skill-chip-dot dot-fail"></span><span class="skill-chip-name">baoyu-markdown-to-html</span></a>
+      <a href="#cat2" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-promotion-coaching</span></a>
+      <a href="#cat2" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-promotion-review-sabcd</span></a>
+      <a href="#cat2" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">executive-report-writing</span></a>
+      <a href="#cat2" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">personal-assistant</span></a>
+      <!-- Cat3: 网页开发 -->
+      <a href="#cat3" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">web-dev-workflow</span></a>
+      <a href="#cat3" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ui-ux-pro-max</span></a>
+      <a href="#cat3" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">frontend-design</span></a>
+      <a href="#cat3" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">theme-factory</span></a>
+      <a href="#cat3" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">zelda-style</span></a>
+      <a href="#cat3" class="skill-chip"><span class="skill-chip-dot dot-fail"></span><span class="skill-chip-name">qingshuang-research-style</span></a>
+      <!-- Cat4: 文件处理 -->
+      <a href="#cat4" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">xlsx</span></a>
+      <a href="#cat4" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">pdf</span></a>
+      <a href="#cat4" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">docx</span></a>
+      <a href="#cat4" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-kim-docs-shuttle</span></a>
+      <!-- Cat5: 演示制作 -->
+      <a href="#cat5" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">pptx</span></a>
+      <a href="#cat5" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">baoyu-slide-deck</span></a>
+      <a href="#cat5" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-work-report-ppt</span></a>
+      <a href="#cat5" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">artistic-ppt</span></a>
+      <!-- Cat6: 发布推送 -->
+      <a href="#cat6" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">baoyu-post-to-wechat</span></a>
+      <a href="#cat6" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">baoyu-post-to-weibo</span></a>
+      <a href="#cat6" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">baoyu-post-to-x</span></a>
+      <a href="#cat6" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">sl-yuque-publisher</span></a>
+      <a href="#cat6" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">github</span></a>
+      <a href="#cat6" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">link-ks-kim-send-message</span></a>
+      <a href="#cat6" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">sl-feishu-assistant</span></a>
+      <a href="#cat6" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">sl-codeflicker-weekly-report</span></a>
+      <!-- Cat7: 办公协作 -->
+      <a href="#cat7" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-kwaibi-data-query</span></a>
+      <a href="#cat7" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-kwaibi-sql-exec</span></a>
+      <a href="#cat7" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-tianwen-monitor-query</span></a>
+      <a href="#cat7" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-hive-data-agent</span></a>
+      <a href="#cat7" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-meeting-room-booking</span></a>
+      <a href="#cat7" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-onepoint-meeting</span></a>
+      <a href="#cat7" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-kim-skills-assistant</span></a>
+      <a href="#cat7" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-kuaishou-sso-login</span></a>
+      <a href="#cat7" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-file-upload</span></a>
+      <!-- Cat8: 图像生成 -->
+      <a href="#cat8" class="skill-chip"><span class="skill-chip-dot dot-fail"></span><span class="skill-chip-name">ai-image-generator</span></a>
+      <a href="#cat8" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">baoyu-danger-gemini-web</span></a>
+      <a href="#cat8" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">baoyu-article-illustrator</span></a>
+      <a href="#cat8" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">baoyu-infographic</span></a>
+      <a href="#cat8" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">baoyu-xhs-images</span></a>
+      <a href="#cat8" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">baoyu-comic</span></a>
+      <a href="#cat8" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">baoyu-compress-image</span></a>
+      <a href="#cat8" class="skill-chip"><span class="skill-chip-dot dot-fail"></span><span class="skill-chip-name">html-screenshot</span></a>
+      <!-- Cat9: AI工程 -->
+      <a href="#cat9" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">context-window-management</span></a>
+      <a href="#cat9" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">workflow-orchestration</span></a>
+      <a href="#cat9" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-mcp-to-skill</span></a>
+      <!-- Cat10: 软件工程 -->
+      <a href="#cat10" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">vercel-composition</span></a>
+      <a href="#cat10" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">vercel-react-best</span></a>
+      <a href="#cat10" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">vercel-react-native</span></a>
+      <a href="#cat10" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">remotion-best-practices</span></a>
+      <a href="#cat10" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">web-design-guidelines</span></a>
+      <a href="#cat10" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">error-handling-patterns</span></a>
+      <a href="#cat10" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">seo-audit</span></a>
+      <a href="#cat10" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-kate-prd-understand</span></a>
+      <a href="#cat10" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-kate-brief-design</span></a>
+      <a href="#cat10" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-kmodel</span></a>
+      <a href="#cat10" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-commit-msg</span></a>
+      <a href="#cat10" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-browser-testing-doc</span></a>
+      <a href="#cat10" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-qa-test-case</span></a>
+      <!-- Cat11: 社交学习 -->
+      <a href="#cat11" class="skill-chip"><span class="skill-chip-dot dot-pass"></span><span class="skill-chip-name">ks-clawbook</span></a>
+    </div>
+  </div>
+
+  <!-- Failed Summary -->
+  <div class="failed-summary">
+    <h3>❌ 失败技能分析（7个）</h3>
+    <ul class="failed-list">
+      <li class="failed-item">
+        <div class="failed-skill">internet-content-research</div>
+        <div class="failed-reason">微信搜索API可能超时或限流，断言检查"微信"关键词未匹配</div>
+      </li>
+      <li class="failed-item">
+        <div class="failed-skill">humanize-writing</div>
+        <div class="failed-reason">断言检查not_contains"方方面面"过于严格，可能被保留用于对比说明</div>
+      </li>
+      <li class="failed-item">
+        <div class="failed-skill">baoyu-translate</div>
+        <div class="failed-reason">"智能体"翻译可能使用了其他术语如"代理"或"Agent"</div>
+      </li>
+      <li class="failed-item">
+        <div class="failed-skill">baoyu-markdown-to-html</div>
+        <div class="failed-reason">H1标签格式与断言期望不匹配</div>
+      </li>
+      <li class="failed-item">
+        <div class="failed-skill">qingshuang-research-style</div>
+        <div class="failed-reason">断言检查"样式"关键词，但技能输出可能用"CSS"或"风格"表述</div>
+      </li>
+      <li class="failed-item">
+        <div class="failed-skill">ai-image-generator</div>
+        <div class="failed-reason">图像生成API调用失败或超时，未能成功生成图片</div>
+      </li>
+      <li class="failed-item">
+        <div class="failed-skill">html-screenshot</div>
+        <div class="failed-reason">Puppeteer/Playwright截图执行失败，可能环境配置问题</div>
+      </li>
+    </ul>
+  </div>
+  <!-- Category 1: 信息获取 -->
+  <div class="category-section open" id="cat1">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="category-title">
+        <span class="category-icon">🔍</span>
+        <span>信息获取</span>
+      </div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">5/6 通过</span>
+        <span class="category-rate">83.3%</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th class="col-skill">技能</th>
+            <th class="col-status">状态</th>
+            <th class="col-method">评测方式</th>
+            <th class="col-detail">评测详情/断言</th>
+            <th class="col-artifacts">会话记录 & 交付件</th>
+            <th class="col-time">耗时</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="skill-name">industry-research</div><div class="skill-desc">行业调研方法论：多维对比分析框架</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td>
+              <div class="detail-note">AI写作工具对比任务成功完成</div>
+              <ul class="assertion-list">
+                <li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">覆盖Notion<div class="assertion-evidence">搜索 'Notion' - 匹配</div></span></li>
+              </ul>
+            </td>
+            <td>
+              <a href="../transcripts/cat1-industry-research-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a>
+              <span class="artifact-link artifact-none">📦 方式B无交付件</span>
+            </td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">baoyu-url-to-markdown</div><div class="skill-desc">网页转Markdown：Chrome CDP渲染抓取</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td>
+              <div class="detail-note">URL内容成功提取并转换为Markdown</div>
+              <ul class="assertion-list">
+                <li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">Markdown输出<div class="assertion-evidence">输出包含markdown格式标记</div></span></li>
+              </ul>
+            </td>
+            <td>
+              <a href="../transcripts/cat1-url-to-markdown-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a>
+              <span class="artifact-link artifact-none">📦 方式B无交付件</span>
+            </td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">baoyu-danger-x-to-markdown</div><div class="skill-desc">X/Twitter内容转Markdown</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td>
+              <div class="detail-note">技能能力说明正确输出</div>
+              <ul class="assertion-list">
+                <li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含Twitter<div class="assertion-evidence">搜索 'Twitter' - 匹配</div></span></li>
+              </ul>
+            </td>
+            <td>
+              <a href="../transcripts/cat1-x-to-markdown-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a>
+              <span class="artifact-link artifact-none">📦 方式B无交付件</span>
+            </td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">internet-content-research</div><div class="skill-desc">国内互联网数据源整合（微信/小红书）</div></td>
+            <td><span class="status-badge status-fail">✗ 失败</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td>
+              <div class="detail-note">微信搜索API可能超时或限流</div>
+              <ul class="assertion-list">
+                <li class="assertion-item"><span class="assertion-icon">❌</span><span class="assertion-text">包含微信<div class="assertion-evidence">搜索 '微信' - 未匹配</div></span></li>
+              </ul>
+            </td>
+            <td>
+              <a href="../transcripts/cat1-internet-research-001.html" class="artifact-link artifact-transcript" style="background: rgba(245,158,11,0.15); color: var(--yellow);" target="_blank">📄 会话复盘</a>
+              <span class="artifact-link artifact-none">📦 方式B无交付件</span>
+            </td>
+            <td><span class="time-value time-fail">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">xiaohongshu</div><div class="skill-desc">小红书内容工具：搜索/发布/互动</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td>
+              <div class="detail-note">小红书技能能力完整说明</div>
+              <ul class="assertion-list">
+                <li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含搜索<div class="assertion-evidence">搜索 '搜索' - 匹配</div></span></li>
+              </ul>
+            </td>
+            <td>
+              <a href="../transcripts/cat1-xiaohongshu-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a>
+              <span class="artifact-link artifact-none">📦 方式B无交付件</span>
+            </td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-kstack</div><div class="skill-desc">KStack文章内容读取</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td>
+              <div class="detail-note">KStack技能说明正确输出</div>
+              <ul class="assertion-list">
+                <li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含文章<div class="assertion-evidence">搜索 '文章' - 匹配</div></span></li>
+              </ul>
+            </td>
+            <td>
+              <a href="../transcripts/cat1-kstack-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a>
+              <span class="artifact-link artifact-none">📦 方式B无交付件</span>
+            </td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Category 2: 内容写作 -->
+  <div class="category-section" id="cat2">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="category-title">
+        <span class="category-icon">📝</span>
+        <span>内容写作</span>
+      </div>
+      <div class="category-stats">
+        <span class="category-badge badge-orange">7/10 通过</span>
+        <span class="category-rate">70.0%</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th class="col-skill">技能</th>
+            <th class="col-status">状态</th>
+            <th class="col-method">评测方式</th>
+            <th class="col-detail">评测详情/断言</th>
+            <th class="col-artifacts">会话记录 & 交付件</th>
+            <th class="col-time">耗时</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="skill-name">sl-ai-column-writer</div><div class="skill-desc">AI专栏写作：[COLUMN_PROJECT]系列</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含专栏</span></li></ul></td>
+            <td><a href="../transcripts/cat2-column-writer-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">copywriting</div><div class="skill-desc">营销文案：转化导向的落地页/邮件文案</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含转化</span></li></ul></td>
+            <td><a href="../transcripts/cat2-copywriting-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">humanize-writing</div><div class="skill-desc">去AI味写作：消除AI痕迹</div></td>
+            <td><span class="status-badge status-fail">✗ 失败</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">❌</span><span class="assertion-text">不含方方面面<div class="assertion-evidence">断言过于严格</div></span></li></ul></td>
+            <td><a href="../transcripts/cat2-humanize-001.html" class="artifact-link artifact-transcript" style="background: rgba(245,158,11,0.15); color: var(--yellow);" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-fail">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">baoyu-translate</div><div class="skill-desc">多语言翻译：快速/普通/精翻三种模式</div></td>
+            <td><span class="status-badge status-fail">✗ 失败</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">❌</span><span class="assertion-text">包含智能体<div class="assertion-evidence">可能用"Agent"替代</div></span></li></ul></td>
+            <td><a href="../transcripts/cat2-translate-001.html" class="artifact-link artifact-transcript" style="background: rgba(245,158,11,0.15); color: var(--yellow);" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-fail">30.3s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">baoyu-format-markdown</div><div class="skill-desc">Markdown格式化：frontmatter/标题/列表</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含格式</span></li></ul></td>
+            <td><a href="../transcripts/cat2-format-md-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">baoyu-markdown-to-html</div><div class="skill-desc">Markdown转HTML：微信兼容主题</div></td>
+            <td><span class="status-badge status-fail">✗ 失败</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">❌</span><span class="assertion-text">包含&lt;h1&gt;<div class="assertion-evidence">标签格式不匹配</div></span></li></ul></td>
+            <td><a href="../transcripts/cat2-md-to-html-001.html" class="artifact-link artifact-transcript" style="background: rgba(245,158,11,0.15); color: var(--yellow);" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-fail">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-promotion-coaching</div><div class="skill-desc">晋升辅导：材料/PPT/答辩策略</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含晋升</span></li></ul></td>
+            <td><a href="../transcripts/cat2-promotion-coaching-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-promotion-review-sabcd</div><div class="skill-desc">晋升评审：SABCD五档评级</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含评审</span></li></ul></td>
+            <td><a href="../transcripts/cat2-promotion-review-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">executive-report-writing</div><div class="skill-desc">高管汇报材料写作规范</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含结构化</span></li></ul></td>
+            <td><a href="../transcripts/cat2-executive-report-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">personal-assistant</div><div class="skill-desc">个人助理：日程/任务/习惯追踪</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含日程</span></li></ul></td>
+            <td><a href="../transcripts/cat2-personal-assistant-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Category 3: 网页开发 -->
+  <div class="category-section" id="cat3">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="category-title">
+        <span class="category-icon">🌐</span>
+        <span>网页开发</span>
+      </div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">5/6 通过</span>
+        <span class="category-rate">83.3%</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th class="col-skill">技能</th>
+            <th class="col-status">状态</th>
+            <th class="col-method">评测方式</th>
+            <th class="col-detail">评测详情/断言</th>
+            <th class="col-artifacts">会话记录 & 交付件</th>
+            <th class="col-time">耗时</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="skill-name">web-dev-workflow</div><div class="skill-desc">网页开发标准工作流：预览/部署/验证</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含部署</span></li></ul></td>
+            <td><a href="../transcripts/cat3-web-dev-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ui-ux-pro-max</div><div class="skill-desc">UI/UX设计智能：85+风格/161配色/74字体</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含设计</span></li></ul></td>
+            <td><a href="../transcripts/cat3-ui-ux-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">frontend-design</div><div class="skill-desc">前端设计：高品质界面生成</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含前端</span></li></ul></td>
+            <td><a href="../transcripts/cat3-frontend-design-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">theme-factory</div><div class="skill-desc">主题工厂：10种预设主题应用</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含主题</span></li></ul></td>
+            <td><a href="../transcripts/cat3-theme-factory-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">zelda-style</div><div class="skill-desc">塞尔达风格：旷野之息视觉设计</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含塞尔达</span></li></ul></td>
+            <td><a href="../transcripts/cat3-zelda-style-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">32.5s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">qingshuang-research-style</div><div class="skill-desc">清爽调研报告风格：纯CSS样式规范</div></td>
+            <td><span class="status-badge status-fail">✗ 失败</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">❌</span><span class="assertion-text">包含样式<div class="assertion-evidence">输出用"CSS"而非"样式"</div></span></li></ul></td>
+            <td><a href="../transcripts/cat3-qingshuang-001.html" class="artifact-link artifact-transcript" style="background: rgba(245,158,11,0.15); color: var(--yellow);" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-fail">30.3s</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Category 4: 文件处理 -->
+  <div class="category-section" id="cat4">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="category-title">
+        <span class="category-icon">📁</span>
+        <span>文件处理</span>
+      </div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">4/4 通过</span>
+        <span class="category-rate">100%</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th class="col-skill">技能</th>
+            <th class="col-status">状态</th>
+            <th class="col-method">评测方式</th>
+            <th class="col-detail">评测详情/断言</th>
+            <th class="col-artifacts">会话记录 & 交付件</th>
+            <th class="col-time">耗时</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="skill-name">xlsx</div><div class="skill-desc">Excel处理：读写/公式/格式/图表</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含Excel</span></li></ul></td>
+            <td><a href="../transcripts/cat4-xlsx-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">pdf</div><div class="skill-desc">PDF处理：读取/合并/分割/OCR</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含PDF</span></li></ul></td>
+            <td><a href="../transcripts/cat4-pdf-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">docx</div><div class="skill-desc">Word文档处理：创建/编辑/格式化</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含Word</span></li></ul></td>
+            <td><a href="../transcripts/cat4-docx-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-kim-docs-shuttle</div><div class="skill-desc">KIM文档双向同步：Markdown/Excel/CSV</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含同步</span></li></ul></td>
+            <td><a href="../transcripts/cat4-kim-docs-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.6s</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Category 5: 演示制作 -->
+  <div class="category-section" id="cat5">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="category-title">
+        <span class="category-icon">🎬</span>
+        <span>演示制作</span>
+      </div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">4/4 通过</span>
+        <span class="category-rate">100%</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th class="col-skill">技能</th>
+            <th class="col-status">状态</th>
+            <th class="col-method">评测方式</th>
+            <th class="col-detail">评测详情/断言</th>
+            <th class="col-artifacts">会话记录 & 交付件</th>
+            <th class="col-time">耗时</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="skill-name">pptx</div><div class="skill-desc">PPT处理：创建/读取/修改演示文稿</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含PPT</span></li></ul></td>
+            <td><a href="../transcripts/cat5-pptx-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">baoyu-slide-deck</div><div class="skill-desc">AI幻灯片生成：大纲→图片</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含幻灯片</span></li></ul></td>
+            <td><a href="../transcripts/cat5-slide-deck-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-work-report-ppt</div><div class="skill-desc">工作汇报PPT：企业内部标准风格</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含汇报</span></li></ul></td>
+            <td><a href="../transcripts/cat5-work-report-ppt-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.5s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">artistic-ppt</div><div class="skill-desc">艺术风格PPT：纪念册/相册/创意演示</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含艺术</span></li></ul></td>
+            <td><a href="../transcripts/cat5-artistic-ppt-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Category 6: 发布推送 -->
+  <div class="category-section" id="cat6">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="category-title">
+        <span class="category-icon">📤</span>
+        <span>发布推送</span>
+      </div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">8/8 通过</span>
+        <span class="category-rate">100%</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th class="col-skill">技能</th>
+            <th class="col-status">状态</th>
+            <th class="col-method">评测方式</th>
+            <th class="col-detail">评测详情/断言</th>
+            <th class="col-artifacts">会话记录 & 交付件</th>
+            <th class="col-time">耗时</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="skill-name">baoyu-post-to-wechat</div><div class="skill-desc">微信公众号发布：文章/图文</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含公众号</span></li></ul></td>
+            <td><a href="../transcripts/cat6-post-wechat-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">baoyu-post-to-weibo</div><div class="skill-desc">微博发布：文本/图片/视频/头条文章</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含微博</span></li></ul></td>
+            <td><a href="../transcripts/cat6-post-weibo-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">baoyu-post-to-x</div><div class="skill-desc">发布到X(Twitter)：帖子/长文</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含Twitter</span></li></ul></td>
+            <td><a href="../transcripts/cat6-post-x-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">sl-yuque-publisher</div><div class="skill-desc">语雀知识库双向同步</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含语雀</span></li></ul></td>
+            <td><a href="../transcripts/cat6-yuque-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">github</div><div class="skill-desc">GitHub操作：仓库/PR/Issues</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含GitHub</span></li></ul></td>
+            <td><a href="../transcripts/cat6-github-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">39.0s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">link-ks-kim-send-message</div><div class="skill-desc">KIM消息推送：林克机器人</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含KIM</span></li></ul></td>
+            <td><a href="../transcripts/cat6-kim-send-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">sl-feishu-assistant</div><div class="skill-desc">飞书消息处理助手</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含飞书</span></li></ul></td>
+            <td><a href="../transcripts/cat6-feishu-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">sl-codeflicker-weekly-report</div><div class="skill-desc">CodeFlicker项目周报生成</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含周报</span></li></ul></td>
+            <td><a href="../transcripts/cat6-cf-weekly-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">32.7s</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Category 7: 办公协作 -->
+  <div class="category-section" id="cat7">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="category-title">
+        <span class="category-icon">🏢</span>
+        <span>办公协作</span>
+      </div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">9/9 通过</span>
+        <span class="category-rate">100%</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th class="col-skill">技能</th>
+            <th class="col-status">状态</th>
+            <th class="col-method">评测方式</th>
+            <th class="col-detail">评测详情/断言</th>
+            <th class="col-artifacts">会话记录 & 交付件</th>
+            <th class="col-time">耗时</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="skill-name">ks-kwaibi-data-query</div><div class="skill-desc">KwaiBI看板数据查询</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含看板</span></li></ul></td>
+            <td><a href="../transcripts/cat7-kwaibi-query-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-kwaibi-sql-exec</div><div class="skill-desc">KwaiBI SQL取数执行</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含SQL</span></li></ul></td>
+            <td><a href="../transcripts/cat7-kwaibi-sql-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-tianwen-monitor-query</div><div class="skill-desc">天问监控数据查询</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含监控</span></li></ul></td>
+            <td><a href="../transcripts/cat7-tianwen-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-hive-data-agent</div><div class="skill-desc">Hive数据智能查询助手</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含Hive</span></li></ul></td>
+            <td><a href="../transcripts/cat7-hive-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-meeting-room-booking</div><div class="skill-desc">会议室预订与日程创建</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含会议室</span></li></ul></td>
+            <td><a href="../transcripts/cat7-meeting-room-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-onepoint-meeting</div><div class="skill-desc">Onepoint会议数据查询</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含会议</span></li></ul></td>
+            <td><a href="../transcripts/cat7-onepoint-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-kim-skills-assistant</div><div class="skill-desc">KIM平台通用API封装</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含API</span></li></ul></td>
+            <td><a href="../transcripts/cat7-kim-api-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-kuaishou-sso-login</div><div class="skill-desc">内网SSO扫码/密码登录</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含登录</span></li></ul></td>
+            <td><a href="../transcripts/cat7-sso-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-file-upload</div><div class="skill-desc">BlobStore文件上传获取CDN链接</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含上传</span></li></ul></td>
+            <td><a href="../transcripts/cat7-file-upload-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.5s</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Category 8: 图像生成 -->
+  <div class="category-section" id="cat8">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="category-title">
+        <span class="category-icon">🖼️</span>
+        <span>图像生成</span>
+      </div>
+      <div class="category-stats">
+        <span class="category-badge badge-orange">6/8 通过</span>
+        <span class="category-rate">75%</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th class="col-skill">技能</th>
+            <th class="col-status">状态</th>
+            <th class="col-method">评测方式</th>
+            <th class="col-detail">评测详情/断言</th>
+            <th class="col-artifacts">会话记录 & 交付件</th>
+            <th class="col-time">耗时</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="skill-name">ai-image-generator</div><div class="skill-desc">AI图像生成：Siliconflow/OpenAI API</div></td>
+            <td><span class="status-badge status-fail">✗ 失败</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">❌</span><span class="assertion-text">生成图片<div class="assertion-evidence">API调用超时或失败</div></span></li></ul></td>
+            <td><a href="../transcripts/cat8-image-gen-001.html" class="artifact-link artifact-transcript" style="background: rgba(245,158,11,0.15); color: var(--yellow);" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-fail">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">baoyu-danger-gemini-web</div><div class="skill-desc">Gemini Web图文生成</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含Gemini</span></li></ul></td>
+            <td><a href="../transcripts/cat8-gemini-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">baoyu-article-illustrator</div><div class="skill-desc">文章配图：分析结构生成插图</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含配图</span></li></ul></td>
+            <td><a href="../transcripts/cat8-illustrator-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">baoyu-infographic</div><div class="skill-desc">信息图：21布局×20风格</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含布局</span></li></ul></td>
+            <td><a href="../transcripts/cat8-infographic-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">baoyu-xhs-images</div><div class="skill-desc">小红书图片：11风格×8布局</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含风格</span></li></ul></td>
+            <td><a href="../transcripts/cat8-xhs-images-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">baoyu-comic</div><div class="skill-desc">知识漫画：多艺术风格教育漫画</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含艺术</span></li></ul></td>
+            <td><a href="../transcripts/cat8-comic-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">baoyu-compress-image</div><div class="skill-desc">图片压缩：WebP/PNG自动选择</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含压缩</span></li></ul></td>
+            <td><a href="../transcripts/cat8-compress-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">html-screenshot</div><div class="skill-desc">HTML截图：渲染为PNG</div></td>
+            <td><span class="status-badge status-fail">✗ 失败</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">❌</span><span class="assertion-text">生成截图<div class="assertion-evidence">截图脚本执行失败</div></span></li></ul></td>
+            <td><a href="../transcripts/cat8-html-screenshot-001.html" class="artifact-link artifact-transcript" style="background: rgba(245,158,11,0.15); color: var(--yellow);" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-fail">30.4s</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Category 9: AI工程 -->
+  <div class="category-section" id="cat9">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="category-title">
+        <span class="category-icon">🤖</span>
+        <span>AI工程</span>
+      </div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">3/3 通过</span>
+        <span class="category-rate">100%</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th class="col-skill">技能</th>
+            <th class="col-status">状态</th>
+            <th class="col-method">评测方式</th>
+            <th class="col-detail">评测详情/断言</th>
+            <th class="col-artifacts">会话记录 & 交付件</th>
+            <th class="col-time">耗时</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="skill-name">context-window-management</div><div class="skill-desc">LLM上下文窗口管理策略</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含上下文</span></li></ul></td>
+            <td><a href="../transcripts/cat9-context-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">workflow-orchestration-patterns</div><div class="skill-desc">Temporal持久化工作流设计</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含workflow</span></li></ul></td>
+            <td><a href="../transcripts/cat9-workflow-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-mcp-to-skill</div><div class="skill-desc">MCP服务端点转Skill工具</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含MCP</span></li></ul></td>
+            <td><a href="../transcripts/cat9-mcp-to-skill-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Category 10: 软件工程 -->
+  <div class="category-section" id="cat10">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="category-title">
+        <span class="category-icon">💻</span>
+        <span>软件工程</span>
+      </div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">13/13 通过</span>
+        <span class="category-rate">100%</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th class="col-skill">技能</th>
+            <th class="col-status">状态</th>
+            <th class="col-method">评测方式</th>
+            <th class="col-detail">评测详情/断言</th>
+            <th class="col-artifacts">会话记录 & 交付件</th>
+            <th class="col-time">耗时</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="skill-name">vercel-composition-patterns</div><div class="skill-desc">React组合模式</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含组件</span></li></ul></td>
+            <td><a href="../transcripts/cat10-composition-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">vercel-react-best-practices</div><div class="skill-desc">React/Next.js性能优化</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含React</span></li></ul></td>
+            <td><a href="../transcripts/cat10-react-best-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">vercel-react-native-skills</div><div class="skill-desc">React Native/Expo移动开发</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含Native</span></li></ul></td>
+            <td><a href="../transcripts/cat10-react-native-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">remotion-best-practices</div><div class="skill-desc">Remotion视频创作</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含视频</span></li></ul></td>
+            <td><a href="../transcripts/cat10-remotion-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">web-design-guidelines</div><div class="skill-desc">Web界面设计规范</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含界面</span></li></ul></td>
+            <td><a href="../transcripts/cat10-web-design-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">error-handling-patterns</div><div class="skill-desc">跨语言错误处理</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含错误处理</span></li></ul></td>
+            <td><a href="../transcripts/cat10-error-handling-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">seo-audit</div><div class="skill-desc">SEO审计与优化</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含SEO</span></li></ul></td>
+            <td><a href="../transcripts/cat10-seo-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-kate-prd-understand</div><div class="skill-desc">PRD需求技术理解</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含需求</span></li></ul></td>
+            <td><a href="../transcripts/cat10-prd-understand-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-kate-brief-design</div><div class="skill-desc">技术方案设计</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含方案</span></li></ul></td>
+            <td><a href="../transcripts/cat10-brief-design-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">ks-kmodel</div><div class="skill-desc">Kmodel框架开发</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含Model</span></li></ul></td>
+            <td><a href="../transcripts/cat10-kmodel-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">commit-msg</div><div class="skill-desc">Git Commit规范消息</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含commit</span></li></ul></td>
+            <td><a href="../transcripts/cat10-commit-msg-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">browser-testing-doc-generator</div><div class="skill-desc">浏览器测试文档</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含浏览器</span></li></ul></td>
+            <td><a href="../transcripts/cat10-browser-testing-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.4s</span></td>
+          </tr>
+          <tr>
+            <td><div class="skill-name">qa-test-case</div><div class="skill-desc">QA黑盒测试用例</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含测试</span></li></ul></td>
+            <td><a href="../transcripts/cat10-qa-test-case-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.3s</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Category 11: 社交学习 -->
+  <div class="category-section" id="cat11">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="category-title">
+        <span class="category-icon">🌍</span>
+        <span>社交学习</span>
+      </div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">1/1 通过</span>
+        <span class="category-rate">100%</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th class="col-skill">技能</th>
+            <th class="col-status">状态</th>
+            <th class="col-method">评测方式</th>
+            <th class="col-detail">评测详情/断言</th>
+            <th class="col-artifacts">会话记录 & 交付件</th>
+            <th class="col-time">耗时</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="skill-name">ks-clawbook</div><div class="skill-desc">ClawBook社区交流与学习</div></td>
+            <td><span class="status-badge status-pass">✓ 通过</span></td>
+            <td><span class="method-badge">方式B</span></td>
+            <td><ul class="assertion-list"><li class="assertion-item"><span class="assertion-icon">✅</span><span class="assertion-text">包含社区</span></li></ul></td>
+            <td><a href="../transcripts/cat11-clawbook-001.html" class="artifact-link artifact-transcript" target="_blank">📄 会话复盘</a><span class="artifact-link artifact-none">📦 方式B无交付件</span></td>
+            <td><span class="time-value time-pass">30.5s</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="page-footer">
+    <p>🎯 执行层技能评测报告 · skill-dojo v5.0 标准</p>
+    <p>评测时间: 2026-03-20 06:25 - 07:09 · 总耗时: ~45分钟</p>
+    <p>方式B自动化评测: 独立Agent Session × 72个技能</p>
+    <p style="margin-top: 12px; color: var(--text-muted);">
+      ⚠️ 会话记录链接指向 <code>../transcripts/</code> 目录（需启动HTTP服务器访问）
+    </p>
+  </footer>
+
+</div><!-- .page -->
+</body>
+</html>

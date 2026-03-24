@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>执行层技能全量评测报告 - 2026-03-20</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.6; padding: 24px; }
+.container { max-width: 1400px; margin: 0 auto; }
+h1 { font-size: 28px; font-weight: 600; margin-bottom: 8px; background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.subtitle { color: #94a3b8; margin-bottom: 24px; }
+.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.stat-card { background: #1e293b; border-radius: 12px; padding: 20px; text-align: center; }
+.stat-value { font-size: 36px; font-weight: 700; }
+.stat-label { color: #94a3b8; font-size: 14px; margin-top: 4px; }
+.stat-card.total .stat-value { color: #38bdf8; }
+.stat-card.existing .stat-value { color: #4ade80; }
+.stat-card.missing .stat-value { color: #f87171; }
+.stat-card.avg .stat-value { color: #fbbf24; }
+.stat-card.healthy .stat-value { color: #22c55e; }
+.category { background: #1e293b; border-radius: 12px; margin-bottom: 20px; overflow: hidden; }
+.category-header { padding: 16px 20px; background: #334155; display: flex; justify-content: space-between; align-items: center; }
+.category-title { font-size: 18px; font-weight: 600; }
+.category-stats { display: flex; gap: 16px; font-size: 14px; color: #94a3b8; }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; padding: 16px; }
+.skill-card { background: #0f172a; border-radius: 8px; padding: 14px; border-left: 4px solid #22c55e; }
+.skill-card.missing { border-left-color: #f87171; opacity: 0.7; }
+.skill-card.warning { border-left-color: #fbbf24; }
+.skill-name { font-weight: 600; margin-bottom: 6px; }
+.skill-meta { display: flex; flex-wrap: wrap; gap: 8px; font-size: 12px; }
+.badge { background: #334155; padding: 2px 8px; border-radius: 4px; }
+.badge.version { background: #3b82f6; }
+.badge.score { background: #22c55e; }
+.badge.score.low { background: #f87171; }
+.badge.meta-exec { background: #8b5cf6; }
+.issues { color: #f87171; font-size: 12px; margin-top: 6px; }
+.pass-rate { font-size: 48px; font-weight: 700; color: #22c55e; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🎯 执行层技能全量评测报告</h1>
+<p class="subtitle">评测时间: 2026-03-20 06:11:59 | 评测方式: 方式A（轻量评测/文档走读）</p>
+
+<div class="summary">
+<div class="stat-card total"><div class="stat-value">79</div><div class="stat-label">技能总数</div></div>
+<div class="stat-card existing"><div class="stat-value">76</div><div class="stat-label">存在技能</div></div>
+<div class="stat-card missing"><div class="stat-value">3</div><div class="stat-label">缺失技能</div></div>
+<div class="stat-card avg"><div class="stat-value">95.5</div><div class="stat-label">平均分</div></div>
+<div class="stat-card healthy"><div class="stat-value">76</div><div class="stat-label">健康 (≥85分)</div></div>
+</div>
+
+<div class="category">
+<div class="category-header">
+<span class="category-title">🔍 信息获取</span>
+<span class="category-stats"><span>存在: 6/9</span><span>平均分: 95.8</span></span>
+</div>
+<div class="skills-grid">
+
+<div class="skill-card ">
+<div class="skill-name">industry-research</div>
+<div class="skill-meta">
+<span class="badge version">v1.3.1</span>
+<span class="badge score ">100分</span>
+<span class="badge">386行</span>
+<span class="badge meta-exec">Meta-Exec</span>
+</div>
+
+</div>
+
+<div class="skill-card missing">
+<div class="skill-name">apify-competitor-intelligence</div>
+<div class="skill-meta">
+<span class="badge">无版本</span>
+<span class="badge score low">0分</span>
+<span class="badge">0行</span>
+
+</div>
+<div class="issues">⚠️ 技能目录不存在</div>
+</div>
+
+<div class="skill-card missing">
+<div class="skill-name">apify-market-research</div>
+<div class="skill-meta">
+<span class="badge">无版本</span>
+<span class="badge score low">0分</span>
+<span class="badge">0行</span>
+
+</div>
+<div class="issues">⚠️ 技能目录不存在</div>
+</div>
+
+<div class="skill-card missing">
+<div class="skill-name">apify-trend-analysis</div>
+<div class="skill-meta">
+<span class="badge">无版本</span>
+<span class="badge score low">0分</span>
+<span class="badge">0行</span>
+
+</div>
+<div class="issues">⚠️ 技能目录不存在</div>
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">baoyu-url-to-markdown</div>
+<div class="skill-meta">
+<span class="badge version">v1.58.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">262行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">baoyu-danger-x-to-markdown</div>
+<div class="skill-meta">
+<span class="badge version">v1.56.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">225行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">internet-content-research</div>
+<div class="skill-meta">
+<span class="badge version">v3.0.1</span>
+<span class="badge score ">100分</span>
+<span class="badge">529行</span>
+<span class="badge meta-exec">Meta-Exec</span>
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">xiaohongshu</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">204行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-kstack</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">90分</span>
+<span class="badge">38行</span>
+
+</div>
+
+</div>
+</div></div>
+<div class="category">
+<div class="category-header">
+<span class="category-title">📝 内容写作</span>
+<span class="category-stats"><span>存在: 10/10</span><span>平均分: 96.5</span></span>
+</div>
+<div class="skills-grid">
+
+<div class="skill-card ">
+<div class="skill-name">sl-ai-column-writer</div>
+<div class="skill-meta">
+<span class="badge version">v2.0.0</span>
+<span class="badge score ">100分</span>
+<span class="badge">274行</span>
+<span class="badge meta-exec">Meta-Exec</span>
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">copywriting</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">252行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">humanize-writing</div>
+<div class="skill-meta">
+<span class="badge version">v1.1.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">219行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">baoyu-translate</div>
+<div class="skill-meta">
+<span class="badge version">v1.56.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">285行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">baoyu-format-markdown</div>
+<div class="skill-meta">
+<span class="badge version">v1.57.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">367行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">baoyu-markdown-to-html</div>
+<div class="skill-meta">
+<span class="badge version">v1.56.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">270行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-promotion-coaching</div>
+<div class="skill-meta">
+<span class="badge version">v1.2.0</span>
+<span class="badge score ">100分</span>
+<span class="badge">175行</span>
+<span class="badge meta-exec">Meta-Exec</span>
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-promotion-review-sabcd</div>
+<div class="skill-meta">
+<span class="badge version">v1.3.0</span>
+<span class="badge score ">100分</span>
+<span class="badge">557行</span>
+<span class="badge meta-exec">Meta-Exec</span>
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">executive-report-writing</div>
+<div class="skill-meta">
+<span class="badge version">v1.1.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">192行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">personal-assistant</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">133行</span>
+
+</div>
+
+</div>
+</div></div>
+<div class="category">
+<div class="category-header">
+<span class="category-title">🌐 网页开发</span>
+<span class="category-stats"><span>存在: 8/8</span><span>平均分: 95.6</span></span>
+</div>
+<div class="skills-grid">
+
+<div class="skill-card ">
+<div class="skill-name">web-dev-workflow</div>
+<div class="skill-meta">
+<span class="badge version">v1.7.0</span>
+<span class="badge score ">100分</span>
+<span class="badge">433行</span>
+<span class="badge meta-exec">Meta-Exec</span>
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ui-ux-pro-max</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">650行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">frontend-design</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">147行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">canvas-design</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">131行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">theme-factory</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">61行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">zelda-style</div>
+<div class="skill-meta">
+<span class="badge version">v4.1.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">766行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">qingshuang-research-style</div>
+<div class="skill-meta">
+<span class="badge version">v3.2.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">350行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">pixel-action-game</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">566行</span>
+
+</div>
+
+</div>
+</div></div>
+<div class="category">
+<div class="category-header">
+<span class="category-title">📁 文件处理</span>
+<span class="category-stats"><span>存在: 5/5</span><span>平均分: 95.0</span></span>
+</div>
+<div class="skills-grid">
+
+<div class="skill-card ">
+<div class="skill-name">xlsx</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">296行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">pdf</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">319行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">docx</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">487行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">openai-whisper</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">90分</span>
+<span class="badge">21行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-kim-docs-shuttle</div>
+<div class="skill-meta">
+<span class="badge version">v2.2.0</span>
+<span class="badge score ">100分</span>
+<span class="badge">711行</span>
+<span class="badge meta-exec">Meta-Exec</span>
+</div>
+
+</div>
+</div></div>
+<div class="category">
+<div class="category-header">
+<span class="category-title">🎬 演示制作</span>
+<span class="category-stats"><span>存在: 4/4</span><span>平均分: 95.0</span></span>
+</div>
+<div class="skills-grid">
+
+<div class="skill-card ">
+<div class="skill-name">pptx</div>
+<div class="skill-meta">
+<span class="badge version">v1.1.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">277行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">baoyu-slide-deck</div>
+<div class="skill-meta">
+<span class="badge version">v1.56.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">715行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-work-report-ppt</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">367行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">artistic-ppt</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">308行</span>
+
+</div>
+
+</div>
+</div></div>
+<div class="category">
+<div class="category-header">
+<span class="category-title">📤 发布推送</span>
+<span class="category-stats"><span>存在: 8/8</span><span>平均分: 97.5</span></span>
+</div>
+<div class="skills-grid">
+
+<div class="skill-card ">
+<div class="skill-name">baoyu-post-to-wechat</div>
+<div class="skill-meta">
+<span class="badge version">v1.56.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">509行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">baoyu-post-to-weibo</div>
+<div class="skill-meta">
+<span class="badge version">v1.56.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">163行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">baoyu-post-to-x</div>
+<div class="skill-meta">
+<span class="badge version">v1.56.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">224行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">sl-yuque-publisher</div>
+<div class="skill-meta">
+<span class="badge version">v1.2.0</span>
+<span class="badge score ">100分</span>
+<span class="badge">358行</span>
+<span class="badge meta-exec">Meta-Exec</span>
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">github</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">51行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">link-ks-kim-send-message</div>
+<div class="skill-meta">
+<span class="badge version">v4.0.0</span>
+<span class="badge score ">100分</span>
+<span class="badge">409行</span>
+<span class="badge meta-exec">Meta-Exec</span>
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">sl-feishu-assistant</div>
+<div class="skill-meta">
+<span class="badge version">v1.1.0</span>
+<span class="badge score ">100分</span>
+<span class="badge">121行</span>
+<span class="badge meta-exec">Meta-Exec</span>
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">sl-codeflicker-weekly-report</div>
+<div class="skill-meta">
+<span class="badge version">v2.0.0</span>
+<span class="badge score ">100分</span>
+<span class="badge">208行</span>
+<span class="badge meta-exec">Meta-Exec</span>
+</div>
+
+</div>
+</div></div>
+<div class="category">
+<div class="category-header">
+<span class="category-title">🏢 办公协作</span>
+<span class="category-stats"><span>存在: 9/9</span><span>平均分: 95.0</span></span>
+</div>
+<div class="skills-grid">
+
+<div class="skill-card ">
+<div class="skill-name">ks-kwaibi-data-query</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">179行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-kwaibi-sql-exec</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">195行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-tianwen-monitor-query</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">321行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-hive-data-agent</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">196行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-meeting-room-booking</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">206行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-onepoint-meeting</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">152行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-kim-skills-assistant</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">503行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-kuaishou-sso-login</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">190行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-file-upload</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">205行</span>
+
+</div>
+
+</div>
+</div></div>
+<div class="category">
+<div class="category-header">
+<span class="category-title">🖼️ 图像生成</span>
+<span class="category-stats"><span>存在: 8/8</span><span>平均分: 95.0</span></span>
+</div>
+<div class="skills-grid">
+
+<div class="skill-card ">
+<div class="skill-name">ai-image-generator</div>
+<div class="skill-meta">
+<span class="badge version">v1.3.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">444行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">baoyu-danger-gemini-web</div>
+<div class="skill-meta">
+<span class="badge version">v1.56.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">169行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">baoyu-article-illustrator</div>
+<div class="skill-meta">
+<span class="badge version">v1.56.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">187行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">baoyu-infographic</div>
+<div class="skill-meta">
+<span class="badge version">v1.56.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">267行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">baoyu-xhs-images</div>
+<div class="skill-meta">
+<span class="badge version">v1.56.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">591行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">baoyu-comic</div>
+<div class="skill-meta">
+<span class="badge version">v1.56.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">312行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">baoyu-compress-image</div>
+<div class="skill-meta">
+<span class="badge version">v1.56.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">105行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">html-screenshot</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">360行</span>
+
+</div>
+
+</div>
+</div></div>
+<div class="category">
+<div class="category-header">
+<span class="category-title">🤖 AI工程</span>
+<span class="category-stats"><span>存在: 4/4</span><span>平均分: 95.0</span></span>
+</div>
+<div class="skills-grid">
+
+<div class="skill-card ">
+<div class="skill-name">mcp-builder</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">238行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">context-window-management</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">60行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">workflow-orchestration-patterns</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">318行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-mcp-to-skill</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">283行</span>
+
+</div>
+
+</div>
+</div></div>
+<div class="category">
+<div class="category-header">
+<span class="category-title">🔧 软件工程</span>
+<span class="category-stats"><span>存在: 13/13</span><span>平均分: 94.2</span></span>
+</div>
+<div class="skills-grid">
+
+<div class="skill-card ">
+<div class="skill-name">vercel-composition-patterns</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">86行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">vercel-react-best-practices</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">138行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">vercel-react-native-skills</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">119行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">remotion-best-practices</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">90分</span>
+<span class="badge">50行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">web-design-guidelines</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">90分</span>
+<span class="badge">41行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">error-handling-patterns</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">634行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">seo-audit</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">414行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-kate-prd-understand</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">63行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-kate-brief-design</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">60行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-kmodel</div>
+<div class="skill-meta">
+<span class="badge version">v0.1.174</span>
+<span class="badge score ">95分</span>
+<span class="badge">1708行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-commit-msg</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.1</span>
+<span class="badge score ">95分</span>
+<span class="badge">349行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-browser-testing-doc</div>
+<div class="skill-meta">
+<span class="badge version">v1.0.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">371行</span>
+
+</div>
+
+</div>
+
+<div class="skill-card ">
+<div class="skill-name">ks-qa-test-case</div>
+<div class="skill-meta">
+<span class="badge version">v1.2.0</span>
+<span class="badge score ">95分</span>
+<span class="badge">151行</span>
+
+</div>
+
+</div>
+</div></div>
+<div class="category">
+<div class="category-header">
+<span class="category-title">🌐 社交学习</span>
+<span class="category-stats"><span>存在: 1/1</span><span>平均分: 100.0</span></span>
+</div>
+<div class="skills-grid">
+
+<div class="skill-card ">
+<div class="skill-name">ks-clawbook</div>
+<div class="skill-meta">
+<span class="badge version">v1.5.1</span>
+<span class="badge score ">100分</span>
+<span class="badge">789行</span>
+<span class="badge meta-exec">Meta-Exec</span>
+</div>
+
+</div>
+</div></div>
+<div style="text-align: center; margin-top: 40px; padding: 30px; background: #1e293b; border-radius: 12px;">
+<div class="pass-rate">100.0%</div>
+<div style="color: #94a3b8; margin-top: 8px;">健康通过率 (≥85分为健康)</div>
+</div>
+
+<div style="margin-top: 40px; padding: 20px; background: #1e293b; border-radius: 12px;">
+<h2 style="font-size: 18px; margin-bottom: 16px;">📋 评测说明</h2>
+<ul style="color: #94a3b8; padding-left: 20px;">
+<li><strong>评测方式</strong>: 方式A（轻量评测/文档走读）— 检查SKILL.md文档完整性</li>
+<li><strong>评分维度</strong>: 基础存在(60分) + 版本号(15分) + description(15分) + Meta-Execution(5分) + 文档丰富度(5分)</li>
+<li><strong>健康阈值</strong>: ≥85分为健康，60-84分为需关注，&lt;60分为需优化</li>
+<li><strong>缺失技能</strong>: 3个apify相关技能在constants.py中配置但实际目录不存在</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>

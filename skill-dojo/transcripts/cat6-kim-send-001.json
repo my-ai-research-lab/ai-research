@@ -1,0 +1,97 @@
+[
+  {
+    "ts": 1774009039871,
+    "type": "say",
+    "say": "completion_result",
+    "text": "",
+    "agentType": "agent",
+    "sessionId": "DDBD4EED-1F8D-48F9-9026-165D8302D873",
+    "chatId": "chat-1774009020032-i8r4l3",
+    "stopReason": "",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009033367,
+    "sessionId": "DDBD4EED-1F8D-48F9-9026-165D8302D873",
+    "chatId": "chat-1774009020032-i8r4l3",
+    "type": "say",
+    "say": "text",
+    "text": "---\n\n## ✅ 完成状态\n\n任务已完成。\n\n---\n\n## 📋 KIM消息推送技能支持的操作\n\n### 核心能力\n\n| 操作 | 说明 |\n|------|------|\n| **发送消息到个人** | `linke_send_to_user(username, card)` — 向指定用户发送 MixCard 卡片 |\n| **发送消息到群** | `linke_send_to_group(group_id, card)` — 向指定群发送 MixCard 卡片 |\n| **获取林克Token** | `get_linke_token()` — 获取林克应用的 Access Token |\n| **获取林克所在群列表** | 调用 `kim-skills-assistant` 的 `get_bot_groups()` API |\n\n### 消息类型\n\n- **MixCard 卡片**：支持富文本、分割线、双列布局、按钮组等多种 Block 类型\n\n### 业务场景支持\n\n| 场景 | 实现方式 |\n|------|----------|\n| AI日报推送 | 使用专用脚本 `scripts/send_ai_daily.py` |\n| AI周报/深度调研 | 按 `detailed-content.md` 卡片模板构建 |\n| 批量群推送 | 带限流保护和失败记录的安全推送流程 |\n\n### 架构依赖\n\n本技能是林克专属层，底层调用 `ks-kim-skills-assistant` 通用KIM API，后者还支持：\n- 消息拉取\n- 群管理\n- 待办创建\n- 日程管理\n\n### 关键约束\n\n1. **林克本质洞察**：所有林克发出的卡片必须在 footer 前包含 🧠 本质洞察模块\n2. **推送红线**：已有专用脚本的场景禁止手写卡片\n3. **限流处理**：42900 错误不自动重试，记录后等待用户确认",
+    "partial": false,
+    "lastCheckpointHash": "27fe407e3d252ffcbf75ec72b760c7125708a16e",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009029069,
+    "sessionId": "DDBD4EED-1F8D-48F9-9026-165D8302D873",
+    "chatId": "chat-1774009020032-i8r4l3",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": false,
+    "lastCheckpointHash": "27fe407e3d252ffcbf75ec72b760c7125708a16e",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009027878,
+    "sessionId": "DDBD4EED-1F8D-48F9-9026-165D8302D873",
+    "chatId": "chat-1774009020032-i8r4l3",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": true,
+    "lastCheckpointHash": "27fe407e3d252ffcbf75ec72b760c7125708a16e",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009020225,
+    "role": "user",
+    "type": "say",
+    "say": "text",
+    "text": "[测试模式] 请使用 link-ks-kim-send-message 技能执行以下任务：\n\n请说明KIM消息推送技能支持哪些操作\n\n执行完成后，请明确说明完成状态和关键输出。",
+    "sessionId": "DDBD4EED-1F8D-48F9-9026-165D8302D873",
+    "agentType": "agent",
+    "chatId": "chat-1774009020032-i8r4l3",
+    "editorState": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "[测试模式] 请使用 link-ks-kim-send-message 技能执行以下任务：\n\n请说明KIM消息推送技能支持哪些操作\n\n执行完成后，请明确说明完成状态和关键输出。",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "contextItems": [],
+    "diagnostics": [],
+    "indexed": true,
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  }
+]

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技能测试报告 - 2026-03-19 11:59:27</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #e8e8e8;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .summary-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        .pass { color: #00e676; }
+        .fail { color: #ff5252; }
+        .warn { color: #ffab40; }
+        
+        .progress-bar {
+            height: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00e676, #69f0ae);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .scenario-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+        }
+        
+        .scenario-header {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .scenario-header:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .status-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 12px;
+        }
+        
+        .status-passed { background: rgba(0, 230, 118, 0.2); }
+        .status-failed { background: rgba(255, 82, 82, 0.2); }
+        .status-error { background: rgba(255, 171, 64, 0.2); }
+        
+        .scenario-info {
+            flex: 1;
+        }
+        
+        .scenario-id {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 2px;
+        }
+        
+        .scenario-desc {
+            font-size: 1rem;
+        }
+        
+        .scenario-meta {
+            text-align: right;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        .scenario-content {
+            padding: 0 16px 16px;
+            display: none;
+        }
+        
+        .scenario-card.expanded .scenario-content {
+            display: block;
+        }
+        
+        .section-title {
+            font-size: 0.9rem;
+            color: #888;
+            margin: 16px 0 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .assertions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .assertion {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .assertion-icon {
+            margin-right: 8px;
+        }
+        
+        .assertion-name {
+            flex: 1;
+        }
+        
+        .assertion-result {
+            color: #888;
+            font-size: 0.85rem;
+        }
+        
+        .artifacts {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .artifact {
+            display: flex;
+            align-items: center;
+            padding: 10px 14px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 8px;
+            text-decoration: none;
+            color: #00d4ff;
+            transition: background 0.2s;
+        }
+        
+        .artifact:hover {
+            background: rgba(0, 212, 255, 0.2);
+        }
+        
+        .artifact-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .artifact-info {
+            flex: 1;
+        }
+        
+        .artifact-name {
+            font-weight: 500;
+        }
+        
+        .artifact-value {
+            font-size: 0.8rem;
+            color: #888;
+            word-break: break-all;
+        }
+        
+        .artifact-invalid {
+            background: rgba(255, 82, 82, 0.1);
+            color: #ff8a80;
+        }
+        
+        .key-outputs {
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .key-output {
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .key-output:last-child {
+            border-bottom: none;
+        }
+        
+        .expand-btn {
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+        
+        .scenario-card.expanded .expand-btn {
+            transform: rotate(180deg);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 技能测试报告</h1>
+
+        <div class="summary-card">
+            <div class="summary-grid">
+                <div class="stat-box">
+                    <div class="stat-value">100.0%</div>
+                    <div class="stat-label">通过率</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value pass">4</div>
+                    <div class="stat-label">通过</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value fail">0</div>
+                    <div class="stat-label">失败</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value warn">0</div>
+                    <div class="stat-label">错误</div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-value">1/1</div>
+                    <div class="stat-label">P0 (100%)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">1/1</div>
+                    <div class="stat-label">P2 (100%)</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 100.0%"></div>
+            </div>
+        </div>
+<div class="results">
+        <div class="scenario-card" onclick="this.classList.toggle('expanded')">
+            <div class="scenario-header">
+                <div class="status-icon status-passed">✅</div>
+                <div class="scenario-info">
+                    <div class="scenario-id">sc-meta-exec-001 • meta-execution</div>
+                    <div class="scenario-desc">P1启动前检查+P0交付自审</div>
+                </div>
+                <div class="scenario-meta">
+                    <div>2/2 断言</div>
+                    <div>32.0s</div>
+                </div>
+                <button class="expand-btn">▼</button>
+            </div>
+            <div class="scenario-content">
+                
+                
+                <h4 class="section-title">📋 断言结果</h4><div class="assertions">
+                <div class="assertion">
+                    <span class="assertion-icon pass">✓</span>
+                    <span class="assertion-name">激活标记</span>
+                    <span class="assertion-result">找到 [Meta-Execution] 已激活</span>
+                </div>
+                <div class="assertion">
+                    <span class="assertion-icon pass">✓</span>
+                    <span class="assertion-name">P0检查输出</span>
+                    <span class="assertion-result">找到 P1启动前检查</span>
+                </div></div>
+                
+                <h4 class="section-title">📦 交付件（点击校验）</h4><div class="artifacts">
+                    <div class="artifact">
+                        <span class="artifact-icon">📄</span>
+                        <div class="artifact-info">
+                            <div class="artifact-name">对话记录</div>
+                            <div class="artifact-value">/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/sc-meta-exec-001.json</div>
+                        </div>
+                    </div>
+                    <div class="artifact">
+                        <span class="artifact-icon">💬</span>
+                        <div class="artifact-info">
+                            <div class="artifact-name">对话记录 (5 条消息)</div>
+                            <div class="artifact-value">/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/sc-meta-exec-001.json</div>
+                        </div>
+                    </div></div>
+                
+                <h4 class="section-title">📝 关键输出</h4><div class="key-outputs"><div class="key-output">• Meta-Execution 已激活</div><div class="key-output">• P1启动前检查</div><div class="key-output">• 需求模糊识别</div></div>
+            </div>
+        </div>
+
+        <div class="scenario-card" onclick="this.classList.toggle('expanded')">
+            <div class="scenario-header">
+                <div class="status-icon status-passed">✅</div>
+                <div class="scenario-info">
+                    <div class="scenario-id">sc-knowledge-001 • knowledge-base</div>
+                    <div class="scenario-desc">知识库检索</div>
+                </div>
+                <div class="scenario-meta">
+                    <div>3/3 断言</div>
+                    <div>47.0s</div>
+                </div>
+                <button class="expand-btn">▼</button>
+            </div>
+            <div class="scenario-content">
+                
+                
+                <h4 class="section-title">📋 断言结果</h4><div class="assertions">
+                <div class="assertion">
+                    <span class="assertion-icon pass">✓</span>
+                    <span class="assertion-name">扫描知识库</span>
+                    <span class="assertion-result">找到 AI调研知识库概览</span>
+                </div>
+                <div class="assertion">
+                    <span class="assertion-icon pass">✓</span>
+                    <span class="assertion-name">返回匹配文档</span>
+                    <span class="assertion-result">找到 80+篇AI相关调研文档</span>
+                </div>
+                <div class="assertion">
+                    <span class="assertion-icon pass">✓</span>
+                    <span class="assertion-name">提供摘要</span>
+                    <span class="assertion-result">按分类返回</span>
+                </div></div>
+                
+                <h4 class="section-title">📦 交付件（点击校验）</h4><div class="artifacts">
+                    <div class="artifact">
+                        <span class="artifact-icon">📄</span>
+                        <div class="artifact-info">
+                            <div class="artifact-name">对话记录</div>
+                            <div class="artifact-value">/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/sc-knowledge-001.json</div>
+                        </div>
+                    </div>
+                    <div class="artifact">
+                        <span class="artifact-icon">💬</span>
+                        <div class="artifact-info">
+                            <div class="artifact-name">对话记录 (7 条消息)</div>
+                            <div class="artifact-value">/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/sc-knowledge-001.json</div>
+                        </div>
+                    </div></div>
+                
+                <h4 class="section-title">📝 关键输出</h4><div class="key-outputs"><div class="key-output">• 检索到 80+ 篇 AI 调研文档</div><div class="key-output">• AI-Insight 知识库</div><div class="key-output">• 研发效能知识库</div></div>
+            </div>
+        </div>
+
+        <div class="scenario-card" onclick="this.classList.toggle('expanded')">
+            <div class="scenario-header">
+                <div class="status-icon status-passed">✅</div>
+                <div class="scenario-info">
+                    <div class="scenario-id">test-page-output • html-generation</div>
+                    <div class="scenario-desc">生成HTML测试页面</div>
+                </div>
+                <div class="scenario-meta">
+                    <div>3/3 断言</div>
+                    <div>18.0s</div>
+                </div>
+                <button class="expand-btn">▼</button>
+            </div>
+            <div class="scenario-content">
+                
+                
+                <h4 class="section-title">📋 断言结果</h4><div class="assertions">
+                <div class="assertion">
+                    <span class="assertion-icon pass">✓</span>
+                    <span class="assertion-name">文件已生成</span>
+                    <span class="assertion-result">文件大小: 3226 bytes</span>
+                </div>
+                <div class="assertion">
+                    <span class="assertion-icon pass">✓</span>
+                    <span class="assertion-name">包含表格</span>
+                    <span class="assertion-result">HTML包含table元素</span>
+                </div>
+                <div class="assertion">
+                    <span class="assertion-icon pass">✓</span>
+                    <span class="assertion-name">CSS样式</span>
+                    <span class="assertion-result">包含style标签</span>
+                </div></div>
+                
+                <h4 class="section-title">📦 交付件（点击校验）</h4><div class="artifacts">
+                    <div class="artifact">
+                        <span class="artifact-icon">📄</span>
+                        <div class="artifact-info">
+                            <div class="artifact-name">HTML页面</div>
+                            <div class="artifact-value">/tmp/skill-test-demo.html</div>
+                        </div>
+                    </div>
+                    <div class="artifact">
+                        <span class="artifact-icon">📄</span>
+                        <div class="artifact-info">
+                            <div class="artifact-name">对话记录</div>
+                            <div class="artifact-value">/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/test-page-output.json</div>
+                        </div>
+                    </div>
+                    <div class="artifact">
+                        <span class="artifact-icon">💬</span>
+                        <div class="artifact-info">
+                            <div class="artifact-name">对话记录 (11 条消息)</div>
+                            <div class="artifact-value">/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/test-page-output.json</div>
+                        </div>
+                    </div></div>
+                
+                <h4 class="section-title">📝 关键输出</h4><div class="key-outputs"><div class="key-output">• 生成 HTML 文件</div><div class="key-output">• 文件大小 3226 bytes</div><div class="key-output">• 包含渐变背景和表格</div></div>
+            </div>
+        </div>
+
+        <div class="scenario-card" onclick="this.classList.toggle('expanded')">
+            <div class="scenario-header">
+                <div class="status-icon status-passed">✅</div>
+                <div class="scenario-info">
+                    <div class="scenario-id">test-image-output • ai-image-generator</div>
+                    <div class="scenario-desc">AI生成卡通猫咪图片</div>
+                </div>
+                <div class="scenario-meta">
+                    <div>3/3 断言</div>
+                    <div>81.0s</div>
+                </div>
+                <button class="expand-btn">▼</button>
+            </div>
+            <div class="scenario-content">
+                
+                
+                <h4 class="section-title">📋 断言结果</h4><div class="assertions">
+                <div class="assertion">
+                    <span class="assertion-icon pass">✓</span>
+                    <span class="assertion-name">图片已生成</span>
+                    <span class="assertion-result">文件大小: 578347 bytes (564.8 KB)</span>
+                </div>
+                <div class="assertion">
+                    <span class="assertion-icon pass">✓</span>
+                    <span class="assertion-name">正确格式</span>
+                    <span class="assertion-result">JPG 格式</span>
+                </div>
+                <div class="assertion">
+                    <span class="assertion-icon pass">✓</span>
+                    <span class="assertion-name">2K分辨率</span>
+                    <span class="assertion-result">2048x2048 像素</span>
+                </div></div>
+                
+                <h4 class="section-title">📦 交付件（点击校验）</h4><div class="artifacts">
+                    <div class="artifact">
+                        <span class="artifact-icon">📄</span>
+                        <div class="artifact-info">
+                            <div class="artifact-name">AI生成图片</div>
+                            <div class="artifact-value">/Users/[USER]/Documents/Codeflicker/定时任务/cute-cat-stargazing.jpg</div>
+                        </div>
+                    </div>
+                    <div class="artifact">
+                        <span class="artifact-icon">📄</span>
+                        <div class="artifact-info">
+                            <div class="artifact-name">对话记录</div>
+                            <div class="artifact-value">/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/test-image-output.json</div>
+                        </div>
+                    </div>
+                    <div class="artifact">
+                        <span class="artifact-icon">💬</span>
+                        <div class="artifact-info">
+                            <div class="artifact-name">对话记录 (28 条消息)</div>
+                            <div class="artifact-value">/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/test-image-output.json</div>
+                        </div>
+                    </div></div>
+                
+                <h4 class="section-title">📝 关键输出</h4><div class="key-outputs"><div class="key-output">• AI生成图片成功</div><div class="key-output">• 尺寸 2048x2048</div><div class="key-output">• 文件大小 564.8 KB</div></div>
+            </div>
+        </div>
+</div>
+    </div>
+    <footer>
+        Generated by Skill Test Runner • 2026-03-19 11:59:27
+    </footer>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+  "version": "1.0.0",
+  "created_at": "2026-03-21",
+  "description": "4个未覆盖的非林克技能测试场景",
+  "scenarios": [
+    {
+      "scenario_id": "investment-tracker-001",
+      "skill_name": "investment-tracker",
+      "display_name": "investment-tracker（投资追踪）",
+      "description": "测试投资组合追踪能力",
+      "prompt": "[测试模式] 请使用 investment-tracker 技能执行以下任务：\n\n请简单介绍一下这个技能的功能和使用方法\n\n执行完成后，请明确说明完成状态和关键输出。",
+      "expected_behaviors": ["介绍功能", "说明使用方法"],
+      "assertions": [
+        {"type": "regex", "name": "提及投资", "pattern": "投资|基金|持仓|组合|portfolio"},
+        {"type": "contains", "name": "任务完成", "value": "完成"}
+      ],
+      "priority": "P1",
+      "timeout": 120
+    },
+    {
+      "scenario_id": "stock-analysis-001",
+      "skill_name": "stock-analysis",
+      "display_name": "stock-analysis（股票分析）",
+      "description": "测试股票分析能力介绍",
+      "prompt": "[测试模式] 请使用 stock-analysis 技能执行以下任务：\n\n请简单介绍一下这个技能支持哪些分析维度和数据源\n\n执行完成后，请明确说明完成状态和关键输出。",
+      "expected_behaviors": ["介绍分析维度", "说明数据源"],
+      "assertions": [
+        {"type": "regex", "name": "提及股票", "pattern": "股票|美股|crypto|Yahoo|分析"},
+        {"type": "contains", "name": "任务完成", "value": "完成"}
+      ],
+      "priority": "P1",
+      "timeout": 120
+    },
+    {
+      "scenario_id": "baoyu-skills-001",
+      "skill_name": "baoyu-skills",
+      "display_name": "baoyu-skills（宝玉技能索引）",
+      "description": "测试宝玉技能索引",
+      "prompt": "[测试模式] 请使用 baoyu-skills 技能执行以下任务：\n\n请列出宝玉系列技能包含哪些技能\n\n执行完成后，请明确说明完成状态和关键输出。",
+      "expected_behaviors": ["列出技能", "分类展示"],
+      "assertions": [
+        {"type": "regex", "name": "提及宝玉技能", "pattern": "baoyu|宝玉|translate|infographic|markdown"},
+        {"type": "contains", "name": "任务完成", "value": "完成"}
+      ],
+      "priority": "P2",
+      "timeout": 120
+    },
+    {
+      "scenario_id": "meta-spec-skill-template-001",
+      "skill_name": "meta-spec-skill-template",
+      "display_name": "meta-spec-skill-template（Spec开发模板）",
+      "description": "测试Spec驱动开发模板",
+      "prompt": "[测试模式] 请使用 meta-spec-skill-template 技能执行以下任务：\n\n请介绍一下这个技能的Spec驱动开发工作流程\n\n执行完成后，请明确说明完成状态和关键输出。",
+      "expected_behaviors": ["介绍工作流", "说明Spec流程"],
+      "assertions": [
+        {"type": "regex", "name": "提及Spec", "pattern": "Spec|需求|文档|技术方案|工作流"},
+        {"type": "contains", "name": "任务完成", "value": "完成"}
+      ],
+      "priority": "P2",
+      "timeout": 120
+    }
+  ]
+}

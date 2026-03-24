@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "run_id": "test-20260324-163139",
+    "timestamp": "2026-03-24T16:31:39.075161",
+    "total_scenarios": 4,
+    "duration_seconds": 1068.7723019123077
+  },
+  "summary": {
+    "pass_rate": 0.5,
+    "passed": 2,
+    "failed": 0,
+    "errors": 2,
+    "by_priority": {
+      "P1": {
+        "passed": 2,
+        "total": 4
+      }
+    },
+    "by_skill": {
+      "ks-design-image-gen": {
+        "passed": 1,
+        "failed": 0,
+        "total": 1
+      },
+      "ks-design-infographic": {
+        "passed": 0,
+        "failed": 1,
+        "total": 1
+      },
+      "ks-design-slide-deck": {
+        "passed": 0,
+        "failed": 1,
+        "total": 1
+      },
+      "ks-design-ppt": {
+        "passed": 1,
+        "failed": 0,
+        "total": 1
+      }
+    }
+  },
+  "results": [
+    {
+      "scenario_id": "ks-design-image-gen-001",
+      "skill_name": "ks-design-image-gen",
+      "description": "文生图基础功能测试：生成一张科技风格配图",
+      "status": "passed",
+      "duration_ms": 209874,
+      "assertions": [
+        {
+          "name": "包含图片URL或路径",
+          "passed": true,
+          "actual": "/ai-images/robot-coding.jpg",
+          "expected": "正则: (https?://[^\\s]+\\.(jpg|png|webp|jpeg)|/[^\\s]+\\.(jpg|png|webp|jpeg))",
+          "evidence": "正则匹配结果: /ai-images/robot-coding.jpg"
+        },
+        {
+          "name": "提到生成或完成",
+          "passed": true,
+          "actual": "完成",
+          "expected": "正则: 生成|完成|图片|已生成",
+          "evidence": "正则匹配结果: 完成"
+        }
+      ],
+      "artifacts": [],
+      "transcript": {
+        "session_id": "843615D7-2664-49D0-ADE5-F362CA1A9593",
+        "messages_count": 3,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/ks-design-image-gen-001.json"
+      },
+      "key_outputs": [],
+      "error_message": ""
+    },
+    {
+      "scenario_id": "ks-design-infographic-001",
+      "skill_name": "ks-design-infographic",
+      "description": "信息图生成基础功能测试：生成一张 AI 技术演进信息图",
+      "status": "timeout",
+      "duration_ms": 397451,
+      "assertions": [],
+      "artifacts": [],
+      "transcript": {},
+      "key_outputs": [],
+      "error_message": "任务超时 (300s)"
+    },
+    {
+      "scenario_id": "ks-design-slide-deck-001",
+      "skill_name": "ks-design-slide-deck",
+      "description": "幻灯片图片序列生成测试：生成3张研发效能主题幻灯片",
+      "status": "timeout",
+      "duration_ms": 300207,
+      "assertions": [],
+      "artifacts": [],
+      "transcript": {},
+      "key_outputs": [],
+      "error_message": "任务超时 (600s)"
+    },
+    {
+      "scenario_id": "ks-design-ppt-001",
+      "skill_name": "ks-design-ppt",
+      "description": "工作汇报风格 PPT 生成测试：生成一份季度工作汇报",
+      "status": "passed",
+      "duration_ms": 161237,
+      "assertions": [
+        {
+          "name": "包含 pptx 文件路径",
+          "passed": true,
+          "actual": ".pptx",
+          "expected": "正则: \\.pptx",
+          "evidence": "正则匹配结果: .pptx"
+        },
+        {
+          "name": "提到配色或布局",
+          "passed": true,
+          "actual": "封面",
+          "expected": "正则: 配色|布局|封面|F96700|暖橙|PptxGenJS|pptxgenjs",
+          "evidence": "正则匹配结果: 封面"
+        },
+        {
+          "name": "任务完成标志",
+          "passed": true,
+          "actual": "生成",
+          "expected": "正则: 完成|生成|已生成",
+          "evidence": "正则匹配结果: 生成"
+        }
+      ],
+      "artifacts": [
+        {
+          "type": "file",
+          "name": "PPT文件",
+          "value": "`/Users/[USER]/Documents/Codeflicker/Test/研发团队Q1工作总结.pptx",
+          "description": "生成的 .pptx 文件路径",
+          "valid": false,
+          "validation_error": "文件不存在"
+        }
+      ],
+      "transcript": {
+        "session_id": "C9601037-DF07-4864-B41A-14A7311AD7AC",
+        "messages_count": 10,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/ks-design-ppt-001.json"
+      },
+      "key_outputs": [],
+      "error_message": ""
+    }
+  ]
+}

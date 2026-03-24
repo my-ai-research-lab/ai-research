@@ -1,0 +1,30 @@
+{
+  "name": "交付件收集验证测试",
+  "version": "1.0",
+  "description": "验证方式B是否能正确收集交付件",
+  "scenarios": [
+    {
+      "scenario_id": "artifact-test-001",
+      "skill_name": "frontend-design",
+      "description": "生成一个简单HTML页面，验证文件交付件收集",
+      "priority": "P0",
+      "prompt": "请创建一个简单的HTML页面，内容是'技能测试验证'标题，保存到 /tmp/skill-test-artifact.html，完成后告诉我文件的完整路径。",
+      "assertions": [
+        {
+          "type": "contains",
+          "name": "包含文件路径",
+          "value": "/tmp/skill-test-artifact.html"
+        }
+      ],
+      "artifact_extractors": [
+        {
+          "name": "生成的HTML文件",
+          "type": "file",
+          "pattern": "/tmp/skill-test-artifact\\.html",
+          "description": "技能测试生成的HTML文件"
+        }
+      ],
+      "timeout": 120
+    }
+  ]
+}

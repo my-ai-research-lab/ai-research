@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>技能评测报告 · 2026-03-19 11:59</title>
+<style>
+/* ── 全局 ─────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d1117;--sur:#161b22;--sur2:#1f2937;
+  --bd:rgba(255,255,255,0.08);--bd2:rgba(255,255,255,0.04);
+  --tx:#c9d1d9;--muted:#6e7681;
+  --green:#3fb950;--red:#f85149;--yellow:#d29922;
+  --blue:#58a6ff;--cyan:#39c5cf;--purple:#bc8cff;
+  --accent:#58a6ff;
+}
+html{font-size:14px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:var(--bg);color:var(--tx);min-height:100vh;padding:32px 24px 60px}
+a{text-decoration:none;color:inherit}
+
+/* ── 页面容器 ─────────────────────────── */
+.wrap{max-width:1100px;margin:0 auto}
+
+/* ── 顶栏 ────────────────────────────── */
+.top{display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--bd)}
+.top-title{font-size:1.35rem;font-weight:700;letter-spacing:-0.02em}
+.top-title em{color:var(--accent);font-style:normal}
+.top-meta{font-size:0.78rem;color:var(--muted);text-align:right;line-height:2}
+
+/* ── 统计卡片行 ─────────────────────── */
+.stats{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap}
+.stat{flex:1;min-width:90px;background:var(--sur);border:1px solid var(--bd);
+  border-radius:8px;padding:12px 14px}
+.stat-v{font-size:1.5rem;font-weight:700;line-height:1;margin-bottom:3px}
+.stat-l{font-size:0.72rem;color:var(--muted)}
+.c-g{color:var(--green)}.c-r{color:var(--red)}.c-y{color:var(--yellow)}.c-b{color:var(--accent)}
+
+/* ── 主表格 ──────────────────────────── */
+.tbl-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--bd)}
+table{width:100%;border-collapse:collapse;font-size:0.82rem}
+
+thead tr{background:var(--sur2)}
+thead th{
+  padding:10px 14px;text-align:left;font-size:0.72rem;font-weight:600;
+  color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;
+  border-bottom:1px solid var(--bd);white-space:nowrap
+}
+
+tbody tr{border-bottom:1px solid var(--bd2);transition:background 0.15s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,0.025)}
+tbody td{padding:14px 14px;vertical-align:top}
+
+/* 列宽 */
+.col-status{width:56px;text-align:center}
+.col-skill {width:150px}
+.col-desc  {width:180px;color:var(--muted)}
+.col-items {width:220px}
+.col-arts  {}  /* 自动 */
+.col-time  {width:60px;text-align:right;color:var(--muted);white-space:nowrap}
+
+/* ── 状态徽章 ────────────────────────── */
+.badge{display:inline-flex;align-items:center;justify-content:center;
+  width:24px;height:24px;border-radius:6px;font-size:0.8rem;font-weight:700}
+.b-pass{background:rgba(63,185,80,0.15);color:var(--green)}
+.b-fail{background:rgba(248,81,73,0.15);color:var(--red)}
+.b-err {background:rgba(210,153,34,0.15);color:var(--yellow)}
+
+/* 技能名 */
+.skill-name{font-weight:600;color:var(--tx);font-size:0.85rem;margin-bottom:2px}
+.skill-id  {font-size:0.7rem;color:var(--muted)}
+
+/* ── 评测项列表 ──────────────────────── */
+.check-list{display:flex;flex-direction:column;gap:4px}
+.check-row {display:flex;align-items:flex-start;gap:5px;line-height:1.4}
+.ck-icon   {flex-shrink:0;margin-top:1px}
+.ck-pass   {color:var(--green)}.ck-fail{color:var(--red)}
+.ck-name   {flex:1;color:var(--tx)}
+.ck-ev     {font-size:0.72rem;color:var(--muted);margin-top:1px}
+
+/* ── 交付物区 ────────────────────────── */
+.arts{display:flex;flex-direction:column;gap:8px}
+
+.art-link{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 10px;border-radius:6px;
+  background:rgba(88,166,255,0.06);border:1px solid rgba(88,166,255,0.15);
+  color:var(--accent);
+  transition:background 0.15s,border-color 0.15s;
+  cursor:pointer;
+}
+.art-link:hover{background:rgba(88,166,255,0.14);border-color:rgba(88,166,255,0.35)}
+.art-link.invalid{background:rgba(248,81,73,0.06);border-color:rgba(248,81,73,0.2);
+  color:var(--red);cursor:default}
+
+.art-icon{font-size:1rem;flex-shrink:0;line-height:1}
+.art-body{flex:1;min-width:0}
+.art-name{font-weight:500;font-size:0.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.art-desc{font-size:0.7rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.art-arr {font-size:0.7rem;flex-shrink:0;opacity:0.6}
+
+/* ── 图片缩略图预览 ─────────────────── */
+.art-img-row{display:flex;align-items:center;gap:8px;padding:7px 10px;
+  border-radius:6px;background:rgba(88,166,255,0.06);border:1px solid rgba(88,166,255,0.15);
+  cursor:pointer;transition:background 0.15s;color:var(--accent)}
+.art-img-row:hover{background:rgba(88,166,255,0.14)}
+.art-thumb{width:44px;height:44px;object-fit:cover;border-radius:4px;flex-shrink:0;
+  border:1px solid var(--bd)}
+
+/* ── HTML mini 预览 ─────────────────── */
+.art-html-row{border-radius:6px;border:1px solid rgba(88,166,255,0.15);
+  overflow:hidden;cursor:pointer;transition:border-color 0.15s;color:var(--accent)}
+.art-html-row:hover{border-color:rgba(88,166,255,0.4)}
+.html-preview{height:60px;overflow:hidden;position:relative;background:#fff;
+  pointer-events:none}
+.html-preview iframe{width:200%;height:200%;border:none;
+  transform:scale(0.5);transform-origin:top left}
+.html-preview-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(22,27,34,0.85))}
+.html-meta{display:flex;align-items:center;gap:8px;padding:6px 10px;
+  background:rgba(88,166,255,0.06)}
+
+/* ── 滚动条 ─────────────────────────── */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top">
+  <div class="top-title">技能 <em>评测报告</em></div>
+  <div class="top-meta">
+    <div>🕐 2026-03-19 11:59</div>
+    <div>共 4 项测试 · 总耗时 178s</div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-v c-b">100%</div><div class="stat-l">通过率</div></div>
+  <div class="stat"><div class="stat-v c-g">4</div><div class="stat-l">通过</div></div>
+  <div class="stat"><div class="stat-v c-r">0</div><div class="stat-l">失败</div></div>
+  <div class="stat"><div class="stat-v c-y">0</div><div class="stat-l">错误</div></div>
+  <div class="stat"><div class="stat-v">4</div><div class="stat-l">总计</div></div>
+</div>
+
+<div class="tbl-wrap">
+<table>
+  <thead>
+    <tr>
+      <th class="col-status">状态</th>
+      <th class="col-skill">技能</th>
+      <th class="col-desc">功能描述</th>
+      <th class="col-items">评测项</th>
+      <th class="col-arts">输出交付物</th>
+      <th class="col-time">耗时</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="col-status"><span class="badge b-pass">✓</span></td>
+      <td class="col-skill"><div class="skill-name">meta-execution</div>
+<div class="skill-id">sc-meta-exec-001</div></td>
+      <td class="col-desc">P1启动前检查+P0交付自审</td>
+      <td class="col-items"><div class="check-list"><div class="check-row"><span class="ck-icon ck-pass">✓</span><div><div class="ck-name">激活标记</div><div class="ck-ev">找到 [Meta-Execution] 已激活</div></div></div>
+<div class="check-row"><span class="ck-icon ck-pass">✓</span><div><div class="ck-name">P0检查输出</div><div class="ck-ev">找到 P1启动前检查</div></div></div>
+</div></td>
+      <td class="col-arts"><div class="arts"><a class="art-link" href="file:///Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/sc-meta-exec-001.html" target="_blank">
+  <span class="art-icon">💬</span>
+  <div class="art-body">
+    <div class="art-name">对话记录</div>
+    <div class="art-desc">5 条消息 · HTML 复盘</div>
+  </div>
+  <span class="art-arr">↗</span>
+</a></div></td>
+      <td class="col-time">32.0s</td>
+    </tr>
+    <tr>
+      <td class="col-status"><span class="badge b-pass">✓</span></td>
+      <td class="col-skill"><div class="skill-name">knowledge-base</div>
+<div class="skill-id">sc-knowledge-001</div></td>
+      <td class="col-desc">知识库检索</td>
+      <td class="col-items"><div class="check-list"><div class="check-row"><span class="ck-icon ck-pass">✓</span><div><div class="ck-name">扫描知识库</div><div class="ck-ev">找到 AI调研知识库概览</div></div></div>
+<div class="check-row"><span class="ck-icon ck-pass">✓</span><div><div class="ck-name">返回匹配文档</div><div class="ck-ev">找到 80+篇AI相关调研文档</div></div></div>
+<div class="check-row"><span class="ck-icon ck-pass">✓</span><div><div class="ck-name">提供摘要</div><div class="ck-ev">按分类返回</div></div></div>
+</div></td>
+      <td class="col-arts"><div class="arts"><a class="art-link" href="file:///Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/sc-knowledge-001.html" target="_blank">
+  <span class="art-icon">💬</span>
+  <div class="art-body">
+    <div class="art-name">对话记录</div>
+    <div class="art-desc">7 条消息 · HTML 复盘</div>
+  </div>
+  <span class="art-arr">↗</span>
+</a></div></td>
+      <td class="col-time">47.0s</td>
+    </tr>
+    <tr>
+      <td class="col-status"><span class="badge b-pass">✓</span></td>
+      <td class="col-skill"><div class="skill-name">html-generation</div>
+<div class="skill-id">test-page-output</div></td>
+      <td class="col-desc">生成HTML测试页面</td>
+      <td class="col-items"><div class="check-list"><div class="check-row"><span class="ck-icon ck-pass">✓</span><div><div class="ck-name">文件已生成</div><div class="ck-ev">文件大小: 3226 bytes</div></div></div>
+<div class="check-row"><span class="ck-icon ck-pass">✓</span><div><div class="ck-name">包含表格</div><div class="ck-ev">HTML包含table元素</div></div></div>
+<div class="check-row"><span class="ck-icon ck-pass">✓</span><div><div class="ck-name">CSS样式</div><div class="ck-ev">包含style标签</div></div></div>
+</div></td>
+      <td class="col-arts"><div class="arts"><a class="art-html-row" href="file:///tmp/skill-test-demo.html" target="_blank">
+  <div class="html-preview">
+    <iframe src="file:///tmp/skill-test-demo.html" scrolling="no" title="HTML页面"></iframe>
+    <div class="html-preview-overlay"></div>
+  </div>
+  <div class="html-meta">
+    <span class="art-icon">🌐</span>
+    <div class="art-body">
+      <div class="art-name">HTML页面</div>
+      <div class="art-desc">生成的演示页面 (3226 bytes)</div>
+    </div>
+    <span class="art-arr">↗</span>
+  </div>
+</a><a class="art-link" href="file:///Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/test-page-output.html" target="_blank">
+  <span class="art-icon">💬</span>
+  <div class="art-body">
+    <div class="art-name">对话记录</div>
+    <div class="art-desc">11 条消息 · HTML 复盘</div>
+  </div>
+  <span class="art-arr">↗</span>
+</a></div></td>
+      <td class="col-time">18.0s</td>
+    </tr>
+    <tr>
+      <td class="col-status"><span class="badge b-pass">✓</span></td>
+      <td class="col-skill"><div class="skill-name">ai-image-generator</div>
+<div class="skill-id">test-image-output</div></td>
+      <td class="col-desc">AI生成卡通猫咪图片</td>
+      <td class="col-items"><div class="check-list"><div class="check-row"><span class="ck-icon ck-pass">✓</span><div><div class="ck-name">图片已生成</div><div class="ck-ev">文件大小: 578347 bytes (564.8 KB)</div></div></div>
+<div class="check-row"><span class="ck-icon ck-pass">✓</span><div><div class="ck-name">正确格式</div><div class="ck-ev">JPG 格式</div></div></div>
+<div class="check-row"><span class="ck-icon ck-pass">✓</span><div><div class="ck-name">2K分辨率</div><div class="ck-ev">2048x2048 像素</div></div></div>
+</div></td>
+      <td class="col-arts"><div class="arts"><a class="art-img-row" href="file:///Users/[USER]/Documents/Codeflicker/定时任务/cute-cat-stargazing.jpg" target="_blank">
+  <img class="art-thumb" src="file:///Users/[USER]/Documents/Codeflicker/定时任务/cute-cat-stargazing.jpg" alt="AI生成图片" loading="lazy"/>
+  <div class="art-body">
+    <div class="art-name">AI生成图片</div>
+    <div class="art-desc">卡通猫咪看星星 (564.8 KB)</div>
+  </div>
+  <span class="art-arr">↗</span>
+</a><a class="art-link" href="file:///Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/test-image-output.html" target="_blank">
+  <span class="art-icon">💬</span>
+  <div class="art-body">
+    <div class="art-name">对话记录</div>
+    <div class="art-desc">28 条消息 · HTML 复盘</div>
+  </div>
+  <span class="art-arr">↗</span>
+</a></div></td>
+      <td class="col-time">81.0s</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+<div style="margin-top:32px;text-align:center;font-size:0.75rem;color:var(--muted)">
+  Generated by Skill Test Runner · 2026-03-19 12:29:07
+</div>
+</body>
+</html>

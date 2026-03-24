@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Generator 技能评测报告 - 2026-03-19</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --border-color: #30363d;
+            --accent-green: #3fb950;
+            --accent-red: #f85149;
+            --accent-yellow: #d29922;
+            --accent-blue: #58a6ff;
+            --accent-purple: #a371f7;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 24px;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        
+        /* 统计卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .stat-value.passed { color: var(--accent-green); }
+        .stat-value.failed { color: var(--accent-red); }
+        .stat-value.total { color: var(--accent-blue); }
+        .stat-value.time { color: var(--accent-purple); }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        
+        /* 技能芯片 */
+        .skill-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+        
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        
+        .chip:hover { transform: scale(1.05); }
+        .chip.passed { background: rgba(63, 185, 80, 0.2); color: var(--accent-green); border: 1px solid var(--accent-green); }
+        .chip.failed { background: rgba(248, 81, 73, 0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
+        
+        /* 评测表格 */
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+        
+        .report-table th {
+            background: var(--bg-tertiary);
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .report-table td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+        
+        .report-table tr:last-child td { border-bottom: none; }
+        
+        .skill-name {
+            font-weight: 600;
+            color: var(--accent-blue);
+            font-size: 15px;
+        }
+        
+        .skill-desc {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .badge.passed { background: var(--accent-green); color: #000; }
+        .badge.failed { background: var(--accent-red); color: #fff; }
+        .badge.partial { background: var(--accent-yellow); color: #000; }
+        
+        .method-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+        
+        /* 断言列表 */
+        .assertions {
+            margin-top: 8px;
+        }
+        
+        .assertion {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+            font-size: 13px;
+        }
+        
+        .assertion-icon { font-size: 14px; }
+        .assertion-icon.pass { color: var(--accent-green); }
+        .assertion-icon.fail { color: var(--accent-red); }
+        
+        .assertion-name { color: var(--text-primary); }
+        .assertion-evidence { color: var(--text-secondary); font-size: 12px; margin-left: auto; }
+        
+        /* 链接样式 */
+        .artifact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            text-decoration: none;
+            margin: 2px;
+        }
+        
+        .artifact-link.session { background: rgba(88, 166, 255, 0.15); color: var(--accent-blue); }
+        .artifact-link.deliverable { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); }
+        
+        .artifact-link:hover { opacity: 0.8; }
+        
+        /* 图片预览 */
+        .image-preview {
+            margin-top: 24px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+        }
+        
+        .image-preview h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        
+        .image-preview img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .image-info {
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        
+        /* 评测摘要 */
+        .summary-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        
+        .summary-section h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: var(--accent-blue);
+        }
+        
+        .summary-list {
+            list-style: none;
+        }
+        
+        .summary-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .summary-list li:last-child { border-bottom: none; }
+        
+        .score-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        
+        .score-fill {
+            height: 8px;
+            border-radius: 4px;
+            background: var(--accent-green);
+        }
+        
+        .score-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 AI Image Generator 技能评测报告</h1>
+        <p class="subtitle">评测时间: 2026-03-19 19:17 | 评测方式: 方式A（人工走读）| 技能版本: v1.3.0</p>
+        
+        <!-- 统计卡片 -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value passed">100%</div>
+                <div class="stat-label">通过率</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value passed">3/3</div>
+                <div class="stat-label">断言通过</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value total">1</div>
+                <div class="stat-label">测试场景</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value time">52.4s</div>
+                <div class="stat-label">API响应</div>
+            </div>
+        </div>
+        
+        <!-- 技能芯片 -->
+        <div class="skill-chips">
+            <span class="chip passed">✓ ai-image-generator</span>
+        </div>
+        
+        <!-- 评测表格 -->
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th style="width: 25%">技能</th>
+                    <th style="width: 10%">状态</th>
+                    <th style="width: 10%">评测方式</th>
+                    <th style="width: 30%">评测详情 / 断言</th>
+                    <th style="width: 15%">会话记录 & 交付件</th>
+                    <th style="width: 10%">耗时</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="ai-img-001">
+                    <td>
+                        <div class="skill-name">ai-image-generator</div>
+                        <div class="skill-desc">AI图像生成器 — 文生图/图生图</div>
+                        <div class="skill-desc" style="margin-top: 8px; color: #8b949e;">
+                            📝 场景: 生成"AI机器人与程序员协作编程"科技风配图
+                        </div>
+                    </td>
+                    <td><span class="badge passed">PASSED</span></td>
+                    <td><span class="method-badge">方式A</span></td>
+                    <td>
+                        <div style="font-size: 13px; color: var(--text-primary);">
+                            技能正确识别触发词，成功调用 DesignAI API 生成高质量图片
+                        </div>
+                        <div class="assertions">
+                            <div class="assertion">
+                                <span class="assertion-icon pass">✓</span>
+                                <span class="assertion-name">包含图片路径</span>
+                                <span class="assertion-evidence">/tmp/ai-robot-coder.jpg</span>
+                            </div>
+                            <div class="assertion">
+                                <span class="assertion-icon pass">✓</span>
+                                <span class="assertion-name">有"生成"关键词</span>
+                                <span class="assertion-evidence">Generation Complete!</span>
+                            </div>
+                            <div class="assertion">
+                                <span class="assertion-icon pass">✓</span>
+                                <span class="assertion-name">图片可读取验证</span>
+                                <span class="assertion-evidence">JPEG 2752×1536</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="#image-output" class="artifact-link deliverable">🖼️ 生成图片</a>
+                        <a href="/tmp/ai-robot-coder-prompt.md" class="artifact-link session">📄 提示词文档</a>
+                    </td>
+                    <td style="color: var(--accent-green);">52.4s</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 评测摘要 -->
+        <div class="summary-section">
+            <h3>📊 评测维度得分</h3>
+            <ul class="summary-list">
+                <li>
+                    <span>功能正确性</span>
+                    <div class="score-bar" style="flex: 1; margin-left: 16px;">
+                        <div class="score-fill" style="width: 100%;"></div>
+                    </div>
+                    <span class="score-text">5/5</span>
+                </li>
+                <li>
+                    <span>触发识别</span>
+                    <div class="score-bar" style="flex: 1; margin-left: 16px;">
+                        <div class="score-fill" style="width: 100%;"></div>
+                    </div>
+                    <span class="score-text">5/5</span>
+                </li>
+                <li>
+                    <span>提示词质量</span>
+                    <div class="score-bar" style="flex: 1; margin-left: 16px;">
+                        <div class="score-fill" style="width: 80%;"></div>
+                    </div>
+                    <span class="score-text">4/5</span>
+                </li>
+                <li>
+                    <span>输出质量</span>
+                    <div class="score-bar" style="flex: 1; margin-left: 16px;">
+                        <div class="score-fill" style="width: 100%;"></div>
+                    </div>
+                    <span class="score-text">5/5</span>
+                </li>
+                <li>
+                    <span>执行效率</span>
+                    <div class="score-bar" style="flex: 1; margin-left: 16px;">
+                        <div class="score-fill" style="width: 80%;"></div>
+                    </div>
+                    <span class="score-text">4/5</span>
+                </li>
+            </ul>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+                <strong style="color: var(--accent-green);">总评: 23/25 (92%)</strong>
+                <span style="color: var(--text-secondary); margin-left: 12px;">— 技能工作正常，质量优秀</span>
+            </div>
+        </div>
+        
+        <!-- 图片预览 -->
+        <div class="image-preview" id="image-output">
+            <h3>🖼️ 生成图片预览</h3>
+            <img src="file:///tmp/ai-robot-coder.jpg" alt="AI Robot Coder" onerror="this.src='https://[INTERNAL_URL] this.onerror=null;">
+            <div class="image-info">
+                <p><strong>文件路径:</strong> /tmp/ai-robot-coder.jpg</p>
+                <p><strong>分辨率:</strong> 2752 × 1536 (16:9)</p>
+                <p><strong>文件大小:</strong> 752 KB (JPEG)</p>
+                <p><strong>生成时间:</strong> 52.4 秒</p>
+            </div>
+        </div>
+        
+        <!-- 备注 -->
+        <div class="summary-section" style="margin-top: 24px;">
+            <h3>📝 评测备注</h3>
+            <div style="font-size: 14px; line-height: 1.8;">
+                <p><strong>自动化评测说明：</strong></p>
+                <p style="color: var(--text-secondary);">
+                    之前的自动化评测（方式B）在 32.6s 时被截断，原因是 task-wait 竞态问题 — 
+                    Agent 在工具调用间隙（读取风格文件）出现 isRunning=false 窗口，被误判为完成。
+                    实际 API 调用需要 50+ 秒。
+                </p>
+                <p style="margin-top: 12px;"><strong>建议：</strong></p>
+                <ul style="color: var(--text-secondary); margin-left: 20px; margin-top: 8px;">
+                    <li>对于 AI 生图类场景，timeout 应设为 600s</li>
+                    <li>task-wait grace period 建议 >= 60s</li>
+                    <li>增加防抖机制：连续 3 次 isRunning=false 才确认完成</li>
+                </ul>
+            </div>
+        </div>
+        
+        <footer style="margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 12px; text-align: center;">
+            Generated by link-skill-dojo v1.7.0 | 2026-03-19 19:17
+        </footer>
+    </div>
+</body>
+</html>

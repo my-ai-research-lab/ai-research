@@ -1,0 +1,97 @@
+[
+  {
+    "ts": 1774009854956,
+    "type": "say",
+    "say": "completion_result",
+    "text": "",
+    "agentType": "agent",
+    "sessionId": "47872BD4-290E-4A95-8109-E1D641FB6929",
+    "chatId": "chat-1774009828866-al8t5v",
+    "stopReason": "",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009843211,
+    "sessionId": "47872BD4-290E-4A95-8109-E1D641FB6929",
+    "chatId": "chat-1774009828866-al8t5v",
+    "type": "say",
+    "say": "text",
+    "text": "基于 vercel-react-native-skills 技能，以下是 **React Native 性能优化建议**：\n\n---\n\n## React Native 性能优化建议\n\n### 🔴 优先级1：列表性能（CRITICAL）\n\n| 规则 | 说明 |\n|------|------|\n| **使用 FlashList** | 替代 FlatList，大型列表性能提升显著 |\n| **Memoize 列表项** | 用 `React.memo` 包裹列表项组件 |\n| **稳定回调引用** | 使用 `useCallback` 避免回调重建 |\n| **避免内联样式对象** | 内联 `style={{}}` 会导致每次渲染创建新对象 |\n| **提取函数到渲染外** | 不要在 render 中定义函数 |\n| **优化列表中的图片** | 使用 `expo-image`，设置合适尺寸 |\n| **使用 itemType** | 异构列表使用 `getItemType` 提升复用率 |\n\n### 🟠 优先级2：动画（HIGH）\n\n| 规则 | 说明 |\n|------|------|\n| **只动画 GPU 属性** | 仅动画 `transform` 和 `opacity`，避免触发布局 |\n| **使用 useDerivedValue** | 计算型动画值使用派生值 |\n| **Gesture.Tap 替代 Pressable** | 在动画场景中使用手势系统 |\n\n### 🟠 优先级3：导航（HIGH）\n\n| 规则 | 说明 |\n|------|------|\n| **使用原生导航器** | 用 `native-stack` 和 `native-tabs` 替代 JS 实现 |\n\n### 🟠 优先级4：UI 模式（HIGH）\n\n| 规则 | 说明 |\n|------|------|\n| **使用 expo-image** | 替代 Image 组件，自带缓存和优化 |\n| **使用 Pressable** | 替代 TouchableOpacity |\n| **使用原生 Modal** | 优先使用原生模态框 |\n| **onLayout 替代 measure()** | 测量视图尺寸用 onLayout |\n| **使用 StyleSheet.create** | 或 Nativewind 管理样式 |\n\n### 🟡 优先级5：状态管理（MEDIUM）\n\n| 规则 | 说明 |\n|------|------|\n| **最小化状态订阅** | 只订阅需要的状态切片 |\n| **使用 dispatcher 模式** | 稳定回调传递 |\n| **首次渲染显示 fallback** | 避免闪烁 |\n\n### 🟡 优先级6：渲染（MEDIUM）\n\n| 规则 | 说明 |\n|------|------|\n| **文本必须包裹在 Text 中** | 裸文本会报错 |\n| **避免 `falsy &&` 条件渲染** | `0 && <View/>` 会渲染 \"0\" |\n\n---\n\n## ✅ 完成状态\n\n| 项目 | 状态 |\n|------|------|\n| 技能加载 | ✅ 成功 |\n| 性能优化建议输出 | ✅ 已按优先级整理 |\n| 覆盖范围 | 列表/动画/导航/UI/状态/渲染 6 大类 |\n\n**关键输出**：基于 Vercel 工程实践，整理了 8 大类 30+ 条 React Native 性能优化规则，按 CRITICAL → HIGH → MEDIUM 优先级排序，列表性能优化是最关键的优化点。",
+    "partial": false,
+    "lastCheckpointHash": "9490e2e52a256f34c86915ce06a510089f168a60",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009838415,
+    "sessionId": "47872BD4-290E-4A95-8109-E1D641FB6929",
+    "chatId": "chat-1774009828866-al8t5v",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": false,
+    "lastCheckpointHash": "9490e2e52a256f34c86915ce06a510089f168a60",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009837241,
+    "sessionId": "47872BD4-290E-4A95-8109-E1D641FB6929",
+    "chatId": "chat-1774009828866-al8t5v",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": true,
+    "lastCheckpointHash": "9490e2e52a256f34c86915ce06a510089f168a60",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009829108,
+    "role": "user",
+    "type": "say",
+    "say": "text",
+    "text": "[测试模式] 请使用 vercel-react-native-skills 技能执行以下任务：\n\n请说明React Native性能优化建议\n\n执行完成后，请明确说明完成状态和关键输出。",
+    "sessionId": "47872BD4-290E-4A95-8109-E1D641FB6929",
+    "agentType": "agent",
+    "chatId": "chat-1774009828866-al8t5v",
+    "editorState": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "[测试模式] 请使用 vercel-react-native-skills 技能执行以下任务：\n\n请说明React Native性能优化建议\n\n执行完成后，请明确说明完成状态和关键输出。",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "contextItems": [],
+    "diagnostics": [],
+    "indexed": true,
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  }
+]

@@ -1,0 +1,97 @@
+[
+  {
+    "ts": 1774010112731,
+    "type": "say",
+    "say": "completion_result",
+    "text": "",
+    "agentType": "agent",
+    "sessionId": "89EAD3E9-D48D-45E8-978E-E7A4E383EA3E",
+    "chatId": "chat-1774010090667-s9w0vy",
+    "stopReason": "",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774010104493,
+    "sessionId": "89EAD3E9-D48D-45E8-978E-E7A4E383EA3E",
+    "chatId": "chat-1774010090667-s9w0vy",
+    "type": "say",
+    "say": "text",
+    "text": "## Commit 信息生成技能规范\n\n### 1. 核心规范：Conventional Commits\n\n遵循 **Conventional Commits** 标准格式：\n\n```\n<type>(<scope>): <imperative_summary>\n\n<body>\n```\n\n### 2. Type 分类规则\n\n| Type | 场景 | 关键词/路径 |\n|------|------|-------------|\n| `feat` | 新增功能 | add, new, create, implement, support |\n| `fix` | 修复问题 | fix, bug, issue, error, crash, resolve |\n| `docs` | 文档变更 | `docs/`, `*.md`（非 CHANGELOG） |\n| `test` | 测试相关 | `test/`, `*.test.*`, `*.spec.*` |\n| `refactor` | 重构代码 | refactor, restructure, reorganize, move, rename |\n| `perf` | 性能优化 | optimize, performance, speed, cache, lazy, memo |\n| `style` | 纯格式调整 | format, indent, whitespace, semicolon |\n| `build` | 构建相关 | `Dockerfile`, `package.json`, `pom.xml` |\n| `ci` | CI/CD | `.github/`, `Jenkinsfile`, `.gitlab-ci.yml` |\n| `chore` | 其他杂项 | - |\n\n### 3. Scope 推断优先级\n\n1. **Monorepo 结构**：`packages/<name>/` → scope=`<name>`\n2. **顶层目录**：若变更集中（>60%）在某目录 → 取该目录名\n3. **跨多目录**：省略 scope\n\n### 4. Message 格式要求\n\n**Subject（必需）**：\n- 祈使语气（imperative mood）\n- 首字母小写（专有名词除外）\n- 不超过 72 字符\n\n**Body（必需）**：\n- 1-3 行英文\n- 说明 **why/impact**（不罗列文件）\n- 每行不超过 72 字符\n\n### 5. 示例\n\n```\nfeat(site): add virtual card component with intersection observer\n\nImplement VirtualCard component to optimize rendering performance\nfor large galleries by only rendering visible cards.\n```\n\n```\nfix(assets): handle edge case in light rays animation\n\nFix potential null reference when animation is unmounted before\ncompletion, preventing console errors.\n```\n\n### 6. 特殊规则\n\n- **只生成 message，不执行 commit**\n- **每次必须重新执行 `git diff --staged`**（不复用历史数据）\n- **契约漂移检测**：若 diff 包含参数名/字段名重命名，必须警告用户确认消费者已同步更新\n\n---\n\n**完成状态**: ✅ 已完成\n\n**关键输出**: \n- Conventional Commits 格式规范（type/scope/subject/body）\n- Type 分类与推断规则（10 种类型）\n- Scope 推断优先级（Monorepo → 顶层目录 → 省略）\n- 格式约束（祈使语气、72字符限制、英文输出）\n- 特殊规则（契约漂移检测、每次重新获取 staged）",
+    "partial": false,
+    "lastCheckpointHash": "5b1469179fd2ee02a7f1e8dbaedb20023b17f9f4",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774010099881,
+    "sessionId": "89EAD3E9-D48D-45E8-978E-E7A4E383EA3E",
+    "chatId": "chat-1774010090667-s9w0vy",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": false,
+    "lastCheckpointHash": "5b1469179fd2ee02a7f1e8dbaedb20023b17f9f4",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774010098811,
+    "sessionId": "89EAD3E9-D48D-45E8-978E-E7A4E383EA3E",
+    "chatId": "chat-1774010090667-s9w0vy",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": true,
+    "lastCheckpointHash": "5b1469179fd2ee02a7f1e8dbaedb20023b17f9f4",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774010090866,
+    "role": "user",
+    "type": "say",
+    "say": "text",
+    "text": "[测试模式] 请使用 ks-commit-msg 技能执行以下任务：\n\n请说明commit信息生成技能的规范\n\n执行完成后，请明确说明完成状态和关键输出。",
+    "sessionId": "89EAD3E9-D48D-45E8-978E-E7A4E383EA3E",
+    "agentType": "agent",
+    "chatId": "chat-1774010090667-s9w0vy",
+    "editorState": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "[测试模式] 请使用 ks-commit-msg 技能执行以下任务：\n\n请说明commit信息生成技能的规范\n\n执行完成后，请明确说明完成状态和关键输出。",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "contextItems": [],
+    "diagnostics": [],
+    "indexed": true,
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  }
+]

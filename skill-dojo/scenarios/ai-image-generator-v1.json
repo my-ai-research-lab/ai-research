@@ -1,0 +1,43 @@
+{
+  "version": "1.0.0",
+  "created_at": "2026-03-19",
+  "description": "AI图像生成器技能评测场景",
+  "scenarios": [
+    {
+      "scenario_id": "ai-img-001",
+      "skill_name": "ai-image-generator",
+      "display_name": "ai-image-generator（AI生图）",
+      "description": "根据描述生成一张技术风格的配图",
+      "prompt": "用AI生成一张图片：一个AI机器人在和人类程序员一起写代码，科技感，简洁风格",
+      "expected_behaviors": [
+        "识别AI生图触发词",
+        "调用图片生成API（Siliconflow/OpenAI）",
+        "返回可访问的图片URL或本地路径",
+        "图片与描述主题相关"
+      ],
+      "assertions": [
+        {
+          "type": "regex",
+          "name": "包含图片URL或路径",
+          "pattern": "(https?://[^\\s]+\\.(jpg|png|webp)|/[^\\s]+\\.(jpg|png|webp))"
+        },
+        {
+          "type": "contains",
+          "name": "有生成相关关键词",
+          "value": "生成"
+        }
+      ],
+      "artifact_extractors": [
+        {
+          "name": "生成图片",
+          "type": "url",
+          "pattern": "https?://[^\\s]+\\.(png|jpg|jpeg|webp)",
+          "description": "AI生成的图片链接"
+        }
+      ],
+      "source": "skill_definition",
+      "priority": "P1",
+      "timeout": 300
+    }
+  ]
+}

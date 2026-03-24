@@ -1,0 +1,97 @@
+[
+  {
+    "ts": 1774008248097,
+    "type": "say",
+    "say": "completion_result",
+    "text": "",
+    "agentType": "agent",
+    "sessionId": "CC5D9E12-B967-4F56-8955-C991620270B0",
+    "chatId": "chat-1774008221991-rxlsyk",
+    "stopReason": "",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774008236412,
+    "sessionId": "CC5D9E12-B967-4F56-8955-C991620270B0",
+    "chatId": "chat-1774008221991-rxlsyk",
+    "type": "say",
+    "say": "text",
+    "text": "## 晋升辅导技能（ks-promotion-coaching）使用流程\n\n这是一个端到端的技术职级晋升辅导技能，覆盖从材料整理到答辩模拟的全流程。\n\n### 📋 核心定位\n\n| 定位 | 说明 |\n|------|------|\n| **视角** | 辅导者视角（帮候选人准备材料） |\n| **触发词** | 晋升辅导、晋升材料、晋升PPT、答辩攻略、帮XXX准备晋升 |\n| **区别** | 评委视角打分请用 `ks-promotion-review-sabcd` |\n\n### 📥 所需输入\n\n| 输入项 | 必选 | 说明 |\n|--------|------|------|\n| 晋升人基本信息 | ✅ | 姓名、部门、当前/目标职级 |\n| 原始晋升素材 | ✅ | PPT草稿/大纲/文档等 |\n| 目标职级标准 | ✅ | 公司对该职级的能力要求定义 |\n| PPT模板偏好 | 可选 | 默认生成双风格版本 |\n\n### 🔄 工作流程（5个阶段）\n\n```\n阶段1: 材料结构化    → 散乱素材整理为标准Markdown\n       ↓\n阶段2: PPT制作      → 生成双风格PPT（标准+汇报风格）\n       ↓\n阶段3: 答辩攻略     → 策略文档+逐页讲解攻略\n       ↓\n阶段4: 评委问答模拟  → 8维度问题+连环追问场景\n       ↓\n阶段5: 交付上传     → 整理交付物+上传Docs系统\n```\n\n#### 阶段1：材料结构化\n- 阅读理解原始素材\n- 对照职级标准识别亮点和缺口\n- 按标准章节组织：职级映射→经历概述→业绩成果→能力证明→未来规划→不足反思\n- 每个成果必须有**数据支撑**和**职级关联**\n\n#### 阶段2：PPT制作\n- 使用 `pptx` skill\n- 生成双版本：标准模板 + 工作汇报风格\n- 关键：禁止使用shadow属性（会导致bug）\n\n#### 阶段3：答辩攻略\n- 核心叙事线（30秒开场话术）\n- 时间分配方案\n- 逐页讲解要点\n- 推荐话术（绿色标注）\n\n#### 阶段4：评委问答模拟\n覆盖8个维度各2-3题：\n| 维度 | 典型方向 |\n|------|---------|\n| 角色定位 | owner程度、个人贡献 |\n| 技术深度 | 方案细节、技术判断力 |\n| 数据真实性 | 归因方法、统计口径 |\n| 方法论与决策 | 失败经历、选择依据 |\n| 团队协同 | 跨团队推动 |\n| 行业对标 | 竞品对比 |\n| 个人成长 | 级别跃迁点 |\n| 未来规划 | 目标可行性 |\n\n#### 阶段5：交付上传\n完整交付物清单：\n- 结构化晋升材料（Markdown）\n- 晋升PPT × 2版本（.pptx）\n- 答辩攻略含问答模拟（Markdown + Word）\n- 上传到Docs系统\n\n### ⚠️ 强制质量要求\n\n本技能要求**必须**绑定 meta-execution 质量保障：\n- **P1启动前检查**：需求理解→踩坑记忆检索→方案预演\n- **P0交付前自审**：完备性→正确性→清晰度\n\n---\n\n**✅ 完成状态**：已完成晋升辅导技能使用流程说明\n\n**📦 关键输出**：\n- 技能定位与区分（辅导者 vs 评委视角）\n- 4个必选输入项\n- 5阶段工作流程详解\n- 8维度评委问答框架\n- 强制质量保障要求",
+    "partial": false,
+    "lastCheckpointHash": "7f2c076aa0fe9acb680661dc309d7bc7b90ef1f0",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774008231826,
+    "sessionId": "CC5D9E12-B967-4F56-8955-C991620270B0",
+    "chatId": "chat-1774008221991-rxlsyk",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": false,
+    "lastCheckpointHash": "7f2c076aa0fe9acb680661dc309d7bc7b90ef1f0",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774008230774,
+    "sessionId": "CC5D9E12-B967-4F56-8955-C991620270B0",
+    "chatId": "chat-1774008221991-rxlsyk",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": true,
+    "lastCheckpointHash": "7f2c076aa0fe9acb680661dc309d7bc7b90ef1f0",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774008222256,
+    "role": "user",
+    "type": "say",
+    "say": "text",
+    "text": "[测试模式] 请使用 ks-promotion-coaching 技能执行以下任务：\n\n请说明晋升辅导技能的使用流程\n\n执行完成后，请明确说明完成状态和关键输出。",
+    "sessionId": "CC5D9E12-B967-4F56-8955-C991620270B0",
+    "agentType": "agent",
+    "chatId": "chat-1774008221991-rxlsyk",
+    "editorState": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "[测试模式] 请使用 ks-promotion-coaching 技能执行以下任务：\n\n请说明晋升辅导技能的使用流程\n\n执行完成后，请明确说明完成状态和关键输出。",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "contextItems": [],
+    "diagnostics": [],
+    "indexed": true,
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  }
+]

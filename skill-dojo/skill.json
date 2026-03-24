@@ -1,0 +1,32 @@
+{
+  "name": "skill-dojo",
+  "version": "2.0.0",
+  "description": "This skill should be used when the user mentions \"技能修炼\", \"skill-dojo\", \"评测技能\", \"技能评测\", \"技能退化\", \"哪个技能需要改进\", \"持续精进\", \"跑一下技能测试\", \"skill practice\", \"skill regression\", or when needing to continuously improve existing skills through scenario-based testing, regression detection, weakness analysis, and improvement loops. This is the fourth dimension of skill lifecycle after discovery, creation, and evaluation.",
+  "keywords": [
+    "技能修炼",
+    "技能评测",
+    "退化检测",
+    "场景库",
+    "持续精进",
+    "skill-dojo",
+    "技能测试",
+    "回归测试",
+    "弱点发现",
+    "改进闭环"
+  ],
+  "triggers": [
+    "技能修炼",
+    "skill-dojo",
+    "评测技能",
+    "技能评测",
+    "技能退化了吗",
+    "哪个技能需要改进",
+    "持续精进",
+    "跑一下技能测试",
+    "技能健康报告"
+  ],
+  "export": {
+    "policy": "sanitize",
+    "reason": "技能修炼场元技能，脱敏后可导出"
+  }
+}

@@ -1,0 +1,97 @@
+[
+  {
+    "ts": 1774008280171,
+    "type": "say",
+    "say": "completion_result",
+    "text": "",
+    "agentType": "agent",
+    "sessionId": "AADE86CC-0D56-492C-ABEB-6035370A1ACA",
+    "chatId": "chat-1774008252467-4egyps",
+    "stopReason": "",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774008270673,
+    "sessionId": "AADE86CC-0D56-492C-ABEB-6035370A1ACA",
+    "chatId": "chat-1774008252467-4egyps",
+    "type": "say",
+    "say": "text",
+    "text": "根据 `ks-promotion-review-sabcd` 技能的内容，以下是**晋升评审SABCD评级标准**的完整说明：\n\n---\n\n## SABCD 五档评级标准\n\n| 评级 | 分数区间 | 定义 | 说明 |\n|------|----------|------|------|\n| **S级** | 90-100分 | 卓越 | 远超职级要求，极少数优秀案例 |\n| **A级** | 80-89分 | 优秀 | 完全符合职级要求，**推荐晋升** |\n| **B级** | 70-79分 | 良好 | 基本符合职级要求，有提升空间 |\n| **C级** | 60-69分 | 合格 | 部分符合职级要求，需继续努力 |\n| **D级** | <60分 | 不合格 | 不符合职级要求，不建议晋升 |\n\n---\n\n## 评分维度及权重\n\n### 四大核心维度\n\n| 维度 | 权重范围 | 评估要点 |\n|------|----------|----------|\n| **业绩战功** | 85-90分 | 项目规模/影响力、业务增长数据、技术突破创新、解决的关键问题 |\n| **技术能力** | 80-85分 | 系统架构设计、技术深度广度、复杂问题解决、系统复杂度(QPS/数据量) |\n| **业务理解** | 75-85分 | 业务洞察深度、方案选型合理性、业务价值量化、ROI分析 |\n| **影响力** | 75-85分 | 团队规模管理、带人育人情况、跨团队协作、知识分享 |\n\n### 三个辅助维度\n\n| 维度 | 评分范围 |\n|------|----------|\n| 材料完整度 | 70-90分 |\n| 逻辑清晰度 | 70-90分 |\n| 呈现专业度 | 70-90分 |\n\n---\n\n## 评审\"隐性公式\"\n\n```\n晋升通过率 = 战功硬度(40%) × 能力匹配度(25%) × 认知水平(20%) × 表达清晰度(15%)\n```\n\n---\n\n## 完成状态\n\n✅ **任务完成**\n\n**关键输出**：\n- 五档评级标准（S/A/B/C/D 及对应分数区间）\n- 四大核心维度（业绩战功、技术能力、业务理解、影响力）\n- 三个辅助维度（材料完整度、逻辑清晰度、呈现专业度）\n- 评审隐性公式（战功40% + 能力25% + 认知20% + 表达15%）",
+    "partial": false,
+    "lastCheckpointHash": "a1cea934e4d95d6a92c1843204210c5b0db347b1",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774008265566,
+    "sessionId": "AADE86CC-0D56-492C-ABEB-6035370A1ACA",
+    "chatId": "chat-1774008252467-4egyps",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": false,
+    "lastCheckpointHash": "a1cea934e4d95d6a92c1843204210c5b0db347b1",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774008263984,
+    "sessionId": "AADE86CC-0D56-492C-ABEB-6035370A1ACA",
+    "chatId": "chat-1774008252467-4egyps",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": true,
+    "lastCheckpointHash": "a1cea934e4d95d6a92c1843204210c5b0db347b1",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774008252868,
+    "role": "user",
+    "type": "say",
+    "say": "text",
+    "text": "[测试模式] 请使用 ks-promotion-review-sabcd 技能执行以下任务：\n\n请说明晋升评审SABCD评级的标准\n\n执行完成后，请明确说明完成状态和关键输出。",
+    "sessionId": "AADE86CC-0D56-492C-ABEB-6035370A1ACA",
+    "agentType": "agent",
+    "chatId": "chat-1774008252467-4egyps",
+    "editorState": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "[测试模式] 请使用 ks-promotion-review-sabcd 技能执行以下任务：\n\n请说明晋升评审SABCD评级的标准\n\n执行完成后，请明确说明完成状态和关键输出。",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "contextItems": [],
+    "diagnostics": [],
+    "indexed": true,
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  }
+]

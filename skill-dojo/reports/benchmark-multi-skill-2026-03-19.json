@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "timestamp": "2026-03-19T21:30:00",
+    "duration_seconds": 180,
+    "scenario_file": "multi-skill-batch-v1.json"
+  },
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "errors": 0,
+    "pass_rate": 1.0
+  },
+  "results": [
+    {
+      "scenario_id": "multi-skill-001",
+      "skill_name": "baoyu-translate",
+      "display_name": "baoyu-translate（翻译）",
+      "description": "快速翻译技术文档（EN→ZH）",
+      "prompt": "快速翻译一段关于 LLM 的技术文档",
+      "status": "passed",
+      "duration_ms": 20000,
+      "eval_method": "方式A",
+      "note": "技能正确识别触发词，翻译准确，术语处理到位（hallucination → 幻觉）",
+      "assertions": [
+        {"name": "EXTEND.md 存在", "passed": true, "evidence": "~/.baoyu-skills/baoyu-translate/EXTEND.md"},
+        {"name": "输出文件生成", "passed": true, "evidence": "/tmp/skill-test-translate-input-zh-CN/translation.md"},
+        {"name": "术语有注释", "passed": true, "evidence": "幻觉（hallucination，指 AI 生成看似正确但实际错误的内容）"}
+      ],
+      "artifacts": [
+        {"name": "翻译结果", "type": "url", "value": "http://localhost:8765/transcripts/translation-result.md", "description": "中文翻译文档"}
+      ],
+      "transcript": {"transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/multi-skill-001.json", "messages_count": 6}
+    },
+    {
+      "scenario_id": "multi-skill-002",
+      "skill_name": "commit-msg",
+      "display_name": "commit-msg（提交信息）",
+      "description": "基于 staged 变更生成 commit message",
+      "prompt": "生成 commit message",
+      "status": "passed",
+      "duration_ms": 15000,
+      "eval_method": "方式A",
+      "note": "技能正确处理 staged 为空的异常情况，输出清晰的引导提示",
+      "assertions": [
+        {"name": "检测 staged 状态", "passed": true, "evidence": "执行 git diff --staged --name-status"},
+        {"name": "异常处理正确", "passed": true, "evidence": "No staged changes found 提示"},
+        {"name": "引导用户操作", "passed": true, "evidence": "提示 git add 或 --paths 参数"}
+      ],
+      "artifacts": [],
+      "transcript": {"transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/multi-skill-002.json", "messages_count": 6}
+    },
+    {
+      "scenario_id": "multi-skill-003",
+      "skill_name": "html-screenshot",
+      "display_name": "html-screenshot（HTML截图）",
+      "description": "将 HTML 卡片渲染为高清 PNG",
+      "prompt": "把 HTML 截图成 PNG",
+      "status": "passed",
+      "duration_ms": 20000,
+      "eval_method": "方式A",
+      "note": "技能正确使用动态高度模式，底部内容完整无截断，输出 2x 高清图",
+      "assertions": [
+        {"name": "PNG 文件生成", "passed": true, "evidence": "/tmp/skill-test-screenshot.png"},
+        {"name": "动态高度检测", "passed": true, "evidence": "1060x427, 动态高度"},
+        {"name": "2x 高清输出", "passed": true, "evidence": "deviceScaleFactor: 2"}
+      ],
+      "artifacts": [
+        {"name": "截图结果", "type": "url", "value": "http://localhost:8765/transcripts/skill-test-screenshot.png", "description": "HTML 渲染截图"}
+      ],
+      "transcript": {"transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/multi-skill-003.json", "messages_count": 7}
+    },
+    {
+      "scenario_id": "multi-skill-004",
+      "skill_name": "link-knowledge-base",
+      "display_name": "link-knowledge-base（知识检索）",
+      "description": "检索 AI 相关的调研报告",
+      "prompt": "查知识库里有什么 AI 相关内容",
+      "status": "passed",
+      "duration_ms": 15000,
+      "eval_method": "方式A",
+      "note": "技能正确发现软链接目录并列出 8 个知识分类",
+      "assertions": [
+        {"name": "软链接目录可访问", "passed": true, "evidence": "ai-insight/knowledge-base/"},
+        {"name": "分类数量正确", "passed": true, "evidence": "8 个分类目录"},
+        {"name": "分类内容完整", "passed": true, "evidence": "01-models/, 02-agents/, 03-ai-companies/, ..."}
+      ],
+      "artifacts": [],
+      "transcript": {"transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/multi-skill-004.json", "messages_count": 6}
+    },
+    {
+      "scenario_id": "multi-skill-005",
+      "skill_name": "humanize-writing",
+      "display_name": "humanize-writing（去AI味）",
+      "description": "识别 AI 写作模式并提供改写建议",
+      "prompt": "分析这段文本的 AI 味",
+      "status": "passed",
+      "duration_ms": 15000,
+      "eval_method": "方式A",
+      "note": "技能正确识别 4 类 AI 写作模式（高频词/过度强调/否定并列/破折号滥用）",
+      "assertions": [
+        {"name": "识别 AI 高频词", "passed": true, "evidence": "Additionally, Furthermore"},
+        {"name": "识别过度强调", "passed": true, "evidence": "serves as a testament"},
+        {"name": "提供改写方案", "passed": true, "evidence": "人性化改写建议"}
+      ],
+      "artifacts": [],
+      "transcript": {"transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/multi-skill-005.json", "messages_count": 6}
+    }
+  ]
+}

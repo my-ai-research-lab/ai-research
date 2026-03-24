@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技能持续精进报告 | 2026-03-21</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-card: #21262d;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --accent-green: #3fb950;
+            --accent-red: #f85149;
+            --accent-yellow: #d29922;
+            --accent-blue: #58a6ff;
+            --accent-purple: #a371f7;
+            --border-color: #30363d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 24px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 32px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 32px;
+        }
+        .header h1 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .header .subtitle { color: var(--text-secondary); }
+        .header .meta { font-size: 0.85rem; color: var(--text-secondary); margin-top: 12px; }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-card .value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .stat-card .label { color: var(--text-secondary); font-size: 0.9rem; }
+        .stat-card.green .value { color: var(--accent-green); }
+        .stat-card.red .value { color: var(--accent-red); }
+        .stat-card.yellow .value { color: var(--accent-yellow); }
+        .stat-card.blue .value { color: var(--accent-blue); }
+
+        /* Section */
+        .section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .section h2 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section h2::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--accent-blue);
+            border-radius: 2px;
+        }
+
+        /* Top 10 Skills */
+        .skill-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .skill-chip {
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .skill-chip:hover { transform: translateY(-2px); }
+        .skill-chip.passed { background: rgba(63, 185, 80, 0.2); border: 1px solid var(--accent-green); color: var(--accent-green); }
+        .skill-chip.failed { background: rgba(248, 81, 73, 0.2); border: 1px solid var(--accent-red); color: var(--accent-red); }
+        .skill-chip.fixed { background: rgba(88, 166, 255, 0.2); border: 1px solid var(--accent-blue); color: var(--accent-blue); }
+        .skill-chip.pending { background: rgba(210, 153, 34, 0.2); border: 1px solid var(--accent-yellow); color: var(--accent-yellow); }
+
+        /* Results Table */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .results-table th, .results-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .results-table th {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .results-table tr:hover { background: var(--bg-card); }
+        
+        /* Status Badge */
+        .badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .badge.passed { background: rgba(63, 185, 80, 0.2); color: var(--accent-green); }
+        .badge.failed { background: rgba(248, 81, 73, 0.2); color: var(--accent-red); }
+        .badge.fixed { background: rgba(88, 166, 255, 0.2); color: var(--accent-blue); }
+        .badge.pending { background: rgba(210, 153, 34, 0.2); color: var(--accent-yellow); }
+
+        /* Fixes Section */
+        .fix-item {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 3px solid var(--accent-green);
+        }
+        .fix-item .skill-name { font-weight: 600; color: var(--accent-blue); }
+        .fix-item .action { margin-top: 8px; color: var(--text-secondary); font-family: monospace; }
+
+        /* Action Items */
+        .action-item {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .action-item .priority {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .action-item .priority.p0 { background: var(--accent-red); color: white; }
+        .action-item .priority.p1 { background: var(--accent-yellow); color: black; }
+        .action-item .priority.p2 { background: var(--text-secondary); color: white; }
+        .action-item .content { flex: 1; }
+        .action-item .title { font-weight: 600; margin-bottom: 4px; }
+        .action-item .desc { color: var(--text-secondary); font-size: 0.9rem; }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🥋 技能持续精进报告</h1>
+            <div class="subtitle">Skill Dojo Continuous Improvement Report</div>
+            <div class="meta">生成时间: 2026-03-21 05:50 | 评测模式: 方式A (轻量评测 + 自动修复)</div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card blue">
+                <div class="value">10</div>
+                <div class="label">高频技能</div>
+            </div>
+            <div class="stat-card green">
+                <div class="value">2</div>
+                <div class="label">通过</div>
+            </div>
+            <div class="stat-card blue">
+                <div class="value">2</div>
+                <div class="label">已修复</div>
+            </div>
+            <div class="stat-card red">
+                <div class="value">3</div>
+                <div class="label">待处理</div>
+            </div>
+            <div class="stat-card yellow">
+                <div class="value">3</div>
+                <div class="label">待验证</div>
+            </div>
+        </div>
+
+        <!-- Top 10 Skills -->
+        <div class="section">
+            <h2>Top 10 高频技能</h2>
+            <div class="skill-chips">
+                <span class="skill-chip failed">#1 ai-image-generator</span>
+                <span class="skill-chip fixed">#2 html-screenshot</span>
+                <span class="skill-chip fixed">#3 baoyu-translate</span>
+                <span class="skill-chip failed">#4 internet-content-research</span>
+                <span class="skill-chip passed">#5 humanize-writing</span>
+                <span class="skill-chip passed">#6 qingshuang-research-style</span>
+                <span class="skill-chip failed">#7 baoyu-markdown-to-html</span>
+                <span class="skill-chip pending">#8 pptx</span>
+                <span class="skill-chip pending">#9 link-essence-insight</span>
+                <span class="skill-chip pending">#10 baoyu-infographic</span>
+            </div>
+        </div>
+
+        <!-- Detailed Results -->
+        <div class="section">
+            <h2>评测详情</h2>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>技能</th>
+                        <th>状态</th>
+                        <th>问题类型</th>
+                        <th>根因/说明</th>
+                        <th>修复建议</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ai-image-generator</strong><br><small>AI生图</small></td>
+                        <td><span class="badge failed">❌ 失败</span></td>
+                        <td>配置缺失</td>
+                        <td>~/.baoyu-skills/.env 中 API Key 全部被注释</td>
+                        <td>用户需配置 DASHSCOPE/OPENAI/GOOGLE API Key</td>
+                    </tr>
+                    <tr>
+                        <td><strong>html-screenshot</strong><br><small>HTML截图</small></td>
+                        <td><span class="badge fixed">✅ 已修复</span></td>
+                        <td>依赖缺失</td>
+                        <td>puppeteer 未安装</td>
+                        <td>✅ 已执行 npm install puppeteer</td>
+                    </tr>
+                    <tr>
+                        <td><strong>baoyu-translate</strong><br><small>文章翻译</small></td>
+                        <td><span class="badge fixed">✅ 已修复</span></td>
+                        <td>配置缺失</td>
+                        <td>EXTEND.md 配置文件不存在</td>
+                        <td>✅ 已创建 EXTEND.md（术语表+翻译偏好）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>internet-content-research</strong><br><small>多平台调研</small></td>
+                        <td><span class="badge failed">❌ 失败</span></td>
+                        <td>竞态条件</td>
+                        <td>task-wait.sh 提前判定任务完成（transcript仅5条消息）</td>
+                        <td>增加 grace period 至 ≥30s</td>
+                    </tr>
+                    <tr>
+                        <td><strong>humanize-writing</strong><br><small>去AI痕迹</small></td>
+                        <td><span class="badge passed">✅ 通过</span></td>
+                        <td>—</td>
+                        <td>所有断言通过</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>qingshuang-research-style</strong><br><small>清爽调研风格</small></td>
+                        <td><span class="badge passed">✅ 通过</span></td>
+                        <td>—</td>
+                        <td>所有断言通过</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>baoyu-markdown-to-html</strong><br><small>MD转HTML</small></td>
+                        <td><span class="badge failed">❌ 失败</span></td>
+                        <td>竞态条件</td>
+                        <td>任务被提前截断</td>
+                        <td>同 internet-content-research</td>
+                    </tr>
+                    <tr>
+                        <td><strong>pptx</strong><br><small>PPT生成</small></td>
+                        <td><span class="badge pending">⏳ 待验证</span></td>
+                        <td>—</td>
+                        <td>最近手动测试成功</td>
+                        <td>需场景化验证</td>
+                    </tr>
+                    <tr>
+                        <td><strong>link-essence-insight</strong><br><small>本质洞察</small></td>
+                        <td><span class="badge pending">⏳ 待验证</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>待场景化验证</td>
+                    </tr>
+                    <tr>
+                        <td><strong>baoyu-infographic</strong><br><small>信息图生成</small></td>
+                        <td><span class="badge pending">⏳ 待验证</span></td>
+                        <td>—</td>
+                        <td>依赖 ai-image-generator</td>
+                        <td>需先修复图片生成配置</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Fixes Applied -->
+        <div class="section">
+            <h2>🔧 已执行修复</h2>
+            <div class="fix-item">
+                <div class="skill-name">html-screenshot</div>
+                <div class="action">npm install puppeteer --save</div>
+                <div style="margin-top: 8px; color: var(--accent-green);">✅ 安装成功</div>
+            </div>
+            <div class="fix-item">
+                <div class="skill-name">baoyu-translate</div>
+                <div class="action">创建 EXTEND.md 配置文件</div>
+                <div style="margin-top: 8px; color: var(--text-secondary);">包含：术语表（10条）+ 翻译偏好设置</div>
+                <div style="color: var(--accent-green);">✅ 创建成功</div>
+            </div>
+        </div>
+
+        <!-- Pending Actions -->
+        <div class="section">
+            <h2>📋 待处理项</h2>
+            <div class="action-item">
+                <span class="priority p1">P1</span>
+                <div class="content">
+                    <div class="title">配置图片生成 API Key</div>
+                    <div class="desc">编辑 ~/.baoyu-skills/.env，取消注释并填入 DASHSCOPE_API_KEY / OPENAI_API_KEY / GOOGLE_API_KEY 其中之一</div>
+                </div>
+            </div>
+            <div class="action-item">
+                <span class="priority p1">P1</span>
+                <div class="content">
+                    <div class="title">修复 task-wait.sh 竞态条件</div>
+                    <div class="desc">增加 grace period 到 ≥30s，或实现连续3次 isRunning=false 确认机制。影响所有耗时 >30s 的技能自动化评测。</div>
+                </div>
+            </div>
+            <div class="action-item">
+                <span class="priority p2">P2</span>
+                <div class="content">
+                    <div class="title">场景化验证剩余技能</div>
+                    <div class="desc">对 pptx、link-essence-insight、baoyu-infographic 进行场景化测试</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="section">
+            <h2>💡 建议</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+                <div style="background: var(--bg-card); border-radius: 8px; padding: 16px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 8px;">📅 立即</h4>
+                    <ul style="color: var(--text-secondary); padding-left: 20px;">
+                        <li>配置图片生成 API Key</li>
+                        <li>重新测试 html-screenshot 和 baoyu-translate</li>
+                    </ul>
+                </div>
+                <div style="background: var(--bg-card); border-radius: 8px; padding: 16px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 8px;">📅 本周</h4>
+                    <ul style="color: var(--text-secondary); padding-left: 20px;">
+                        <li>对 Top 5 高频技能执行轻量评测</li>
+                        <li>检查新版本外部技能（社区对标）</li>
+                    </ul>
+                </div>
+                <div style="background: var(--bg-card); border-radius: 8px; padding: 16px;">
+                    <h4 style="color: var(--accent-purple); margin-bottom: 8px;">📅 本月</h4>
+                    <ul style="color: var(--text-secondary); padding-left: 20px;">
+                        <li>全量技能深度评测</li>
+                        <li>清理低频/废弃技能</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Generated by skill-dojo v1.9.0 | 技能修炼场 — 让高频技能持续保持最佳状态</p>
+        </div>
+    </div>
+</body>
+</html>

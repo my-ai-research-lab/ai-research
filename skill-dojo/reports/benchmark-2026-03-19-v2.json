@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "run_id": "test-20260319-115927",
+    "timestamp": "2026-03-19T11:59:27.084354",
+    "total_scenarios": 4,
+    "duration_seconds": 178.0
+  },
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 4,
+    "failed": 0,
+    "errors": 0,
+    "by_priority": {
+      "P0": {
+        "passed": 1,
+        "total": 1
+      },
+      "P2": {
+        "passed": 1,
+        "total": 1
+      },
+      "Test": {
+        "passed": 2,
+        "total": 2
+      }
+    },
+    "by_skill": {
+      "meta-execution": {
+        "passed": 1,
+        "failed": 0,
+        "total": 1
+      },
+      "knowledge-base": {
+        "passed": 1,
+        "failed": 0,
+        "total": 1
+      },
+      "html-generation": {
+        "passed": 1,
+        "failed": 0,
+        "total": 1
+      },
+      "ai-image-generator": {
+        "passed": 1,
+        "failed": 0,
+        "total": 1
+      }
+    }
+  },
+  "results": [
+    {
+      "scenario_id": "sc-meta-exec-001",
+      "skill_name": "meta-execution",
+      "description": "P1启动前检查+P0交付自审",
+      "status": "passed",
+      "duration_ms": 32000,
+      "assertions": [
+        {
+          "name": "激活标记",
+          "passed": true,
+          "evidence": "找到 [Meta-Execution] 已激活"
+        },
+        {
+          "name": "P0检查输出",
+          "passed": true,
+          "evidence": "找到 P1启动前检查"
+        }
+      ],
+      "artifacts": [
+        {
+          "type": "file",
+          "name": "对话记录",
+          "value": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/sc-meta-exec-001.json",
+          "valid": true,
+          "description": "完整对话transcript",
+          "validation_error": ""
+        }
+      ],
+      "transcript": {
+        "messages_count": 5,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/sc-meta-exec-001.json"
+      },
+      "key_outputs": [
+        "Meta-Execution 已激活",
+        "P1启动前检查",
+        "需求模糊识别"
+      ],
+      "error_message": ""
+    },
+    {
+      "scenario_id": "sc-knowledge-001",
+      "skill_name": "knowledge-base",
+      "description": "知识库检索",
+      "status": "passed",
+      "duration_ms": 47000,
+      "assertions": [
+        {
+          "name": "扫描知识库",
+          "passed": true,
+          "evidence": "找到 AI调研知识库概览"
+        },
+        {
+          "name": "返回匹配文档",
+          "passed": true,
+          "evidence": "找到 80+篇AI相关调研文档"
+        },
+        {
+          "name": "提供摘要",
+          "passed": true,
+          "evidence": "按分类返回"
+        }
+      ],
+      "artifacts": [
+        {
+          "type": "file",
+          "name": "对话记录",
+          "value": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/sc-knowledge-001.json",
+          "valid": true,
+          "description": "完整对话transcript",
+          "validation_error": ""
+        }
+      ],
+      "transcript": {
+        "messages_count": 7,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/sc-knowledge-001.json"
+      },
+      "key_outputs": [
+        "检索到 80+ 篇 AI 调研文档",
+        "AI-Insight 知识库",
+        "研发效能知识库"
+      ],
+      "error_message": ""
+    },
+    {
+      "scenario_id": "test-page-output",
+      "skill_name": "html-generation",
+      "description": "生成HTML测试页面",
+      "status": "passed",
+      "duration_ms": 18000,
+      "assertions": [
+        {
+          "name": "文件已生成",
+          "passed": true,
+          "evidence": "文件大小: 3226 bytes"
+        },
+        {
+          "name": "包含表格",
+          "passed": true,
+          "evidence": "HTML包含table元素"
+        },
+        {
+          "name": "CSS样式",
+          "passed": true,
+          "evidence": "包含style标签"
+        }
+      ],
+      "artifacts": [
+        {
+          "type": "file",
+          "name": "HTML页面",
+          "value": "/tmp/skill-test-demo.html",
+          "valid": true,
+          "description": "生成的演示页面 (3226 bytes)",
+          "validation_error": ""
+        },
+        {
+          "type": "file",
+          "name": "对话记录",
+          "value": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/test-page-output.json",
+          "valid": true,
+          "description": "完整对话transcript",
+          "validation_error": ""
+        }
+      ],
+      "transcript": {
+        "messages_count": 11,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/test-page-output.json"
+      },
+      "key_outputs": [
+        "生成 HTML 文件",
+        "文件大小 3226 bytes",
+        "包含渐变背景和表格"
+      ],
+      "error_message": ""
+    },
+    {
+      "scenario_id": "test-image-output",
+      "skill_name": "ai-image-generator",
+      "description": "AI生成卡通猫咪图片",
+      "status": "passed",
+      "duration_ms": 81000,
+      "assertions": [
+        {
+          "name": "图片已生成",
+          "passed": true,
+          "evidence": "文件大小: 578347 bytes (564.8 KB)"
+        },
+        {
+          "name": "正确格式",
+          "passed": true,
+          "evidence": "JPG 格式"
+        },
+        {
+          "name": "2K分辨率",
+          "passed": true,
+          "evidence": "2048x2048 像素"
+        }
+      ],
+      "artifacts": [
+        {
+          "type": "file",
+          "name": "AI生成图片",
+          "value": "/Users/[USER]/Documents/Codeflicker/定时任务/cute-cat-stargazing.jpg",
+          "valid": true,
+          "description": "卡通猫咪看星星 (564.8 KB)",
+          "validation_error": ""
+        },
+        {
+          "type": "file",
+          "name": "对话记录",
+          "value": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/test-image-output.json",
+          "valid": true,
+          "description": "完整对话transcript",
+          "validation_error": ""
+        }
+      ],
+      "transcript": {
+        "messages_count": 28,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/test-image-output.json"
+      },
+      "key_outputs": [
+        "AI生成图片成功",
+        "尺寸 2048x2048",
+        "文件大小 564.8 KB"
+      ],
+      "error_message": ""
+    }
+  ]
+}

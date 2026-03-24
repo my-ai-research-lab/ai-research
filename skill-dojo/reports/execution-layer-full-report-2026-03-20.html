@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>执行层技能评测报告 - 2026-03-20</title>
+<style>
+:root {
+  --bg-dark: #0d1117;
+  --card-bg: #161b22;
+  --border: #30363d;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --green: #3fb950;
+  --red: #f85149;
+  --orange: #d29922;
+  --blue: #58a6ff;
+  --purple: #8b5cf6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text);
+  padding: 24px;
+  min-height: 100vh;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+h1 { font-size: 2rem; margin-bottom: 8px; color: #fff; }
+.subtitle { color: var(--text-muted); font-size: 1rem; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+.stat-value { font-size: 2.5rem; font-weight: 700; }
+.stat-value.green { color: var(--green); }
+.stat-value.orange { color: var(--orange); }
+.stat-value.red { color: var(--red); }
+.stat-label { color: var(--text-muted); margin-top: 8px; }
+.category-section { margin-bottom: 24px; }
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px 12px 0 0;
+  cursor: pointer;
+}
+.category-header:hover { background: #1c2128; }
+.category-title { font-size: 1.1rem; font-weight: 600; display: flex; align-items: center; gap: 12px; }
+.category-stats {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.category-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.badge-green { background: rgba(63, 185, 80, 0.2); color: var(--green); }
+.badge-orange { background: rgba(210, 153, 34, 0.2); color: var(--orange); }
+.badge-red { background: rgba(248, 81, 73, 0.2); color: var(--red); }
+.skill-list {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 16px 20px;
+}
+.skill-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.skill-item:last-child { border-bottom: none; }
+.skill-name { font-weight: 500; }
+.skill-status { font-size: 1.2rem; }
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 32px;
+}
+.summary-table th, .summary-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.summary-table th {
+  background: var(--card-bg);
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.summary-table tr:hover { background: rgba(56, 139, 253, 0.05); }
+.failed-section {
+  margin-top: 32px;
+  padding: 24px;
+  background: rgba(248, 81, 73, 0.1);
+  border: 1px solid rgba(248, 81, 73, 0.3);
+  border-radius: 12px;
+}
+.failed-section h3 { color: var(--red); margin-bottom: 16px; }
+.failed-item { padding: 8px 0; border-bottom: 1px solid rgba(248, 81, 73, 0.2); }
+.failed-item:last-child { border-bottom: none; }
+footer {
+  text-align: center;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🎯 执行层技能评测报告</h1>
+    <p class="subtitle">方式B自动化评测 | 2026-03-20 06:25 - 07:09 | 共76个场景</p>
+  </header>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value green">90.3%</div>
+      <div class="stat-label">总体通过率</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">72</div>
+      <div class="stat-label">测试技能数</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value green">65</div>
+      <div class="stat-label">通过技能</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value red">7</div>
+      <div class="stat-label">失败技能</div>
+    </div>
+  </div>
+
+  <h2 style="margin-bottom: 16px;">📊 分类评测详情</h2>
+
+  <div class="category-section">
+    <div class="category-header">
+      <div class="category-title">🔍 信息获取</div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">5/6 通过</span>
+        <span>83.3%</span>
+      </div>
+    </div>
+    <div class="skill-list">
+      <div class="skill-item"><span class="skill-name">industry-research</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">baoyu-url-to-markdown</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">baoyu-danger-x-to-markdown</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">internet-content-research</span><span class="skill-status">❌</span></div>
+      <div class="skill-item"><span class="skill-name">xiaohongshu</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-kstack</span><span class="skill-status">✅</span></div>
+    </div>
+  </div>
+
+  <div class="category-section">
+    <div class="category-header">
+      <div class="category-title">📝 内容写作</div>
+      <div class="category-stats">
+        <span class="category-badge badge-orange">7/10 通过</span>
+        <span>70.0%</span>
+      </div>
+    </div>
+    <div class="skill-list">
+      <div class="skill-item"><span class="skill-name">sl-ai-column-writer</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">copywriting</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">humanize-writing</span><span class="skill-status">❌</span></div>
+      <div class="skill-item"><span class="skill-name">baoyu-translate</span><span class="skill-status">❌</span></div>
+      <div class="skill-item"><span class="skill-name">baoyu-format-markdown</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">baoyu-markdown-to-html</span><span class="skill-status">❌</span></div>
+      <div class="skill-item"><span class="skill-name">ks-promotion-coaching</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-promotion-review-sabcd</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">executive-report-writing</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">personal-assistant</span><span class="skill-status">✅</span></div>
+    </div>
+  </div>
+
+  <div class="category-section">
+    <div class="category-header">
+      <div class="category-title">🌐 网页开发</div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">5/6 通过</span>
+        <span>83.3%</span>
+      </div>
+    </div>
+    <div class="skill-list">
+      <div class="skill-item"><span class="skill-name">web-dev-workflow</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ui-ux-pro-max</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">frontend-design</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">theme-factory</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">zelda-style</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">qingshuang-research-style</span><span class="skill-status">❌</span></div>
+    </div>
+  </div>
+
+  <div class="category-section">
+    <div class="category-header">
+      <div class="category-title">📁 文件处理</div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">4/4 通过</span>
+        <span>100%</span>
+      </div>
+    </div>
+    <div class="skill-list">
+      <div class="skill-item"><span class="skill-name">xlsx</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">pdf</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">docx</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-kim-docs-shuttle</span><span class="skill-status">✅</span></div>
+    </div>
+  </div>
+
+  <div class="category-section">
+    <div class="category-header">
+      <div class="category-title">🎬 演示制作</div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">4/4 通过</span>
+        <span>100%</span>
+      </div>
+    </div>
+    <div class="skill-list">
+      <div class="skill-item"><span class="skill-name">pptx</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">baoyu-slide-deck</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-work-report-ppt</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">artistic-ppt</span><span class="skill-status">✅</span></div>
+    </div>
+  </div>
+
+  <div class="category-section">
+    <div class="category-header">
+      <div class="category-title">📤 发布推送</div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">8/8 通过</span>
+        <span>100%</span>
+      </div>
+    </div>
+    <div class="skill-list">
+      <div class="skill-item"><span class="skill-name">baoyu-post-to-wechat</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">baoyu-post-to-weibo</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">baoyu-post-to-x</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">sl-yuque-publisher</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">github</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">link-ks-kim-send-message</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">sl-feishu-assistant</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">sl-codeflicker-weekly-report</span><span class="skill-status">✅</span></div>
+    </div>
+  </div>
+
+  <div class="category-section">
+    <div class="category-header">
+      <div class="category-title">🏢 办公协作</div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">9/9 通过</span>
+        <span>100%</span>
+      </div>
+    </div>
+    <div class="skill-list">
+      <div class="skill-item"><span class="skill-name">ks-kwaibi-data-query</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-kwaibi-sql-exec</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-tianwen-monitor-query</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-hive-data-agent</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-meeting-room-booking</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-onepoint-meeting</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-kim-skills-assistant</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-kuaishou-sso-login</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-file-upload</span><span class="skill-status">✅</span></div>
+    </div>
+  </div>
+
+  <div class="category-section">
+    <div class="category-header">
+      <div class="category-title">🖼️ 图像生成</div>
+      <div class="category-stats">
+        <span class="category-badge badge-orange">6/8 通过</span>
+        <span>75%</span>
+      </div>
+    </div>
+    <div class="skill-list">
+      <div class="skill-item"><span class="skill-name">ai-image-generator</span><span class="skill-status">❌</span></div>
+      <div class="skill-item"><span class="skill-name">baoyu-danger-gemini-web</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">baoyu-article-illustrator</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">baoyu-infographic</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">baoyu-xhs-images</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">baoyu-comic</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">baoyu-compress-image</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">html-screenshot</span><span class="skill-status">❌</span></div>
+    </div>
+  </div>
+
+  <div class="category-section">
+    <div class="category-header">
+      <div class="category-title">🤖 AI工程</div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">3/3 通过</span>
+        <span>100%</span>
+      </div>
+    </div>
+    <div class="skill-list">
+      <div class="skill-item"><span class="skill-name">context-window-management</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">workflow-orchestration-patterns</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-mcp-to-skill</span><span class="skill-status">✅</span></div>
+    </div>
+  </div>
+
+  <div class="category-section">
+    <div class="category-header">
+      <div class="category-title">🔧 软件工程</div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">13/13 通过</span>
+        <span>100%</span>
+      </div>
+    </div>
+    <div class="skill-list">
+      <div class="skill-item"><span class="skill-name">vercel-composition-patterns</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">vercel-react-best-practices</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">vercel-react-native-skills</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">remotion-best-practices</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">web-design-guidelines</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">error-handling-patterns</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">seo-audit</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-kate-prd-understand</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-kate-brief-design</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-kmodel</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-commit-msg</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-browser-testing-doc</span><span class="skill-status">✅</span></div>
+      <div class="skill-item"><span class="skill-name">ks-qa-test-case</span><span class="skill-status">✅</span></div>
+    </div>
+  </div>
+
+  <div class="category-section">
+    <div class="category-header">
+      <div class="category-title">🌐 社交学习</div>
+      <div class="category-stats">
+        <span class="category-badge badge-green">1/1 通过</span>
+        <span>100%</span>
+      </div>
+    </div>
+    <div class="skill-list">
+      <div class="skill-item"><span class="skill-name">ks-clawbook</span><span class="skill-status">✅</span></div>
+    </div>
+  </div>
+
+  <div class="failed-section">
+    <h3>❌ 失败技能分析</h3>
+    <div class="failed-item"><strong>internet-content-research</strong> — 微信搜索API可能超时或限流</div>
+    <div class="failed-item"><strong>humanize-writing</strong> — 断言过于严格，"方方面面"可能被保留用于对比说明</div>
+    <div class="failed-item"><strong>baoyu-translate</strong> — "智能体"翻译可能使用了其他术语如"代理"</div>
+    <div class="failed-item"><strong>baoyu-markdown-to-html</strong> — H1标签格式可能与断言不匹配</div>
+    <div class="failed-item"><strong>qingshuang-research-style</strong> — 断言检查"样式"但技能输出可能用"CSS"或"风格"</div>
+    <div class="failed-item"><strong>ai-image-generator</strong> — 图像生成API调用失败或超时</div>
+    <div class="failed-item"><strong>html-screenshot</strong> — Puppeteer/Playwright截图执行失败</div>
+  </div>
+
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>分类</th>
+        <th>技能数</th>
+        <th>通过</th>
+        <th>失败</th>
+        <th>通过率</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>🔍 信息获取</td><td>6</td><td>5</td><td>1</td><td>83.3%</td></tr>
+      <tr><td>📝 内容写作</td><td>10</td><td>7</td><td>3</td><td>70.0%</td></tr>
+      <tr><td>🌐 网页开发</td><td>6</td><td>5</td><td>1</td><td>83.3%</td></tr>
+      <tr><td>📁 文件处理</td><td>4</td><td>4</td><td>0</td><td>100%</td></tr>
+      <tr><td>🎬 演示制作</td><td>4</td><td>4</td><td>0</td><td>100%</td></tr>
+      <tr><td>📤 发布推送</td><td>8</td><td>8</td><td>0</td><td>100%</td></tr>
+      <tr><td>🏢 办公协作</td><td>9</td><td>9</td><td>0</td><td>100%</td></tr>
+      <tr><td>🖼️ 图像生成</td><td>8</td><td>6</td><td>2</td><td>75%</td></tr>
+      <tr><td>🤖 AI工程</td><td>3</td><td>3</td><td>0</td><td>100%</td></tr>
+      <tr><td>🔧 软件工程</td><td>13</td><td>13</td><td>0</td><td>100%</td></tr>
+      <tr><td>🌐 社交学习</td><td>1</td><td>1</td><td>0</td><td>100%</td></tr>
+      <tr style="font-weight:bold;background:var(--card-bg);">
+        <td>总计</td><td>72</td><td>65</td><td>7</td><td style="color:var(--green)">90.3%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>
+    <p>生成时间: 2026-03-20 07:10 | 评测方式: 方式B自动化（独立Agent会话）| 场景库: full-execution-layer-v1.json</p>
+    <p>Link Skill Dojo v1.0 | 评测耗时: 约45分钟</p>
+  </footer>
+</div>
+</body>
+</html>

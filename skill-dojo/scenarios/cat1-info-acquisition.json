@@ -1,0 +1,89 @@
+{
+  "version": "1.0.0",
+  "created_at": "2026-03-20",
+  "description": "Cat1 信息获取分类评测场景（6个技能）",
+  "scenarios": [
+    {
+      "scenario_id": "cat1-industry-research-001",
+      "skill_name": "industry-research",
+      "display_name": "industry-research（行业调研）",
+      "description": "执行一次结构化竞品分析",
+      "prompt": "帮我做一个简单的AI写作工具对比，对比Notion AI和Copy.ai两款产品的核心功能差异，简要输出即可",
+      "expected_behaviors": ["定义对比维度", "有来源支撑", "结构清晰"],
+      "assertions": [
+        {"type": "contains", "name": "覆盖Notion", "value": "Notion"},
+        {"type": "contains", "name": "覆盖Copy.ai", "value": "Copy.ai"},
+        {"type": "contains", "name": "有对比维度", "value": "功能"}
+      ],
+      "priority": "P1",
+      "timeout": 180
+    },
+    {
+      "scenario_id": "cat1-url-to-markdown-001",
+      "skill_name": "baoyu-url-to-markdown",
+      "display_name": "baoyu-url-to-markdown（网页转Markdown）",
+      "description": "抓取网页并转为Markdown",
+      "prompt": "请把这个页面转成Markdown：https://example.com",
+      "expected_behaviors": ["调用Chrome CDP抓取", "输出Markdown文件", "保存HTML快照"],
+      "assertions": [
+        {"type": "contains", "name": "输出Markdown", "value": ".md"},
+        {"type": "not_contains", "name": "无报错", "value": "Error"}
+      ],
+      "priority": "P1",
+      "timeout": 120
+    },
+    {
+      "scenario_id": "cat1-x-to-markdown-001",
+      "skill_name": "baoyu-danger-x-to-markdown",
+      "display_name": "baoyu-danger-x-to-markdown（X转Markdown）",
+      "description": "将X推文转为Markdown",
+      "prompt": "请检查X to markdown功能是否可用，如需配置请告知",
+      "expected_behaviors": ["检查认证状态", "说明配置要求"],
+      "assertions": [
+        {"type": "contains", "name": "提及配置", "value": "配置"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat1-internet-research-001",
+      "skill_name": "internet-content-research",
+      "display_name": "internet-content-research（多平台调研）",
+      "description": "多平台搜索技术话题",
+      "prompt": "帮我简单搜索一下微信公众号上关于AI Agent的最新讨论，返回3篇即可",
+      "expected_behaviors": ["调用weixin_search", "返回文章列表", "有来源标注"],
+      "assertions": [
+        {"type": "contains", "name": "有来源", "value": "来源"},
+        {"type": "contains", "name": "覆盖话题", "value": "Agent"}
+      ],
+      "priority": "P1",
+      "timeout": 180
+    },
+    {
+      "scenario_id": "cat1-xiaohongshu-001",
+      "skill_name": "xiaohongshu",
+      "display_name": "xiaohongshu（小红书）",
+      "description": "搜索小红书内容",
+      "prompt": "帮我在小红书搜索「AI编程」相关笔记，返回前3条",
+      "expected_behaviors": ["调用search_feeds", "返回笔记列表", "包含标题和链接"],
+      "assertions": [
+        {"type": "contains", "name": "搜索结果", "value": "笔记"}
+      ],
+      "priority": "P1",
+      "timeout": 120
+    },
+    {
+      "scenario_id": "cat1-kstack-001",
+      "skill_name": "ks-kstack",
+      "display_name": "ks-kstack（KStack文章）",
+      "description": "读取KStack文章",
+      "prompt": "请说明KStack文章读取功能的使用方式",
+      "expected_behaviors": ["说明接口使用方式", "提及凭证配置"],
+      "assertions": [
+        {"type": "contains", "name": "提及API", "value": "API"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    }
+  ]
+}

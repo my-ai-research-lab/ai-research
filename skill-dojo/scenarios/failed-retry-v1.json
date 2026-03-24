@@ -1,0 +1,107 @@
+{
+  "version": "1.0.0",
+  "created_at": "2026-03-20",
+  "description": "7个失败技能重跑场景（修复断言设计和timeout）",
+  "scenarios": [
+    {
+      "scenario_id": "retry-internet-research-001",
+      "skill_name": "internet-content-research",
+      "display_name": "internet-content-research（多平台调研）",
+      "description": "多平台搜索技术话题",
+      "prompt": "[测试模式] 请使用 internet-content-research 技能执行以下任务：\n\n帮我简单搜索一下微信公众号上关于AI Agent的最新讨论，返回3篇即可\n\n执行完成后，请明确说明完成状态和关键输出。",
+      "expected_behaviors": ["调用weixin_search", "返回文章列表", "有文章标题"],
+      "assertions": [
+        {"type": "regex", "name": "有文章列表", "pattern": "标题|文章|篇"},
+        {"type": "contains", "name": "覆盖话题", "value": "Agent"},
+        {"type": "contains", "name": "任务完成", "value": "完成"}
+      ],
+      "priority": "P1",
+      "timeout": 180,
+      "notes": "2026-03-21修复：断言从检查http链接改为检查文章列表，因为技能规范要求不展示临时链接"
+    },
+    {
+      "scenario_id": "retry-humanize-001",
+      "skill_name": "humanize-writing",
+      "display_name": "humanize-writing（去AI味）",
+      "description": "润色文本去AI痕迹",
+      "prompt": "[测试模式] 请使用 humanize-writing 技能执行以下任务：\n\n请把这段文字改得更自然：「人工智能技术正在深刻改变人类社会的方方面面，其影响是深远的。」\n\n执行完成后，请明确说明完成状态和关键输出。",
+      "expected_behaviors": ["识别AI模式", "提供改写版本"],
+      "assertions": [
+        {"type": "contains", "name": "执行改写", "value": "改写"},
+        {"type": "contains", "name": "任务完成", "value": "完成"}
+      ],
+      "priority": "P1",
+      "timeout": 120
+    },
+    {
+      "scenario_id": "retry-translate-001",
+      "skill_name": "baoyu-translate",
+      "display_name": "baoyu-translate（翻译）",
+      "description": "翻译英文到中文",
+      "prompt": "[测试模式] 请使用 baoyu-translate 技能执行以下任务：\n\n翻译：The future of AI is autonomous agents that can reason and act.\n\n执行完成后，请明确说明完成状态和关键输出。",
+      "expected_behaviors": ["准确翻译", "术语恰当"],
+      "assertions": [
+        {"type": "contains", "name": "翻译智能体", "value": "智能体"},
+        {"type": "contains", "name": "任务完成", "value": "完成"}
+      ],
+      "priority": "P1",
+      "timeout": 120
+    },
+    {
+      "scenario_id": "retry-md-to-html-001",
+      "skill_name": "baoyu-markdown-to-html",
+      "display_name": "baoyu-markdown-to-html（MD转HTML）",
+      "description": "将Markdown转为HTML",
+      "prompt": "[测试模式] 请使用 baoyu-markdown-to-html 技能执行以下任务：\n\n把这段Markdown转成HTML：# 标题\\n这是正文内容。\n\n执行完成后，请明确说明完成状态和关键输出。",
+      "expected_behaviors": ["输出HTML文件", "样式美观"],
+      "assertions": [
+        {"type": "contains", "name": "HTML文件", "value": ".html"},
+        {"type": "contains", "name": "任务完成", "value": "完成"}
+      ],
+      "priority": "P1",
+      "timeout": 120
+    },
+    {
+      "scenario_id": "retry-qingshuang-001",
+      "skill_name": "qingshuang-research-style",
+      "display_name": "qingshuang-research-style（清爽调研风格）",
+      "description": "了解清爽调研报告风格",
+      "prompt": "[测试模式] 请使用 qingshuang-research-style 技能执行以下任务：\n\n请说明清爽调研报告风格的CSS特点\n\n执行完成后，请明确说明完成状态和关键输出。",
+      "expected_behaviors": ["提及CSS规范", "视觉设计"],
+      "assertions": [
+        {"type": "regex", "name": "提及样式", "pattern": "CSS|样式|风格"},
+        {"type": "contains", "name": "任务完成", "value": "完成"}
+      ],
+      "priority": "P2",
+      "timeout": 120
+    },
+    {
+      "scenario_id": "retry-image-gen-001",
+      "skill_name": "ai-image-generator",
+      "display_name": "ai-image-generator（AI生图）",
+      "description": "测试AI生图能力",
+      "prompt": "[测试模式] 请使用 ai-image-generator 技能执行以下任务：\n\n帮我生成一张简单的图：一只猫在看电脑\n\n执行完成后，请明确说明完成状态和关键输出。",
+      "expected_behaviors": ["调用生图API", "返回图片链接"],
+      "assertions": [
+        {"type": "regex", "name": "图片输出", "pattern": "\\.(jpg|png|webp)"},
+        {"type": "contains", "name": "任务完成", "value": "完成"}
+      ],
+      "priority": "P1",
+      "timeout": 300
+    },
+    {
+      "scenario_id": "retry-html-screenshot-001",
+      "skill_name": "html-screenshot",
+      "display_name": "html-screenshot（HTML截图）",
+      "description": "测试HTML截图能力",
+      "prompt": "[测试模式] 请使用 html-screenshot 技能执行以下任务：\n\n把这段HTML截图：<html><body><h1 style=\"color:blue\">测试</h1></body></html>\n\n执行完成后，请明确说明完成状态和关键输出。",
+      "expected_behaviors": ["渲染HTML", "输出PNG"],
+      "assertions": [
+        {"type": "regex", "name": "PNG输出", "pattern": "\\.png"},
+        {"type": "contains", "name": "任务完成", "value": "完成"}
+      ],
+      "priority": "P1",
+      "timeout": 300
+    }
+  ]
+}

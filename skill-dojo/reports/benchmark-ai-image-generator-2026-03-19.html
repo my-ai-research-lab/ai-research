@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>技能评测报告 · 2026-03-19 19:17</title>
+<style>
+/* ── Reset ─────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:       #0d1117;
+  --sur:      #161b22;
+  --sur2:     #21262d;
+  --sur3:     #2d333b;
+  --bd:       rgba(240,246,252,0.1);
+  --bd2:      rgba(240,246,252,0.05);
+  --tx:       #e6edf3;
+  --tx2:      #b1bac4;
+  --muted:    #7d8590;
+  --green:    #3fb950;  --green-dim: rgba(63,185,80,0.12);
+  --red:      #f85149;  --red-dim:   rgba(248,81,73,0.12);
+  --yellow:   #d29922;  --yellow-dim:rgba(210,153,34,0.12);
+  --blue:     #58a6ff;  --blue-dim:  rgba(88,166,255,0.1);
+  --cyan:     #39c5cf;  --cyan-dim:  rgba(57,197,207,0.1);
+  --purple:   #bc8cff;
+  --accent:   #58a6ff;
+  --radius:   8px;
+  --shadow:   0 4px 16px rgba(0,0,0,0.3);
+}
+html{font-size:14px;scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Roboto,sans-serif;
+  background:var(--bg);color:var(--tx);min-height:100vh;
+  padding:32px 20px 80px;line-height:1.6;
+}
+a{text-decoration:none;color:inherit}
+strong{font-weight:600}
+
+/* ── 布局 ───────────────────────────────────────────────── */
+.page{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+
+/* ── 页头 ───────────────────────────────────────────────── */
+.page-header{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  padding-bottom:20px;border-bottom:1px solid var(--bd);
+}
+.ph-left h1{font-size:1.35rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:4px}
+.ph-left h1 .accent{color:var(--accent)}
+.ph-left .subtitle{font-size:0.8rem;color:var(--muted)}
+.ph-right{text-align:right;font-size:0.78rem;color:var(--muted);line-height:2}
+
+/* ── 统计卡片行 ──────────────────────────────────────────── */
+.stats-row{display:flex;gap:10px;flex-wrap:wrap}
+.stat-card{
+  flex:1;min-width:88px;
+  background:var(--sur);border:1px solid var(--bd);border-radius:var(--radius);
+  padding:14px 16px;
+}
+.stat-card.highlight{border-color:rgba(88,166,255,0.35);background:var(--blue-dim)}
+.sc-val{font-size:1.55rem;font-weight:700;line-height:1;margin-bottom:3px}
+.sc-label{font-size:0.72rem;color:var(--muted)}
+.c-green{color:var(--green)}.c-red{color:var(--red)}.c-yellow{color:var(--yellow)}.c-blue{color:var(--accent)}
+
+/* ── 技能一览 ────────────────────────────────────────────── */
+.overview-section{
+  background:var(--sur);border:1px solid var(--bd);border-radius:var(--radius);
+  padding:16px 20px;
+}
+.section-title{
+  font-size:0.72rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:0.08em;color:var(--muted);margin-bottom:14px;
+}
+.skill-chips{display:flex;flex-wrap:wrap;gap:8px}
+.skill-chip{
+  display:flex;align-items:center;gap:7px;
+  padding:6px 12px;border-radius:20px;
+  border:1px solid;font-size:0.78rem;font-weight:500;
+  cursor:pointer;transition:opacity 0.15s;
+}
+.skill-chip:hover{opacity:0.8}
+.chip-pass{background:var(--green-dim);border-color:rgba(63,185,80,0.3);color:var(--green)}
+.chip-fail{background:var(--red-dim);  border-color:rgba(248,81,73,0.3);  color:var(--red)}
+.chip-err {background:var(--yellow-dim);border-color:rgba(210,153,34,0.3);color:var(--yellow)}
+.chip-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0}
+.chip-dur{font-size:0.68rem;color:var(--muted);margin-left:2px}
+
+/* ── 主表格 ──────────────────────────────────────────────── */
+.table-wrap{
+  border:1px solid var(--bd);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);
+}
+table{width:100%;border-collapse:collapse;font-size:0.83rem}
+thead tr{background:var(--sur2)}
+thead th{
+  padding:11px 16px;text-align:left;
+  font-size:0.7rem;font-weight:700;
+  color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;
+  border-bottom:1px solid var(--bd);white-space:nowrap;
+}
+tbody tr{border-bottom:1px solid var(--bd2);transition:background 0.15s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:rgba(240,246,252,0.025)}
+tbody td{padding:16px 16px;vertical-align:top}
+
+/* 列宽定义 */
+.col-no    {width:40px;text-align:center;color:var(--muted)}
+.col-status{width:52px;text-align:center}
+.col-skill {width:160px}
+.col-func  {width:160px;color:var(--tx2)}
+.col-items {width:220px}
+.col-arts  {min-width:200px}
+.col-dur   {width:60px;text-align:right;color:var(--muted);white-space:nowrap}
+
+/* ── 状态徽章 ─────────────────────────────────────────────── */
+.badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:26px;height:26px;border-radius:6px;font-size:0.8rem;font-weight:700;
+}
+.badge-pass{background:var(--green-dim);color:var(--green);border:1px solid rgba(63,185,80,0.25)}
+.badge-fail{background:var(--red-dim);  color:var(--red);  border:1px solid rgba(248,81,73,0.25)}
+.badge-err {background:var(--yellow-dim);color:var(--yellow);border:1px solid rgba(210,153,34,0.25)}
+
+/* ── 技能列 ───────────────────────────────────────────────── */
+.skill-name{font-weight:600;color:var(--tx);font-size:0.88rem;margin-bottom:3px}
+.skill-id  {font-size:0.7rem;color:var(--muted);font-family:"SF Mono","Fira Code",monospace}
+
+/* ── 评测项 ───────────────────────────────────────────────── */
+.check-list{display:flex;flex-direction:column;gap:5px}
+.check-item{display:flex;align-items:flex-start;gap:6px;font-size:0.8rem;line-height:1.5}
+.ci-icon{flex-shrink:0;font-size:0.75rem;margin-top:2px;font-weight:700}
+.ci-icon.ok{color:var(--green)}.ci-icon.fail{color:var(--red)}
+.ci-name{flex:1;color:var(--tx2)}
+.ci-ev  {font-size:0.7rem;color:var(--muted);margin-top:1px;padding-left:16px}
+
+/* assertion 摘要（折叠时展示） */
+.check-summary{
+  display:flex;align-items:center;gap:6px;font-size:0.78rem;color:var(--muted);
+  cursor:pointer;
+}
+.check-summary:hover{color:var(--tx)}
+.pills{display:flex;gap:4px}
+.pill{
+  padding:1px 7px;border-radius:10px;font-size:0.7rem;font-weight:600;
+}
+.pill-pass{background:var(--green-dim);color:var(--green)}
+.pill-fail{background:var(--red-dim);color:var(--red)}
+.pill-toggle{color:var(--accent);font-size:0.7rem;margin-left:2px}
+.checks-detail{margin-top:8px;display:none}
+.checks-detail.open{display:block}
+
+/* ── 交付物列 ──────────────────────────────────────────────── */
+.arts-list{display:flex;flex-direction:column;gap:7px}
+
+/* 通用交付物链接卡 */
+.art-card{
+  display:flex;align-items:center;gap:9px;
+  padding:8px 11px;border-radius:6px;
+  border:1px solid var(--bd);background:var(--sur2);
+  color:var(--tx2);
+  transition:border-color 0.15s,background 0.15s,color 0.15s;
+  cursor:pointer;
+}
+.art-card:hover{
+  border-color:var(--accent);background:var(--blue-dim);color:var(--tx);
+}
+.art-card.invalid{
+  border-color:rgba(248,81,73,0.25);background:var(--red-dim);
+  color:var(--red);cursor:default;opacity:0.7;
+}
+.art-icon{font-size:1.05rem;flex-shrink:0;line-height:1}
+.art-body{flex:1;min-width:0}
+.art-name{font-size:0.8rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.art-desc{font-size:0.7rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.art-arr {font-size:0.72rem;opacity:0.5;flex-shrink:0}
+.art-card:hover .art-arr{opacity:1}
+
+/* 图片预览卡 */
+.art-img-card{
+  display:flex;align-items:center;gap:9px;
+  padding:7px 11px;border-radius:6px;
+  border:1px solid var(--bd);background:var(--sur2);
+  color:var(--tx2);
+  transition:border-color 0.15s,background 0.15s;
+  cursor:pointer;
+}
+.art-img-card:hover{border-color:var(--accent);background:var(--blue-dim)}
+.art-thumb{
+  width:40px;height:40px;object-fit:cover;border-radius:4px;
+  border:1px solid var(--bd);flex-shrink:0;
+}
+
+/* HTML mini 预览卡 */
+.art-html-card{
+  border:1px solid var(--bd);border-radius:6px;overflow:hidden;background:var(--sur2);
+  cursor:pointer;transition:border-color 0.15s;
+  display:block;color:var(--tx2);
+}
+.art-html-card:hover{border-color:var(--accent)}
+.html-thumb{height:52px;overflow:hidden;background:#fff;pointer-events:none;position:relative}
+.html-thumb iframe{width:200%;height:200%;border:none;transform:scale(0.5);transform-origin:top left}
+.html-thumb-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 30%,rgba(22,27,34,0.8));
+}
+.html-thumb-meta{
+  display:flex;align-items:center;gap:8px;padding:6px 10px;font-size:0.78rem;
+}
+
+/* ── 行号（锚点） ─────────────────────────────────────────── */
+.row-anchor{scroll-margin-top:80px}
+
+/* ── 空状态 ───────────────────────────────────────────────── */
+.empty{color:var(--muted);font-size:0.78rem}
+
+/* ── 页脚 ─────────────────────────────────────────────────── */
+.page-footer{
+  text-align:center;font-size:0.72rem;color:var(--muted);padding-top:8px;
+}
+
+/* ── 滚动条 ───────────────────────────────────────────────── */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
+</style>
+</head>
+<body>
+<div class="page">
+
+
+  <div class="page-header">
+    <div class="ph-left">
+      <h1>技能 <span class="accent">评测报告</span></h1>
+      <div class="subtitle">Skill Dojo · Benchmark Run · 2026-03-19 19:17</div>
+    </div>
+    <div class="ph-right">
+      <div>1 个测试场景</div>
+      <div>总耗时 52s</div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card highlight">
+      <div class="sc-val c-blue">100%</div>
+      <div class="sc-label">整体通过率</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-val c-green">1</div>
+      <div class="sc-label">通过</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-val c-red">0</div>
+      <div class="sc-label">失败</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-val c-yellow">0</div>
+      <div class="sc-label">错误</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-val">1</div>
+      <div class="sc-label">总计</div>
+    </div>
+  </div>
+
+
+  <div class="overview-section">
+    <div class="section-title">本次评测技能 (1 项)</div>
+    <div class="skill-chips"><div class="skill-chip chip-pass" onclick="jumpToRow('0')">
+          <span class="chip-dot"></span>
+          ai-image-generator
+          <span class="chip-dur">52s</span>
+        </div></div>
+  </div>
+
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="col-no">#</th>
+          <th class="col-status">状态</th>
+          <th class="col-skill">技能</th>
+          <th class="col-func">功能描述</th>
+          <th class="col-items">评测项</th>
+          <th class="col-arts">输出交付物</th>
+          <th class="col-dur">耗时</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-anchor" id="row-0">
+          <td class="col-no">1</td>
+          <td class="col-status"><span class="badge badge-pass">✓</span></td>
+          <td class="col-skill">
+            <div class="skill-name">ai-image-generator</div>
+            <div class="skill-id">ai-img-001</div>
+          </td>
+          <td class="col-func">根据描述生成一张技术风格的配图</td>
+          <td class="col-items"><div class="check-list">
+          <div class="check-summary" onclick="toggleChecks(0)">
+          <div class="pills"><span class="pill pill-pass">✓ 3</span></div>
+          <span style="color:var(--muted);font-size:0.7rem">3 项</span>
+          <span class="pill-toggle" style="cursor:pointer" onclick="toggleChecks(0)">▼ 展开</span>
+        </div>
+          <div class="checks-detail " id="chk-0" >
+            <div class="check-item">
+              <span class="ci-icon ok">✓</span>
+              <div>
+                <div class="ci-name">包含图片路径</div>
+                <div class="ci-ev">/tmp/ai-robot-coder.jpg</div>
+              </div>
+            </div><div class="check-item">
+              <span class="ci-icon ok">✓</span>
+              <div>
+                <div class="ci-name">有生成关键词</div>
+                <div class="ci-ev">Generation Complete!</div>
+              </div>
+            </div><div class="check-item">
+              <span class="ci-icon ok">✓</span>
+              <div>
+                <div class="ci-name">图片可读取验证</div>
+                <div class="ci-ev">JPEG 2752×1536, 752KB</div>
+              </div>
+            </div>
+          </div>
+        </div></td>
+          <td class="col-arts"><div class="arts-list"><a class="art-img-card" href="http://localhost:8765/transcripts/ai-robot-coder.jpg" target="_blank">
+          <img class="art-thumb" src="http://localhost:8765/transcripts/ai-robot-coder.jpg" alt="生成图片" loading="lazy"/>
+          <div class="art-body">
+            <div class="art-name">生成图片</div>
+            <div class="art-desc">AI生成的科技配图</div>
+          </div>
+          <span class="art-arr">↗</span>
+        </a><a class="art-card" href="http://localhost:8765/transcripts/ai-img-001.html" target="_blank">
+            <span class="art-icon">💬</span>
+            <div class="art-body">
+              <div class="art-name">对话复盘 · HTML</div>
+              <div class="art-desc">10 条消息</div>
+            </div>
+            <span class="art-arr">↗</span>
+          </a></div></td>
+          <td class="col-dur">52.4s</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="page-footer">Generated by Skill Test Runner · 2026-03-19 19:41:07</div>
+</div>
+
+<script>
+// 评测项折叠切换
+function toggleChecks(id) {
+  const el = document.getElementById('chk-' + id);
+  el.classList.toggle('open');
+  const btn = el.previousElementSibling.querySelector('.pill-toggle');
+  if (btn) btn.textContent = el.classList.contains('open') ? '▲ 收起' : '▼ 展开';
+}
+// 技能芯片跳转
+function jumpToRow(id) {
+  const row = document.getElementById('row-' + id);
+  if (row) row.scrollIntoView({behavior:'smooth', block:'center'});
+}
+</script>
+</body>
+</html>

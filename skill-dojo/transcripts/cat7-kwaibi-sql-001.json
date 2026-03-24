@@ -1,0 +1,97 @@
+[
+  {
+    "ts": 1774009162656,
+    "type": "say",
+    "say": "completion_result",
+    "text": "",
+    "agentType": "agent",
+    "sessionId": "283CCA21-96AC-452D-B696-34B948AE944D",
+    "chatId": "chat-1774009142244-4nwj2u",
+    "stopReason": "",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009156445,
+    "sessionId": "283CCA21-96AC-452D-B696-34B948AE944D",
+    "chatId": "chat-1774009142244-4nwj2u",
+    "type": "say",
+    "say": "text",
+    "text": "---\n\n## ✅ 完成状态\n\n**任务已完成**。以下是 **ks-kwaibi-sql-exec** 技能的使用方式说明：\n\n---\n\n## KwaiBI SQL 取数执行技能使用方式\n\n### 🎯 功能定位\n在 KwaiBI 平台自动执行 SQL 查询，获取结果数据并返回格式化表格。\n\n### 📋 使用方式\n\n**方式一：脚本执行**（框架版本）\n```bash\n# 直接执行 SQL\npython3 ~/.codeflicker/skills/kwaibi-sql-exec/scripts/kwaibi_sql_exec.py \"SELECT * FROM table LIMIT 10\"\n\n# 从文件读取 SQL\npython3 ~/.codeflicker/skills/kwaibi-sql-exec/scripts/kwaibi_sql_exec.py --file query.sql\n```\n\n**方式二：browser_agent 手动执行**（推荐，完整自动化）\n\n完整流程：\n```\n① 打开 KwaiBI → ② 新增查询（记录文件名）→ ③ 输入 SQL → \n④ 执行（获取 taskId）→ ⑤ 等待查询成功 → 点击\"执行结果\" → \n⑥ 拦截 getResult → ⑦ 表格展示\n```\n\n### 📊 日期占位符\n| 占位符 | 说明 | 示例 |\n|--------|------|------|\n| `{{ds}}` | 当前日期 | 2026-03-20 |\n| `{{ds -1}}` | 昨日 | 2026-03-19 |\n| `{{ds_nodash}}` | 无横线格式 | 20260320 |\n\n### ⚠️ 关键要点\n1. **记录文件名**：新增查询后立即记录\n2. **在\"手动查询记录\"中查找**：等待状态变为成功\n3. **等待策略**：2分钟 → 5分钟 → 10分钟 → 15分钟递增轮询\n4. **特殊字符处理**：结果中的 `\\|`、`\\n` 等需转义\n\n### 🔗 相关技能\n- `ks-kwaibi-data-query`: 看板数据查询\n- `ks-kuaishou-sso-login`: SSO 登录\n\n---\n\n**关键输出**：技能使用说明文档，包含脚本调用方式、完整执行流程、日期占位符、关键要点和相关技能索引。",
+    "partial": false,
+    "lastCheckpointHash": "e4cacdf133990f3ea46455cda9486fc62f85a2a0",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009151622,
+    "sessionId": "283CCA21-96AC-452D-B696-34B948AE944D",
+    "chatId": "chat-1774009142244-4nwj2u",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": false,
+    "lastCheckpointHash": "e4cacdf133990f3ea46455cda9486fc62f85a2a0",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009150318,
+    "sessionId": "283CCA21-96AC-452D-B696-34B948AE944D",
+    "chatId": "chat-1774009142244-4nwj2u",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": true,
+    "lastCheckpointHash": "e4cacdf133990f3ea46455cda9486fc62f85a2a0",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009142484,
+    "role": "user",
+    "type": "say",
+    "say": "text",
+    "text": "[测试模式] 请使用 ks-kwaibi-sql-exec 技能执行以下任务：\n\n请说明SQL取数执行技能的使用方式\n\n执行完成后，请明确说明完成状态和关键输出。",
+    "sessionId": "283CCA21-96AC-452D-B696-34B948AE944D",
+    "agentType": "agent",
+    "chatId": "chat-1774009142244-4nwj2u",
+    "editorState": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "[测试模式] 请使用 ks-kwaibi-sql-exec 技能执行以下任务：\n\n请说明SQL取数执行技能的使用方式\n\n执行完成后，请明确说明完成状态和关键输出。",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "contextItems": [],
+    "diagnostics": [],
+    "indexed": true,
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  }
+]

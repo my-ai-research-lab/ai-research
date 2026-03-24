@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "run_id": "skill-dojo-top10-20260322",
+    "timestamp": "2026-03-22T01:28:00",
+    "report_type": "continuous_improvement",
+    "evaluator": "skill-dojo v2.0.0",
+    "mode": "方式A (轻量评测 + 退化检测 + 自动修复)"
+  },
+  "data_source": {
+    "usage_stats": "reports/skill-usage-stats.json (2026-03-21)",
+    "historical_baseline": "data/skill-historical-baseline.json (2026-03-19)",
+    "previous_report": "reports/improvement-report-2026-03-21.json"
+  },
+  "prefix_merge_applied": true,
+  "top_10_skills": [
+    {"rank": 1, "name": "link-meta-execution", "merged_calls": 236, "variants": ["link-meta-execution(162)", "meta-execution(74)"], "version": "2.12.0"},
+    {"rank": 2, "name": "internet-content-research", "merged_calls": 73, "variants": ["internet-content-research(68)", "CF-internet-content-research(5)"], "version": "4.0.0"},
+    {"rank": 3, "name": "qingshuang-research-style", "merged_calls": 48, "variants": ["qingshuang-research-style(39)", "shenlang-research-style(9)"], "version": "3.2.1"},
+    {"rank": 4, "name": "link-skill-management", "merged_calls": 36, "variants": ["skill-management(18)", "link-skill-management(14)", "skill-manager(4)"], "version": "2.8.0"},
+    {"rank": 5, "name": "link-memory-hygiene", "merged_calls": 29, "variants": ["memory-hygiene(20)", "link-memory-hygiene(9)"], "version": "2.3.0"},
+    {"rank": 6, "name": "link-knowledge-curator", "merged_calls": 25, "variants": ["knowledge-curator(17)", "link-knowledge-curator(8)"], "version": "2.2.1"},
+    {"rank": 7, "name": "ai-image-generator", "merged_calls": 24, "variants": ["ai-image-generator(24)"], "version": "1.3.0"},
+    {"rank": 8, "name": "baoyu-translate", "merged_calls": 23, "variants": ["baoyu-translate(23)"], "version": "1.56.1"},
+    {"rank": 9, "name": "ks-kim-docs-shuttle", "merged_calls": 19, "variants": ["ks-kim-docs-shuttle(19)"], "version": "2.2.0"},
+    {"rank": 10, "name": "humanize-writing", "merged_calls": 17, "variants": ["humanize-writing(17)"], "version": "1.1.0"}
+  ],
+  "evaluation_results": {
+    "summary": {
+      "total_evaluated": 10,
+      "grade_A": 8,
+      "grade_A_minus": 1,
+      "grade_B_plus": 1,
+      "overall_health": "优秀 (90%)"
+    },
+    "results": [
+      {"rank": 1, "skill": "link-meta-execution", "grade": "A", "score": "5/5", "issues": [], "note": "v2.12.0 经 skill-evaluator 93分 A级，核心元技能状态优秀"},
+      {"rank": 2, "skill": "internet-content-research", "grade": "A", "score": "5/5", "issues": [], "note": "v4.0.0 四大数据源完整，文档657行详尽"},
+      {"rank": 3, "skill": "qingshuang-research-style", "grade": "A-", "score": "4.5/5", "issues": [{"type": "version_mismatch", "severity": "P1", "detail": "标题 v3.2.0 vs frontmatter v3.2.1", "auto_fixed": true}], "note": "版本号不一致已自动修复"},
+      {"rank": 4, "skill": "link-skill-management", "grade": "A", "score": "5/5", "issues": [], "note": "v2.8.0 五阶段流程+自动执行规则完善"},
+      {"rank": 5, "skill": "link-memory-hygiene", "grade": "A", "score": "5/5", "issues": [], "note": "v2.3.0 五阶段+节点深度审计"},
+      {"rank": 6, "skill": "link-knowledge-curator", "grade": "A", "score": "5/5", "issues": [], "note": "v2.2.1 五阶段+节点深度审计完整"},
+      {"rank": 7, "skill": "ai-image-generator", "grade": "B+", "score": "3.5/5", "issues": [{"type": "config_missing", "severity": "P1", "detail": "API Key 全部注释未启用", "auto_fixed": false, "user_action_required": "配置 ~/.baoyu-skills/.env"}], "note": "文档优秀但运行时配置缺失（需用户配置）"},
+      {"rank": 8, "skill": "baoyu-translate", "grade": "A", "score": "5/5", "issues": [], "note": "v1.56.1 三模式翻译，上次已修复 EXTEND.md"},
+      {"rank": 9, "skill": "ks-kim-docs-shuttle", "grade": "A", "score": "5/5", "issues": [], "note": "v2.2.0 740行最详尽技能，11条强制规则"},
+      {"rank": 10, "skill": "humanize-writing", "grade": "A", "score": "5/5", "issues": [], "note": "v1.1.0 24类AI模式识别+注入灵魂，断言全通过"}
+    ]
+  },
+  "degradation_detection": {
+    "baseline_date": "2026-03-19",
+    "current_date": "2026-03-22",
+    "degraded_skills": [],
+    "improved_skills": [
+      {"skill": "link-meta-execution", "baseline": 15, "current": 236, "change": "+1473%"},
+      {"skill": "internet-content-research", "baseline": 7, "current": 73, "change": "+943%"},
+      {"skill": "qingshuang-research-style", "baseline": 5, "current": 48, "change": "+860%"}
+    ],
+    "conclusion": "所有 Top 10 高频技能调用量均在上升，无退化迹象"
+  },
+  "fixes_applied": {
+    "count": 1,
+    "auto_fixes": [
+      {
+        "skill": "qingshuang-research-style",
+        "fix_type": "version_mismatch",
+        "action": "标题 v3.2.0 → v3.2.1 与 frontmatter 一致",
+        "lines_changed": 1,
+        "status": "success",
+        "timestamp": "2026-03-22T01:28:00"
+      }
+    ]
+  },
+  "pending_actions": {
+    "user_required": [
+      {
+        "priority": "P1",
+        "skill": "ai-image-generator",
+        "action": "配置 ~/.baoyu-skills/.env 文件，启用至少一个图片生成 API Key",
+        "details": "取消注释并填入: DASHSCOPE_API_KEY / OPENAI_API_KEY / GOOGLE_API_KEY",
+        "inherited_from": "improvement-report-2026-03-21"
+      }
+    ]
+  },
+  "comparison_with_previous": {
+    "previous_report": "2026-03-21",
+    "improvements": [
+      "qingshuang-research-style 版本号不一致已修复",
+      "html-screenshot puppeteer 依赖已在上次修复",
+      "baoyu-translate EXTEND.md 已在上次创建"
+    ],
+    "remaining": [
+      "ai-image-generator API Key 仍需用户配置"
+    ]
+  },
+  "recommendations": {
+    "immediate": [
+      "配置图片生成 API Key（P1，影响 ai-image-generator + baoyu-infographic）"
+    ],
+    "weekly": [
+      "对 Top 5 高频技能执行轻量评测",
+      "社区对标：检查外部技能市场是否有更新版本"
+    ],
+    "monthly": [
+      "全量技能深度评测（方式B独立会话）",
+      "清理低频/废弃技能"
+    ]
+  }
+}

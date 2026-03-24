@@ -1,0 +1,97 @@
+[
+  {
+    "ts": 1774010173840,
+    "type": "say",
+    "say": "completion_result",
+    "text": "",
+    "agentType": "agent",
+    "sessionId": "5740F3FC-7F33-4B26-BAD2-8232B534FB9E",
+    "chatId": "chat-1774010151573-14bma0",
+    "stopReason": "",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774010173630,
+    "sessionId": "5740F3FC-7F33-4B26-BAD2-8232B534FB9E",
+    "chatId": "chat-1774010151573-14bma0",
+    "type": "say",
+    "say": "text",
+    "text": "---\n\n## ✅ 完成状态\n\n**任务已完成**\n\n---\n\n## 关键输出：QA 测试用例技能（ks-qa-test-case）的输入输出\n\n### 📥 输入\n\n| 输入类型 | 说明 |\n|---------|------|\n| **技术设计文档** | 了解技术实现细节 |\n| **产品需求文档 (PRD)** | 了解业务需求和功能范围 |\n| **交互设计文档** | 了解交互流程和状态变化 |\n| **设计稿** | 了解 UI 元素和视觉效果 |\n\n### 📤 输出\n\n**结构化的 QA 黑盒测试用例**，采用 Checkbox 格式（`- [ ]`），包含：\n\n1. **场景梳理** - 端到端流程用例\n   ```markdown\n   - [ ] 0.1 「正常流程」操作→响应→结果\n   - [ ] 0.2 「异常处理」操作→错误→兜底\n   ```\n\n2. **功能点测试** - 按分组的细粒度覆盖\n   - 显示条件\n   - 各状态测试（文案/视觉/点击/hover 四维度）\n   - 状态流转\n   - 多语言\n\n3. **输出格式示例**：\n   ```markdown\n   ## 📋 [区域名] - 测试用例\n   \n   ### 场景梳理\n   - [ ] 0.1 「场景名」前置→操作→结果\n   \n   ### ▼ 1. [分组名]\n   - [ ] 1.1 [元素] 文案显示「XX」\n   - [ ] 1.2 点击触发 [行为]\n   - [ ] 1.3 hover 显示 Tooltip「XX」\n   ```\n\n### ⚙️ 工作流程\n\n```\n分析文档 → 识别组件 → 建议分组 → 用户确认 → 生成用例\n```",
+    "partial": false,
+    "lastCheckpointHash": "176e2b0e8075344932d728b243304cd5957da0b0",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774010163930,
+    "sessionId": "5740F3FC-7F33-4B26-BAD2-8232B534FB9E",
+    "chatId": "chat-1774010151573-14bma0",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": false,
+    "lastCheckpointHash": "176e2b0e8075344932d728b243304cd5957da0b0",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774010163875,
+    "sessionId": "5740F3FC-7F33-4B26-BAD2-8232B534FB9E",
+    "chatId": "chat-1774010151573-14bma0",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": true,
+    "lastCheckpointHash": "176e2b0e8075344932d728b243304cd5957da0b0",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774010151809,
+    "role": "user",
+    "type": "say",
+    "say": "text",
+    "text": "[测试模式] 请使用 ks-qa-test-case 技能执行以下任务：\n\n请说明QA测试用例技能的输入输出\n\n执行完成后，请明确说明完成状态和关键输出。",
+    "sessionId": "5740F3FC-7F33-4B26-BAD2-8232B534FB9E",
+    "agentType": "agent",
+    "chatId": "chat-1774010151573-14bma0",
+    "editorState": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "[测试模式] 请使用 ks-qa-test-case 技能执行以下任务：\n\n请说明QA测试用例技能的输入输出\n\n执行完成后，请明确说明完成状态和关键输出。",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "contextItems": [],
+    "diagnostics": [],
+    "indexed": true,
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  }
+]

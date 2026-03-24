@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "run_id": "test-20260321-063259",
+    "timestamp": "2026-03-21T06:32:59.071568",
+    "total_scenarios": 4,
+    "duration_seconds": 160.9156358242035
+  },
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 4,
+    "failed": 0,
+    "errors": 0,
+    "by_priority": {
+      "P1": {
+        "passed": 2,
+        "total": 2
+      },
+      "P2": {
+        "passed": 2,
+        "total": 2
+      }
+    },
+    "by_skill": {
+      "investment-tracker": {
+        "passed": 1,
+        "failed": 0,
+        "total": 1
+      },
+      "stock-analysis": {
+        "passed": 1,
+        "failed": 0,
+        "total": 1
+      },
+      "baoyu-skills": {
+        "passed": 1,
+        "failed": 0,
+        "total": 1
+      },
+      "meta-spec-skill-template": {
+        "passed": 1,
+        "failed": 0,
+        "total": 1
+      }
+    }
+  },
+  "results": [
+    {
+      "scenario_id": "investment-tracker-001",
+      "skill_name": "investment-tracker",
+      "description": "测试投资组合追踪能力",
+      "status": "passed",
+      "duration_ms": 42022,
+      "assertions": [
+        {
+          "name": "提及投资",
+          "passed": true,
+          "actual": "投资",
+          "expected": "正则: 投资|基金|持仓|组合|portfolio",
+          "evidence": "正则匹配结果: 投资"
+        },
+        {
+          "name": "任务完成",
+          "passed": true,
+          "actual": "找到",
+          "expected": "包含: 完成",
+          "evidence": "搜索 '完成' - 匹配"
+        }
+      ],
+      "artifacts": [],
+      "transcript": {
+        "session_id": "23E3397D-E078-477E-9B7F-4144CE7E8EAF",
+        "messages_count": 5,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/investment-tracker-001.json"
+      },
+      "key_outputs": [],
+      "error_message": ""
+    },
+    {
+      "scenario_id": "stock-analysis-001",
+      "skill_name": "stock-analysis",
+      "description": "测试股票分析能力介绍",
+      "status": "passed",
+      "duration_ms": 41875,
+      "assertions": [
+        {
+          "name": "提及股票",
+          "passed": true,
+          "actual": "Yahoo",
+          "expected": "正则: 股票|美股|crypto|Yahoo|分析",
+          "evidence": "正则匹配结果: Yahoo"
+        },
+        {
+          "name": "任务完成",
+          "passed": true,
+          "actual": "找到",
+          "expected": "包含: 完成",
+          "evidence": "搜索 '完成' - 匹配"
+        }
+      ],
+      "artifacts": [],
+      "transcript": {
+        "session_id": "99278D80-56AC-4D52-B5F5-FFA0851FA097",
+        "messages_count": 5,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/stock-analysis-001.json"
+      },
+      "key_outputs": [],
+      "error_message": ""
+    },
+    {
+      "scenario_id": "baoyu-skills-001",
+      "skill_name": "baoyu-skills",
+      "description": "测试宝玉技能索引",
+      "status": "passed",
+      "duration_ms": 33279,
+      "assertions": [
+        {
+          "name": "提及宝玉技能",
+          "passed": true,
+          "actual": "宝玉",
+          "expected": "正则: baoyu|宝玉|translate|infographic|markdown",
+          "evidence": "正则匹配结果: 宝玉"
+        },
+        {
+          "name": "任务完成",
+          "passed": true,
+          "actual": "找到",
+          "expected": "包含: 完成",
+          "evidence": "搜索 '完成' - 匹配"
+        }
+      ],
+      "artifacts": [],
+      "transcript": {
+        "session_id": "52019280-A617-47D1-B7CB-2E262A380467",
+        "messages_count": 4,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/baoyu-skills-001.json"
+      },
+      "key_outputs": [],
+      "error_message": ""
+    },
+    {
+      "scenario_id": "meta-spec-skill-template-001",
+      "skill_name": "meta-spec-skill-template",
+      "description": "测试Spec驱动开发模板",
+      "status": "passed",
+      "duration_ms": 43737,
+      "assertions": [
+        {
+          "name": "提及Spec",
+          "passed": true,
+          "actual": "spec",
+          "expected": "正则: Spec|需求|文档|技术方案|工作流",
+          "evidence": "正则匹配结果: spec"
+        },
+        {
+          "name": "任务完成",
+          "passed": true,
+          "actual": "找到",
+          "expected": "包含: 完成",
+          "evidence": "搜索 '完成' - 匹配"
+        }
+      ],
+      "artifacts": [],
+      "transcript": {
+        "session_id": "C0AE9447-FC2C-463F-AE86-1DB5FBB4A37E",
+        "messages_count": 5,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/meta-spec-skill-template-001.json"
+      },
+      "key_outputs": [],
+      "error_message": ""
+    }
+  ]
+}

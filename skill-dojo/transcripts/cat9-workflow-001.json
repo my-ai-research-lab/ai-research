@@ -1,0 +1,97 @@
+[
+  {
+    "ts": 1774009729424,
+    "type": "say",
+    "say": "completion_result",
+    "text": "",
+    "agentType": "agent",
+    "sessionId": "80BBE3FC-6DD3-49C7-9FB7-943639F650F9",
+    "chatId": "chat-1774009706901-2d49ei",
+    "stopReason": "",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009720797,
+    "sessionId": "80BBE3FC-6DD3-49C7-9FB7-943639F650F9",
+    "chatId": "chat-1774009706901-2d49ei",
+    "type": "say",
+    "say": "text",
+    "text": "## 工作流编排模式核心概念\n\n基于 workflow-orchestration-patterns 技能，以下是核心概念说明：\n\n### 1. 核心设计决策：Workflows vs Activities\n\n这是最关键的架构区分：\n\n| 维度 | Workflows (工作流) | Activities (活动) |\n|------|-------------------|-------------------|\n| 职责 | 编排逻辑和决策 | 外部系统交互 |\n| 确定性 | **必须确定性** | 可以非确定性 |\n| 外部调用 | ❌ 禁止直接调用 | ✅ API/数据库/网络 |\n| 生命周期 | 可运行数年 | 短暂（秒到分钟） |\n| 幂等性 | 自动保证 | **必须手动实现** |\n\n**判断规则**：触及外部系统 → Activity；编排/决策逻辑 → Workflow\n\n### 2. 四大核心模式\n\n1. **Saga 补偿模式** — 分布式事务回滚\n   - 执行前注册补偿 → 执行步骤 → 失败时逆序补偿(LIFO)\n\n2. **Entity Workflows** — 实体生命周期管理\n   - 一个执行 = 一个实体（购物车、账户、库存）\n\n3. **Fan-Out/Fan-In** — 并行执行聚合\n   - 1M任务 → 1K子工作流 × 1K任务\n\n4. **Async Callback** — 等待外部事件/人工审批\n\n### 3. 确定性约束（Workflows 中禁止）\n\n- ❌ `datetime.now()` → ✅ `workflow.now()`\n- ❌ `random()` → ✅ `workflow.random()`\n- ❌ 线程/锁/同步原语\n- ❌ 全局状态/静态变量\n- ❌ 直接 I/O 或网络调用\n\n### 4. 弹性设计要点\n\n- **重试策略**：指数退避 + 最大尝试次数 + 不可重试错误分类\n- **幂等性**：幂等键、Upsert、已处理ID追踪\n- **心跳**：长任务定期报告进度，检测卡死\n\n---\n\n**完成状态**：✅ 已完成\n\n**关键输出**：\n1. Workflow vs Activity 的核心区分规则\n2. 四大编排模式（Saga/Entity/Fan-Out/Async Callback）\n3. 确定性约束清单\n4. 弹性设计三要素（重试/幂等/心跳）",
+    "partial": false,
+    "lastCheckpointHash": "1f68f28eb33723b0f2907e885ec6cb4f7d6cb4f4",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009716276,
+    "sessionId": "80BBE3FC-6DD3-49C7-9FB7-943639F650F9",
+    "chatId": "chat-1774009706901-2d49ei",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": false,
+    "lastCheckpointHash": "1f68f28eb33723b0f2907e885ec6cb4f7d6cb4f4",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009715022,
+    "sessionId": "80BBE3FC-6DD3-49C7-9FB7-943639F650F9",
+    "chatId": "chat-1774009706901-2d49ei",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": true,
+    "lastCheckpointHash": "1f68f28eb33723b0f2907e885ec6cb4f7d6cb4f4",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009707156,
+    "role": "user",
+    "type": "say",
+    "say": "text",
+    "text": "[测试模式] 请使用 workflow-orchestration-patterns 技能执行以下任务：\n\n请说明工作流编排模式的核心概念\n\n执行完成后，请明确说明完成状态和关键输出。",
+    "sessionId": "80BBE3FC-6DD3-49C7-9FB7-943639F650F9",
+    "agentType": "agent",
+    "chatId": "chat-1774009706901-2d49ei",
+    "editorState": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "[测试模式] 请使用 workflow-orchestration-patterns 技能执行以下任务：\n\n请说明工作流编排模式的核心概念\n\n执行完成后，请明确说明完成状态和关键输出。",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "contextItems": [],
+    "diagnostics": [],
+    "indexed": true,
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  }
+]

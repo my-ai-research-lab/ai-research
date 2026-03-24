@@ -1,0 +1,97 @@
+[
+  {
+    "ts": 1774009283448,
+    "type": "say",
+    "say": "completion_result",
+    "text": "",
+    "agentType": "agent",
+    "sessionId": "13C18F48-366B-4648-9967-D343AD38356D",
+    "chatId": "chat-1774009264352-yholjh",
+    "stopReason": "",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009277817,
+    "sessionId": "13C18F48-366B-4648-9967-D343AD38356D",
+    "chatId": "chat-1774009264352-yholjh",
+    "type": "say",
+    "say": "text",
+    "text": "## Onepoint会议技能使用说明\n\n### 一、技能概述\n\n`ks-onepoint-meeting` 是快手Onepoint会议系统的查询助手，支持：\n- 查询会议列表\n- 获取单个会议详情\n- 获取会议内容（ASR语音识别文本/摘要/行动项）\n\n### 二、触发方式\n\n直接对我说以下触发词即可：\n- \"查会议\"、\"会议记录\"、\"最近的会议\"\n- \"会议摘要\"、\"会议内容\"\n- \"Onepoint\"\n- \"帮我找一下上次开会的记录\"\n\n### 三、核心能力\n\n| 能力 | 说明 |\n|:-----|:-----|\n| **会议列表** | 查询你的最近会议，支持分页 |\n| **会议详情** | 获取单个会议基础信息 |\n| **会议内容** | 获取ASR全文、AI摘要、行动项、相关文档 |\n\n### 四、使用示例\n\n**场景1：查找昨天的会议行动项**\n```\n用户: 帮我找一下昨天和产品开的会，有什么行动项？\n```\n\n**场景2：获取会议详细记录**\n```\n用户: 把上周五的评审会会议记录整理给我\n```\n\n### 五、前置条件\n\n需要配置 `ONEPOINT_SKILL_API_KEY` 环境变量才能调用API。\n\n---\n\n**完成状态**: ✅ 已完成\n\n**关键输出**:\n1. 技能支持3种主要能力：会议列表、会议详情、会议内容获取\n2. 触发词包括：查会议、会议记录、会议摘要、Onepoint等\n3. 可获取的内容类型：ASR语音识别全文、AI生成摘要、行动项/待办、相关文档\n4. 技能来源：LangBridge技能商店（36赞）",
+    "partial": false,
+    "lastCheckpointHash": "19cbaaa6c167d2e37ce9639469d9ec160f41a425",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009273659,
+    "sessionId": "13C18F48-366B-4648-9967-D343AD38356D",
+    "chatId": "chat-1774009264352-yholjh",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": false,
+    "lastCheckpointHash": "19cbaaa6c167d2e37ce9639469d9ec160f41a425",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009272608,
+    "sessionId": "13C18F48-366B-4648-9967-D343AD38356D",
+    "chatId": "chat-1774009264352-yholjh",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": true,
+    "lastCheckpointHash": "19cbaaa6c167d2e37ce9639469d9ec160f41a425",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009264625,
+    "role": "user",
+    "type": "say",
+    "say": "text",
+    "text": "[测试模式] 请使用 ks-onepoint-meeting 技能执行以下任务：\n\n请说明Onepoint会议技能的使用方式\n\n执行完成后，请明确说明完成状态和关键输出。",
+    "sessionId": "13C18F48-366B-4648-9967-D343AD38356D",
+    "agentType": "agent",
+    "chatId": "chat-1774009264352-yholjh",
+    "editorState": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "[测试模式] 请使用 ks-onepoint-meeting 技能执行以下任务：\n\n请说明Onepoint会议技能的使用方式\n\n执行完成后，请明确说明完成状态和关键输出。",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "contextItems": [],
+    "diagnostics": [],
+    "indexed": true,
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  }
+]

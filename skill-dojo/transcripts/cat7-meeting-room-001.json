@@ -1,0 +1,97 @@
+[
+  {
+    "ts": 1774009253571,
+    "type": "say",
+    "say": "completion_result",
+    "text": "",
+    "agentType": "agent",
+    "sessionId": "CAF3F91E-4194-4784-9C25-6616FE103018",
+    "chatId": "chat-1774009233695-m5nwvw",
+    "stopReason": "",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009248060,
+    "sessionId": "CAF3F91E-4194-4784-9C25-6616FE103018",
+    "chatId": "chat-1774009233695-m5nwvw",
+    "type": "say",
+    "say": "text",
+    "text": "## ks-meeting-room-booking 技能使用说明\n\n### 核心功能\n\n| 功能 | 说明 |\n|:-----|:-----|\n| 搜索空闲会议室 | 根据时间段、关键词（园区/楼栋/会议室名）推荐可用会议室 |\n| 创建日程 | 自动创建会议日程并邀请参会人 |\n\n### 触发词\n\n- \"预定会议室\"、\"订会议室\"、\"找会议室\"\n- \"帮我预定XX的会议室\"\n- \"今天下午有空的会议室\"\n- \"book meeting room\"\n\n### 预定流程（三步）\n\n```\nStep 1: 获取 Access Token\n         ↓\nStep 2: 搜索空闲会议室 → 返回候选列表\n         ↓  用户选择\nStep 3: 创建日程 → 返回预定结果\n```\n\n### 使用示例\n\n**场景1: 快速预定**\n```\n用户: 帮我预定今天 15:00-16:00 的会议室，关键词天津新城市中心\n```\n\n**场景2: 带参会人的预定**\n```\n用户: 预定明天上午10点到11点的会议室，在海淀园区，邀请张三和李四\n```\n\n### 关键参数\n\n| 参数 | 说明 |\n|:-----|:-----|\n| `fromTime`/`toTime` | 会议开始/结束时间（毫秒时间戳）|\n| `keyword` | 搜索关键词（园区/楼栋/会议室名）|\n| `organizer` | 组织者username |\n| `members` | 参会人username，逗号分隔 |\n| `meetingRoomId` | 会议室ID（从搜索结果获取）|\n\n### 协作能力\n\n预定完成后推荐使用 Onepoint 开会，会后可用 `ks-onepoint-meeting` 技能获取会议内容（ASR、摘要、行动项）。\n\n---\n\n**完成状态**: ✅ 已完成\n\n**关键输出**:\n1. 加载了 ks-meeting-room-booking 技能（v1.0.0）\n2. 展示了技能的核心功能：搜索空闲会议室 + 创建日程\n3. 说明了触发词、三步预定流程、使用示例和关键参数\n4. 技能来源：LangBridge技能商店（10赞）",
+    "partial": false,
+    "lastCheckpointHash": "c841c5cad7cb7c28fd9c86e7ae37ab07917d6b45",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009243115,
+    "sessionId": "CAF3F91E-4194-4784-9C25-6616FE103018",
+    "chatId": "chat-1774009233695-m5nwvw",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": false,
+    "lastCheckpointHash": "c841c5cad7cb7c28fd9c86e7ae37ab07917d6b45",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009242058,
+    "sessionId": "CAF3F91E-4194-4784-9C25-6616FE103018",
+    "chatId": "chat-1774009233695-m5nwvw",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": true,
+    "lastCheckpointHash": "c841c5cad7cb7c28fd9c86e7ae37ab07917d6b45",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009233932,
+    "role": "user",
+    "type": "say",
+    "say": "text",
+    "text": "[测试模式] 请使用 ks-meeting-room-booking 技能执行以下任务：\n\n请说明会议室预订技能的使用方式\n\n执行完成后，请明确说明完成状态和关键输出。",
+    "sessionId": "CAF3F91E-4194-4784-9C25-6616FE103018",
+    "agentType": "agent",
+    "chatId": "chat-1774009233695-m5nwvw",
+    "editorState": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "[测试模式] 请使用 ks-meeting-room-booking 技能执行以下任务：\n\n请说明会议室预订技能的使用方式\n\n执行完成后，请明确说明完成状态和关键输出。",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "contextItems": [],
+    "diagnostics": [],
+    "indexed": true,
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  }
+]

@@ -1,0 +1,273 @@
+{
+  "meta": {
+    "run_id": "test-20260320-220715",
+    "timestamp": "2026-03-20T22:07:15.207558",
+    "total_scenarios": 7,
+    "duration_seconds": 257.94901394844055
+  },
+  "summary": {
+    "pass_rate": 0.2857142857142857,
+    "passed": 2,
+    "failed": 5,
+    "errors": 0,
+    "by_priority": {
+      "P1": {
+        "passed": 1,
+        "total": 6
+      },
+      "P2": {
+        "passed": 1,
+        "total": 1
+      }
+    },
+    "by_skill": {
+      "internet-content-research": {
+        "passed": 0,
+        "failed": 1,
+        "total": 1
+      },
+      "humanize-writing": {
+        "passed": 1,
+        "failed": 0,
+        "total": 1
+      },
+      "baoyu-translate": {
+        "passed": 0,
+        "failed": 1,
+        "total": 1
+      },
+      "baoyu-markdown-to-html": {
+        "passed": 0,
+        "failed": 1,
+        "total": 1
+      },
+      "qingshuang-research-style": {
+        "passed": 1,
+        "failed": 0,
+        "total": 1
+      },
+      "ai-image-generator": {
+        "passed": 0,
+        "failed": 1,
+        "total": 1
+      },
+      "html-screenshot": {
+        "passed": 0,
+        "failed": 1,
+        "total": 1
+      }
+    }
+  },
+  "results": [
+    {
+      "scenario_id": "retry-internet-research-001",
+      "skill_name": "internet-content-research",
+      "description": "多平台搜索技术话题",
+      "status": "failed",
+      "duration_ms": 27991,
+      "assertions": [
+        {
+          "name": "有链接",
+          "passed": false,
+          "actual": "未找到",
+          "expected": "包含: http",
+          "evidence": "搜索 'http' - 未匹配"
+        },
+        {
+          "name": "覆盖话题",
+          "passed": false,
+          "actual": "未找到",
+          "expected": "包含: Agent",
+          "evidence": "搜索 'Agent' - 未匹配"
+        },
+        {
+          "name": "任务完成",
+          "passed": false,
+          "actual": "未找到",
+          "expected": "包含: 完成",
+          "evidence": "搜索 '完成' - 未匹配"
+        }
+      ],
+      "artifacts": [],
+      "transcript": {
+        "session_id": "E68B1301-C7F2-43C1-AAF7-8EC0C43AA36A",
+        "messages_count": 4,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/retry-internet-research-001.json"
+      },
+      "key_outputs": [],
+      "error_message": ""
+    },
+    {
+      "scenario_id": "retry-humanize-001",
+      "skill_name": "humanize-writing",
+      "description": "润色文本去AI痕迹",
+      "status": "passed",
+      "duration_ms": 46632,
+      "assertions": [
+        {
+          "name": "执行改写",
+          "passed": true,
+          "actual": "找到",
+          "expected": "包含: 改写",
+          "evidence": "搜索 '改写' - 匹配"
+        },
+        {
+          "name": "任务完成",
+          "passed": true,
+          "actual": "找到",
+          "expected": "包含: 完成",
+          "evidence": "搜索 '完成' - 匹配"
+        }
+      ],
+      "artifacts": [],
+      "transcript": {
+        "session_id": "3C2663B3-EAD4-4E59-B5C0-BB65E3E98EE6",
+        "messages_count": 5,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/retry-humanize-001.json"
+      },
+      "key_outputs": [],
+      "error_message": ""
+    },
+    {
+      "scenario_id": "retry-translate-001",
+      "skill_name": "baoyu-translate",
+      "description": "翻译英文到中文",
+      "status": "failed",
+      "duration_ms": 24350,
+      "assertions": [
+        {
+          "name": "翻译智能体",
+          "passed": false,
+          "actual": "未找到",
+          "expected": "包含: 智能体",
+          "evidence": "搜索 '智能体' - 未匹配"
+        },
+        {
+          "name": "任务完成",
+          "passed": false,
+          "actual": "未找到",
+          "expected": "包含: 完成",
+          "evidence": "搜索 '完成' - 未匹配"
+        }
+      ],
+      "artifacts": [],
+      "transcript": {
+        "session_id": "484213F1-497D-49D8-82E1-5E055691F705",
+        "messages_count": 4,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/retry-translate-001.json"
+      },
+      "key_outputs": [],
+      "error_message": ""
+    },
+    {
+      "scenario_id": "retry-md-to-html-001",
+      "skill_name": "baoyu-markdown-to-html",
+      "description": "将Markdown转为HTML",
+      "status": "failed",
+      "duration_ms": 27763,
+      "assertions": [
+        {
+          "name": "HTML文件",
+          "passed": false,
+          "actual": "未找到",
+          "expected": "包含: .html",
+          "evidence": "搜索 '.html' - 未匹配"
+        },
+        {
+          "name": "任务完成",
+          "passed": false,
+          "actual": "未找到",
+          "expected": "包含: 完成",
+          "evidence": "搜索 '完成' - 未匹配"
+        }
+      ],
+      "artifacts": [],
+      "transcript": {
+        "session_id": "6DDFA464-B1E3-4094-AA88-B38544593A30",
+        "messages_count": 4,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/retry-md-to-html-001.json"
+      },
+      "key_outputs": [],
+      "error_message": ""
+    },
+    {
+      "scenario_id": "retry-qingshuang-001",
+      "skill_name": "qingshuang-research-style",
+      "description": "了解清爽调研报告风格",
+      "status": "passed",
+      "duration_ms": 50034,
+      "assertions": [
+        {
+          "name": "提及样式",
+          "passed": true,
+          "actual": "风格",
+          "expected": "正则: CSS|样式|风格",
+          "evidence": "正则匹配结果: 风格"
+        },
+        {
+          "name": "任务完成",
+          "passed": true,
+          "actual": "找到",
+          "expected": "包含: 完成",
+          "evidence": "搜索 '完成' - 匹配"
+        }
+      ],
+      "artifacts": [],
+      "transcript": {
+        "session_id": "24C468DC-C6B6-45BD-B20B-D888FC64DD31",
+        "messages_count": 5,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/retry-qingshuang-001.json"
+      },
+      "key_outputs": [],
+      "error_message": ""
+    },
+    {
+      "scenario_id": "retry-image-gen-001",
+      "skill_name": "ai-image-generator",
+      "description": "测试AI生图能力",
+      "status": "failed",
+      "duration_ms": 40641,
+      "assertions": [
+        {
+          "name": "图片输出",
+          "passed": false,
+          "actual": "无匹配",
+          "expected": "正则: (https?://|/Users/|/tmp/).*\\.(jpg|png|webp)",
+          "evidence": "正则匹配结果: 无"
+        }
+      ],
+      "artifacts": [],
+      "transcript": {
+        "session_id": "B1BAF443-F4FA-40DA-908A-3E4B813CA37E",
+        "messages_count": 5,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/retry-image-gen-001.json"
+      },
+      "key_outputs": [],
+      "error_message": ""
+    },
+    {
+      "scenario_id": "retry-html-screenshot-001",
+      "skill_name": "html-screenshot",
+      "description": "测试HTML截图能力",
+      "status": "failed",
+      "duration_ms": 40533,
+      "assertions": [
+        {
+          "name": "PNG输出",
+          "passed": false,
+          "actual": "无匹配",
+          "expected": "正则: (https?://|/Users/|/tmp/).*\\.png",
+          "evidence": "正则匹配结果: 无"
+        }
+      ],
+      "artifacts": [],
+      "transcript": {
+        "session_id": "AF0A3DF3-5210-4126-B0E3-8FA391AFF1CE",
+        "messages_count": 4,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/retry-html-screenshot-001.json"
+      },
+      "key_outputs": [],
+      "error_message": ""
+    }
+  ]
+}

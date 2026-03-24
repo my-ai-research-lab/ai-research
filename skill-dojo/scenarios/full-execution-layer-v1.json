@@ -1,0 +1,1000 @@
+{
+  "version": "1.0.0",
+  "created_at": "2026-03-20",
+  "description": "执行层技能完整评测场景库 v1.0 — 76个技能全覆盖",
+  "scenarios": [
+    {
+      "scenario_id": "cat1-industry-research-001",
+      "skill_name": "industry-research",
+      "display_name": "industry-research（行业调研）",
+      "description": "执行一次结构化竞品分析",
+      "prompt": "帮我做一个简单的AI写作工具对比，对比Notion AI和Copy.ai两款产品的核心功能差异，简要输出即可",
+      "expected_behaviors": ["定义对比维度", "有来源支撑", "结构清晰"],
+      "assertions": [
+        {"type": "contains", "name": "覆盖Notion", "value": "Notion"},
+        {"type": "contains", "name": "覆盖Copy.ai", "value": "Copy.ai"},
+        {"type": "contains", "name": "有对比维度", "value": "功能"}
+      ],
+      "priority": "P1",
+      "timeout": 180
+    },
+    {
+      "scenario_id": "cat1-url-to-markdown-001",
+      "skill_name": "baoyu-url-to-markdown",
+      "display_name": "baoyu-url-to-markdown（网页转Markdown）",
+      "description": "抓取网页并转为Markdown",
+      "prompt": "请把这个页面转成Markdown：https://example.com",
+      "expected_behaviors": ["调用Chrome CDP抓取", "输出Markdown文件", "保存HTML快照"],
+      "assertions": [
+        {"type": "contains", "name": "输出Markdown", "value": ".md"},
+        {"type": "not_contains", "name": "无报错", "value": "Error"}
+      ],
+      "priority": "P1",
+      "timeout": 120
+    },
+    {
+      "scenario_id": "cat1-x-to-markdown-001",
+      "skill_name": "baoyu-danger-x-to-markdown",
+      "display_name": "baoyu-danger-x-to-markdown（X转Markdown）",
+      "description": "将X推文转为Markdown",
+      "prompt": "请检查X to markdown功能是否可用，如需配置请告知",
+      "expected_behaviors": ["检查认证状态", "说明配置要求"],
+      "assertions": [
+        {"type": "contains", "name": "提及配置", "value": "配置"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat1-internet-research-001",
+      "skill_name": "internet-content-research",
+      "display_name": "internet-content-research（多平台调研）",
+      "description": "多平台搜索技术话题",
+      "prompt": "帮我简单搜索一下微信公众号上关于AI Agent的最新讨论，返回3篇即可",
+      "expected_behaviors": ["调用weixin_search", "返回文章列表", "有来源标注"],
+      "assertions": [
+        {"type": "contains", "name": "有来源", "value": "来源"},
+        {"type": "contains", "name": "覆盖话题", "value": "Agent"}
+      ],
+      "priority": "P1",
+      "timeout": 180
+    },
+    {
+      "scenario_id": "cat1-xiaohongshu-001",
+      "skill_name": "xiaohongshu",
+      "display_name": "xiaohongshu（小红书）",
+      "description": "搜索小红书内容",
+      "prompt": "帮我在小红书搜索「AI编程」相关笔记，返回前3条",
+      "expected_behaviors": ["调用search_feeds", "返回笔记列表", "包含标题和链接"],
+      "assertions": [
+        {"type": "contains", "name": "搜索结果", "value": "笔记"}
+      ],
+      "priority": "P1",
+      "timeout": 120
+    },
+    {
+      "scenario_id": "cat1-kstack-001",
+      "skill_name": "ks-kstack",
+      "display_name": "ks-kstack（KStack文章）",
+      "description": "读取KStack文章",
+      "prompt": "请说明KStack文章读取功能的使用方式",
+      "expected_behaviors": ["说明接口使用方式", "提及凭证配置"],
+      "assertions": [
+        {"type": "contains", "name": "提及API", "value": "API"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat2-column-writer-001",
+      "skill_name": "sl-ai-column-writer",
+      "display_name": "sl-ai-column-writer（专栏写作）",
+      "description": "查看专栏写作技能配置",
+      "prompt": "请告诉我专栏写作技能的当前状态和下一期计划",
+      "expected_behaviors": ["加载专栏配置", "说明写作规范"],
+      "assertions": [
+        {"type": "contains", "name": "提及专栏", "value": "专栏"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat2-copywriting-001",
+      "skill_name": "copywriting",
+      "display_name": "copywriting（营销文案）",
+      "description": "生成转化文案",
+      "prompt": "帮我写一段AI编程工具的营销文案，50字以内",
+      "expected_behaviors": ["输出简洁有力的文案", "有转化导向"],
+      "assertions": [
+        {"type": "contains", "name": "AI相关", "value": "AI"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat2-humanize-001",
+      "skill_name": "humanize-writing",
+      "display_name": "humanize-writing（去AI味）",
+      "description": "润色文本去AI痕迹",
+      "prompt": "请把这段文字改得更自然：「人工智能技术正在深刻改变人类社会的方方面面，其影响是深远的。」",
+      "expected_behaviors": ["消除AI模式化表达", "更自然流畅"],
+      "assertions": [
+        {"type": "not_contains", "name": "去掉套话", "value": "方方面面"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat2-translate-001",
+      "skill_name": "baoyu-translate",
+      "display_name": "baoyu-translate（翻译）",
+      "description": "翻译英文到中文",
+      "prompt": "翻译：The future of AI is autonomous agents that can reason and act.",
+      "expected_behaviors": ["准确翻译", "术语恰当"],
+      "assertions": [
+        {"type": "contains", "name": "翻译智能体", "value": "智能体"},
+        {"type": "not_contains", "name": "无原文", "value": "The future"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat2-format-md-001",
+      "skill_name": "baoyu-format-markdown",
+      "display_name": "baoyu-format-markdown（Markdown格式化）",
+      "description": "格式化Markdown文本",
+      "prompt": "帮我格式化这段文字为Markdown：AI Agent是能够自主完成任务的智能体 它可以感知环境并采取行动",
+      "expected_behaviors": ["添加标题", "分段", "格式化"],
+      "assertions": [
+        {"type": "contains", "name": "有标题", "value": "#"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat2-md-to-html-001",
+      "skill_name": "baoyu-markdown-to-html",
+      "display_name": "baoyu-markdown-to-html（MD转HTML）",
+      "description": "将Markdown转为HTML",
+      "prompt": "把这段Markdown转成HTML：# 标题\\n这是正文内容。",
+      "expected_behaviors": ["输出HTML", "样式美观"],
+      "assertions": [
+        {"type": "contains", "name": "HTML标签", "value": "<h1>"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat2-promotion-coaching-001",
+      "skill_name": "ks-promotion-coaching",
+      "display_name": "ks-promotion-coaching（晋升辅导）",
+      "description": "查看晋升辅导功能",
+      "prompt": "请说明晋升辅导技能的使用流程",
+      "expected_behaviors": ["说明辅导流程", "提及材料和PPT"],
+      "assertions": [
+        {"type": "contains", "name": "提及晋升", "value": "晋升"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat2-promotion-review-001",
+      "skill_name": "ks-promotion-review-sabcd",
+      "display_name": "ks-promotion-review-sabcd（晋升评审）",
+      "description": "对材料做SABCD评审",
+      "prompt": "请说明晋升评审SABCD评级的标准",
+      "expected_behaviors": ["说明SABCD五档", "说明评审维度"],
+      "assertions": [
+        {"type": "contains", "name": "SABCD", "value": "SABCD"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat2-executive-report-001",
+      "skill_name": "executive-report-writing",
+      "display_name": "executive-report-writing（高管汇报）",
+      "description": "了解高管汇报规范",
+      "prompt": "请说明给高管写汇报材料的核心要求",
+      "expected_behaviors": ["强调逻辑清晰", "结构化表达"],
+      "assertions": [
+        {"type": "contains", "name": "逻辑", "value": "逻辑"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat2-personal-assistant-001",
+      "skill_name": "personal-assistant",
+      "display_name": "personal-assistant（个人助手）",
+      "description": "查看个人助手功能",
+      "prompt": "请说明个人助手技能能做什么",
+      "expected_behaviors": ["说明日程管理", "任务追踪等功能"],
+      "assertions": [
+        {"type": "contains", "name": "任务", "value": "任务"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat3-web-dev-001",
+      "skill_name": "web-dev-workflow",
+      "display_name": "web-dev-workflow（网页开发）",
+      "description": "了解网页开发工作流",
+      "prompt": "请说明网页开发工作流的标准流程",
+      "expected_behaviors": ["说明预览部署流程", "提及验证步骤"],
+      "assertions": [
+        {"type": "contains", "name": "部署", "value": "部署"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat3-ui-ux-001",
+      "skill_name": "ui-ux-pro-max",
+      "display_name": "ui-ux-pro-max（UI/UX设计）",
+      "description": "了解UI设计规范",
+      "prompt": "请介绍UI/UX设计技能的核心能力",
+      "expected_behaviors": ["提及设计系统", "配色和布局"],
+      "assertions": [
+        {"type": "contains", "name": "设计", "value": "设计"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat3-frontend-design-001",
+      "skill_name": "frontend-design",
+      "display_name": "frontend-design（前端设计）",
+      "description": "了解前端设计能力",
+      "prompt": "请说明前端设计技能的特点",
+      "expected_behaviors": ["提及高质量UI", "避免AI味"],
+      "assertions": [
+        {"type": "contains", "name": "设计", "value": "设计"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat3-canvas-design-001",
+      "skill_name": "canvas-design",
+      "display_name": "canvas-design（Canvas设计）",
+      "description": "了解Canvas设计能力",
+      "prompt": "请说明Canvas设计技能能做什么",
+      "expected_behaviors": ["提及视觉创作", "Canvas绘图"],
+      "assertions": [
+        {"type": "contains", "name": "Canvas", "value": "Canvas"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat3-theme-factory-001",
+      "skill_name": "theme-factory",
+      "display_name": "theme-factory（主题工厂）",
+      "description": "了解主题样式能力",
+      "prompt": "请说明主题工厂有哪些预设主题",
+      "expected_behaviors": ["列出可用主题", "说明应用方式"],
+      "assertions": [
+        {"type": "contains", "name": "主题", "value": "主题"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat3-zelda-style-001",
+      "skill_name": "zelda-style",
+      "display_name": "zelda-style（塞尔达风格）",
+      "description": "了解塞尔达视觉风格",
+      "prompt": "请说明塞尔达风格的设计特点",
+      "expected_behaviors": ["提及旷野之息", "视觉元素"],
+      "assertions": [
+        {"type": "contains", "name": "塞尔达", "value": "塞尔达"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat3-qingshuang-001",
+      "skill_name": "qingshuang-research-style",
+      "display_name": "qingshuang-research-style（清爽调研风格）",
+      "description": "了解清爽调研报告风格",
+      "prompt": "请说明清爽调研报告风格的CSS特点",
+      "expected_behaviors": ["提及样式规范", "视觉设计"],
+      "assertions": [
+        {"type": "contains", "name": "样式", "value": "样式"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat3-pixel-game-001",
+      "skill_name": "pixel-action-game",
+      "display_name": "pixel-action-game（像素游戏）",
+      "description": "了解像素游戏开发能力",
+      "prompt": "请说明像素游戏技能能做什么",
+      "expected_behaviors": ["提及复古风格", "游戏开发"],
+      "assertions": [
+        {"type": "contains", "name": "游戏", "value": "游戏"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat4-xlsx-001",
+      "skill_name": "xlsx",
+      "display_name": "xlsx（Excel处理）",
+      "description": "了解Excel处理能力",
+      "prompt": "请说明xlsx技能支持哪些Excel操作",
+      "expected_behaviors": ["读写Excel", "数据处理"],
+      "assertions": [
+        {"type": "contains", "name": "Excel", "value": "Excel"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat4-pdf-001",
+      "skill_name": "pdf",
+      "display_name": "pdf（PDF处理）",
+      "description": "了解PDF处理能力",
+      "prompt": "请说明pdf技能支持哪些PDF操作",
+      "expected_behaviors": ["读取提取", "合并拆分"],
+      "assertions": [
+        {"type": "contains", "name": "PDF", "value": "PDF"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat4-docx-001",
+      "skill_name": "docx",
+      "display_name": "docx（Word处理）",
+      "description": "了解Word处理能力",
+      "prompt": "请说明docx技能支持哪些Word操作",
+      "expected_behaviors": ["读写Word", "格式处理"],
+      "assertions": [
+        {"type": "contains", "name": "Word", "value": "Word"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat4-whisper-001",
+      "skill_name": "openai-whisper",
+      "display_name": "openai-whisper（语音转文字）",
+      "description": "了解语音识别能力",
+      "prompt": "请说明whisper语音转文字技能的使用方式",
+      "expected_behaviors": ["说明音频支持格式", "转写流程"],
+      "assertions": [
+        {"type": "contains", "name": "音频", "value": "音频"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat4-kim-docs-001",
+      "skill_name": "ks-kim-docs-shuttle",
+      "display_name": "ks-kim-docs-shuttle（KIM文档同步）",
+      "description": "了解KIM文档同步能力",
+      "prompt": "请说明KIM文档同步技能支持哪些操作",
+      "expected_behaviors": ["上传下载", "双向同步"],
+      "assertions": [
+        {"type": "contains", "name": "同步", "value": "同步"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat5-pptx-001",
+      "skill_name": "pptx",
+      "display_name": "pptx（PPT处理）",
+      "description": "了解PPT处理能力",
+      "prompt": "请说明pptx技能支持哪些PPT操作",
+      "expected_behaviors": ["读写PPTX", "创建修改"],
+      "assertions": [
+        {"type": "contains", "name": "PPT", "value": "PPT"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat5-slide-deck-001",
+      "skill_name": "baoyu-slide-deck",
+      "display_name": "baoyu-slide-deck（AI幻灯片）",
+      "description": "了解AI幻灯片生成能力",
+      "prompt": "请说明AI幻灯片技能的生成流程",
+      "expected_behaviors": ["生成大纲", "生成图片"],
+      "assertions": [
+        {"type": "contains", "name": "幻灯片", "value": "幻灯片"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat5-work-report-ppt-001",
+      "skill_name": "ks-work-report-ppt",
+      "display_name": "ks-work-report-ppt（工作汇报PPT）",
+      "description": "了解工作汇报PPT风格",
+      "prompt": "请说明工作汇报PPT的设计规范",
+      "expected_behaviors": ["企业风格", "布局规范"],
+      "assertions": [
+        {"type": "contains", "name": "汇报", "value": "汇报"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat5-artistic-ppt-001",
+      "skill_name": "artistic-ppt",
+      "display_name": "artistic-ppt（艺术风格PPT）",
+      "description": "了解艺术PPT风格",
+      "prompt": "请说明艺术风格PPT的特点",
+      "expected_behaviors": ["创意风格", "AI生成背景"],
+      "assertions": [
+        {"type": "contains", "name": "艺术", "value": "艺术"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat6-post-wechat-001",
+      "skill_name": "baoyu-post-to-wechat",
+      "display_name": "baoyu-post-to-wechat（发布公众号）",
+      "description": "了解公众号发布能力",
+      "prompt": "请说明公众号发布技能支持哪些操作",
+      "expected_behaviors": ["文章发布", "图文发布"],
+      "assertions": [
+        {"type": "contains", "name": "公众号", "value": "公众号"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat6-post-weibo-001",
+      "skill_name": "baoyu-post-to-weibo",
+      "display_name": "baoyu-post-to-weibo（发布微博）",
+      "description": "了解微博发布能力",
+      "prompt": "请说明微博发布技能支持哪些操作",
+      "expected_behaviors": ["发布微博", "头条文章"],
+      "assertions": [
+        {"type": "contains", "name": "微博", "value": "微博"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat6-post-x-001",
+      "skill_name": "baoyu-post-to-x",
+      "display_name": "baoyu-post-to-x（发布X）",
+      "description": "了解X发布能力",
+      "prompt": "请说明发布到X的技能支持哪些操作",
+      "expected_behaviors": ["发推文", "发文章"],
+      "assertions": [
+        {"type": "contains", "name": "X", "value": "X"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat6-yuque-001",
+      "skill_name": "sl-yuque-publisher",
+      "display_name": "sl-yuque-publisher（语雀发布）",
+      "description": "了解语雀发布能力",
+      "prompt": "请说明语雀发布技能支持哪些操作",
+      "expected_behaviors": ["发布文档", "读取文档"],
+      "assertions": [
+        {"type": "contains", "name": "语雀", "value": "语雀"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat6-github-001",
+      "skill_name": "github",
+      "display_name": "github（GitHub）",
+      "description": "了解GitHub CLI能力",
+      "prompt": "请说明github技能支持哪些操作",
+      "expected_behaviors": ["issue/PR操作", "gh命令"],
+      "assertions": [
+        {"type": "contains", "name": "GitHub", "value": "GitHub"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat6-kim-send-001",
+      "skill_name": "link-ks-kim-send-message",
+      "display_name": "link-ks-kim-send-message（KIM推送）",
+      "description": "了解KIM消息推送能力",
+      "prompt": "请说明KIM消息推送技能支持哪些操作",
+      "expected_behaviors": ["发送消息", "卡片消息"],
+      "assertions": [
+        {"type": "contains", "name": "KIM", "value": "KIM"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat6-feishu-001",
+      "skill_name": "sl-feishu-assistant",
+      "display_name": "sl-feishu-assistant（飞书助手）",
+      "description": "了解飞书助手能力",
+      "prompt": "请说明飞书助手技能支持哪些操作",
+      "expected_behaviors": ["消息处理", "自动触发"],
+      "assertions": [
+        {"type": "contains", "name": "飞书", "value": "飞书"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat6-cf-weekly-001",
+      "skill_name": "sl-codeflicker-weekly-report",
+      "display_name": "sl-codeflicker-weekly-report（CF周报）",
+      "description": "了解项目周报能力",
+      "prompt": "请说明CodeFlicker项目周报的生成流程",
+      "expected_behaviors": ["读取数据", "生成信息图"],
+      "assertions": [
+        {"type": "contains", "name": "周报", "value": "周报"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat7-kwaibi-query-001",
+      "skill_name": "ks-kwaibi-data-query",
+      "display_name": "ks-kwaibi-data-query（KwaiBI看板）",
+      "description": "了解KwaiBI数据查询能力",
+      "prompt": "请说明KwaiBI看板查询技能的使用方式",
+      "expected_behaviors": ["解析看板链接", "获取数据"],
+      "assertions": [
+        {"type": "contains", "name": "看板", "value": "看板"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat7-kwaibi-sql-001",
+      "skill_name": "ks-kwaibi-sql-exec",
+      "display_name": "ks-kwaibi-sql-exec（SQL取数）",
+      "description": "了解SQL执行能力",
+      "prompt": "请说明SQL取数执行技能的使用方式",
+      "expected_behaviors": ["执行SQL", "获取结果"],
+      "assertions": [
+        {"type": "contains", "name": "SQL", "value": "SQL"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat7-tianwen-001",
+      "skill_name": "ks-tianwen-monitor-query",
+      "display_name": "ks-tianwen-monitor-query（天问监控）",
+      "description": "了解天问监控查询能力",
+      "prompt": "请说明天问监控查询技能的使用方式",
+      "expected_behaviors": ["解析监控链接", "获取数据"],
+      "assertions": [
+        {"type": "contains", "name": "监控", "value": "监控"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat7-hive-001",
+      "skill_name": "ks-hive-data-agent",
+      "display_name": "ks-hive-data-agent（Hive查询）",
+      "description": "了解Hive数据查询能力",
+      "prompt": "请说明Hive数据智能查询的使用方式",
+      "expected_behaviors": ["查表", "血缘分析"],
+      "assertions": [
+        {"type": "contains", "name": "Hive", "value": "Hive"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat7-meeting-room-001",
+      "skill_name": "ks-meeting-room-booking",
+      "display_name": "ks-meeting-room-booking（会议室预订）",
+      "description": "了解会议室预订能力",
+      "prompt": "请说明会议室预订技能的使用方式",
+      "expected_behaviors": ["搜索会议室", "创建日程"],
+      "assertions": [
+        {"type": "contains", "name": "会议室", "value": "会议室"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat7-onepoint-001",
+      "skill_name": "ks-onepoint-meeting",
+      "display_name": "ks-onepoint-meeting（Onepoint会议）",
+      "description": "了解Onepoint会议能力",
+      "prompt": "请说明Onepoint会议技能的使用方式",
+      "expected_behaviors": ["查询会议", "获取摘要"],
+      "assertions": [
+        {"type": "contains", "name": "会议", "value": "会议"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat7-kim-api-001",
+      "skill_name": "ks-kim-skills-assistant",
+      "display_name": "ks-kim-skills-assistant（KIM API）",
+      "description": "了解KIM API能力",
+      "prompt": "请说明KIM Skills Assistant的使用方式",
+      "expected_behaviors": ["消息发送", "群管理"],
+      "assertions": [
+        {"type": "contains", "name": "KIM", "value": "KIM"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat7-sso-001",
+      "skill_name": "ks-kuaishou-sso-login",
+      "display_name": "ks-kuaishou-sso-login（SSO登录）",
+      "description": "了解SSO登录能力",
+      "prompt": "请说明内网SSO登录技能的使用方式",
+      "expected_behaviors": ["扫码登录", "账号登录"],
+      "assertions": [
+        {"type": "contains", "name": "登录", "value": "登录"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat7-file-upload-001",
+      "skill_name": "ks-file-upload",
+      "display_name": "ks-file-upload（文件上传）",
+      "description": "了解文件上传能力",
+      "prompt": "请说明BlobStore文件上传技能的使用方式",
+      "expected_behaviors": ["上传文件", "获取CDN链接"],
+      "assertions": [
+        {"type": "contains", "name": "上传", "value": "上传"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat8-image-gen-001",
+      "skill_name": "ai-image-generator",
+      "display_name": "ai-image-generator（AI生图）",
+      "description": "测试AI生图能力",
+      "prompt": "帮我生成一张简单的图：一只猫在看电脑",
+      "expected_behaviors": ["调用生图API", "返回图片链接"],
+      "assertions": [
+        {"type": "regex", "name": "图片输出", "pattern": "(https?://|/Users/).*\\.(jpg|png|webp)"}
+      ],
+      "priority": "P1",
+      "timeout": 180
+    },
+    {
+      "scenario_id": "cat8-gemini-001",
+      "skill_name": "baoyu-danger-gemini-web",
+      "display_name": "baoyu-danger-gemini-web（Gemini生图）",
+      "description": "了解Gemini生图能力",
+      "prompt": "请说明Gemini Web生图技能的使用方式",
+      "expected_behaviors": ["文本生成", "图片生成"],
+      "assertions": [
+        {"type": "contains", "name": "Gemini", "value": "Gemini"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat8-illustrator-001",
+      "skill_name": "baoyu-article-illustrator",
+      "display_name": "baoyu-article-illustrator（文章配图）",
+      "description": "了解文章配图能力",
+      "prompt": "请说明文章配图技能的使用流程",
+      "expected_behaviors": ["分析文章", "生成配图"],
+      "assertions": [
+        {"type": "contains", "name": "配图", "value": "配图"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat8-infographic-001",
+      "skill_name": "baoyu-infographic",
+      "display_name": "baoyu-infographic（信息图）",
+      "description": "了解信息图生成能力",
+      "prompt": "请说明信息图技能支持哪些布局类型",
+      "expected_behaviors": ["列出布局类型", "说明生成流程"],
+      "assertions": [
+        {"type": "contains", "name": "布局", "value": "布局"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat8-xhs-images-001",
+      "skill_name": "baoyu-xhs-images",
+      "display_name": "baoyu-xhs-images（小红书图片）",
+      "description": "了解小红书图片生成能力",
+      "prompt": "请说明小红书图片技能支持哪些风格",
+      "expected_behaviors": ["列出风格", "说明布局"],
+      "assertions": [
+        {"type": "contains", "name": "小红书", "value": "小红书"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat8-comic-001",
+      "skill_name": "baoyu-comic",
+      "display_name": "baoyu-comic（知识漫画）",
+      "description": "了解知识漫画能力",
+      "prompt": "请说明知识漫画技能支持哪些艺术风格",
+      "expected_behaviors": ["列出风格", "说明面板布局"],
+      "assertions": [
+        {"type": "contains", "name": "漫画", "value": "漫画"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat8-compress-001",
+      "skill_name": "baoyu-compress-image",
+      "display_name": "baoyu-compress-image（图片压缩）",
+      "description": "了解图片压缩能力",
+      "prompt": "请说明图片压缩技能支持哪些格式",
+      "expected_behaviors": ["WebP转换", "压缩选项"],
+      "assertions": [
+        {"type": "contains", "name": "压缩", "value": "压缩"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat8-html-screenshot-001",
+      "skill_name": "html-screenshot",
+      "display_name": "html-screenshot（HTML截图）",
+      "description": "测试HTML截图能力",
+      "prompt": "把这段HTML截图：<html><body><h1 style=\"color:blue\">测试</h1></body></html>",
+      "expected_behaviors": ["渲染HTML", "输出PNG"],
+      "assertions": [
+        {"type": "regex", "name": "PNG输出", "pattern": "\\.png"}
+      ],
+      "priority": "P1",
+      "timeout": 120
+    },
+    {
+      "scenario_id": "cat9-mcp-builder-001",
+      "skill_name": "mcp-builder",
+      "display_name": "mcp-builder（MCP开发）",
+      "description": "了解MCP开发能力",
+      "prompt": "请说明MCP Builder技能的核心功能",
+      "expected_behaviors": ["MCP服务开发", "工具定义"],
+      "assertions": [
+        {"type": "contains", "name": "MCP", "value": "MCP"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat9-context-001",
+      "skill_name": "context-window-management",
+      "display_name": "context-window-management（上下文管理）",
+      "description": "了解上下文管理能力",
+      "prompt": "请说明上下文窗口管理的核心策略",
+      "expected_behaviors": ["摘要策略", "窗口优化"],
+      "assertions": [
+        {"type": "contains", "name": "上下文", "value": "上下文"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat9-workflow-001",
+      "skill_name": "workflow-orchestration-patterns",
+      "display_name": "workflow-orchestration-patterns（工作流编排）",
+      "description": "了解工作流编排能力",
+      "prompt": "请说明工作流编排模式的核心概念",
+      "expected_behaviors": ["Temporal", "Saga模式"],
+      "assertions": [
+        {"type": "contains", "name": "工作流", "value": "工作流"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat9-mcp-to-skill-001",
+      "skill_name": "ks-mcp-to-skill",
+      "display_name": "ks-mcp-to-skill（MCP转技能）",
+      "description": "了解MCP转技能能力",
+      "prompt": "请说明MCP转技能工具的使用方式",
+      "expected_behaviors": ["连接MCP", "生成SKILL.md"],
+      "assertions": [
+        {"type": "contains", "name": "MCP", "value": "MCP"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat10-composition-001",
+      "skill_name": "vercel-composition-patterns",
+      "display_name": "vercel-composition-patterns（React组合模式）",
+      "description": "了解React组合模式",
+      "prompt": "请说明React组合模式的核心概念",
+      "expected_behaviors": ["Compound组件", "Render Props"],
+      "assertions": [
+        {"type": "contains", "name": "组件", "value": "组件"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat10-react-best-001",
+      "skill_name": "vercel-react-best-practices",
+      "display_name": "vercel-react-best-practices（React最佳实践）",
+      "description": "了解React最佳实践",
+      "prompt": "请说明React性能优化的核心建议",
+      "expected_behaviors": ["性能优化", "渲染策略"],
+      "assertions": [
+        {"type": "contains", "name": "React", "value": "React"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat10-react-native-001",
+      "skill_name": "vercel-react-native-skills",
+      "display_name": "vercel-react-native-skills（React Native）",
+      "description": "了解React Native最佳实践",
+      "prompt": "请说明React Native性能优化建议",
+      "expected_behaviors": ["移动性能", "原生模块"],
+      "assertions": [
+        {"type": "contains", "name": "Native", "value": "Native"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat10-remotion-001",
+      "skill_name": "remotion-best-practices",
+      "display_name": "remotion-best-practices（Remotion视频）",
+      "description": "了解Remotion视频能力",
+      "prompt": "请说明Remotion视频生成的核心概念",
+      "expected_behaviors": ["React视频", "渲染"],
+      "assertions": [
+        {"type": "contains", "name": "视频", "value": "视频"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat10-web-design-001",
+      "skill_name": "web-design-guidelines",
+      "display_name": "web-design-guidelines（Web设计规范）",
+      "description": "了解Web设计规范",
+      "prompt": "请说明Web界面设计的核心规范",
+      "expected_behaviors": ["可访问性", "设计原则"],
+      "assertions": [
+        {"type": "contains", "name": "设计", "value": "设计"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat10-error-handling-001",
+      "skill_name": "error-handling-patterns",
+      "display_name": "error-handling-patterns（错误处理）",
+      "description": "了解错误处理模式",
+      "prompt": "请说明错误处理的核心模式",
+      "expected_behaviors": ["Result类型", "降级策略"],
+      "assertions": [
+        {"type": "contains", "name": "错误", "value": "错误"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat10-seo-001",
+      "skill_name": "seo-audit",
+      "display_name": "seo-audit（SEO审查）",
+      "description": "了解SEO审查能力",
+      "prompt": "请说明SEO审查的核心检查项",
+      "expected_behaviors": ["技术SEO", "内容优化"],
+      "assertions": [
+        {"type": "contains", "name": "SEO", "value": "SEO"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat10-prd-understand-001",
+      "skill_name": "ks-kate-prd-understand",
+      "display_name": "ks-kate-prd-understand（PRD理解）",
+      "description": "了解PRD需求理解能力",
+      "prompt": "请说明PRD需求理解技能的使用流程",
+      "expected_behaviors": ["需求分析", "技术导向"],
+      "assertions": [
+        {"type": "contains", "name": "需求", "value": "需求"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat10-brief-design-001",
+      "skill_name": "ks-kate-brief-design",
+      "display_name": "ks-kate-brief-design（技术方案）",
+      "description": "了解技术方案设计能力",
+      "prompt": "请说明技术方案设计技能的输出内容",
+      "expected_behaviors": ["模块划分", "接口设计"],
+      "assertions": [
+        {"type": "contains", "name": "方案", "value": "方案"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat10-kmodel-001",
+      "skill_name": "ks-kmodel",
+      "display_name": "ks-kmodel（Kmodel开发）",
+      "description": "了解Kmodel框架能力",
+      "prompt": "请说明Kmodel框架的核心概念",
+      "expected_behaviors": ["Model编程", "状态管理"],
+      "assertions": [
+        {"type": "contains", "name": "Kmodel", "value": "Kmodel"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat10-commit-msg-001",
+      "skill_name": "ks-commit-msg",
+      "display_name": "ks-commit-msg（提交信息）",
+      "description": "测试commit信息生成",
+      "prompt": "请说明commit信息生成技能的规范",
+      "expected_behaviors": ["Conventional Commits", "type推断"],
+      "assertions": [
+        {"type": "contains", "name": "commit", "value": "commit"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat10-browser-testing-001",
+      "skill_name": "ks-browser-testing-doc",
+      "display_name": "ks-browser-testing-doc（浏览器测试文档）",
+      "description": "了解浏览器测试文档能力",
+      "prompt": "请说明浏览器测试文档生成的流程",
+      "expected_behaviors": ["测试步骤", "文档生成"],
+      "assertions": [
+        {"type": "contains", "name": "测试", "value": "测试"}
+      ],
+      "priority": "P2",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat10-qa-test-case-001",
+      "skill_name": "ks-qa-test-case",
+      "display_name": "ks-qa-test-case（QA测试用例）",
+      "description": "了解测试用例生成能力",
+      "prompt": "请说明QA测试用例技能的输入输出",
+      "expected_behaviors": ["用例生成", "结构化输出"],
+      "assertions": [
+        {"type": "contains", "name": "测试用例", "value": "测试用例"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    },
+    {
+      "scenario_id": "cat11-clawbook-001",
+      "skill_name": "ks-clawbook",
+      "display_name": "ks-clawbook（ClawBook社区）",
+      "description": "了解ClawBook社区能力",
+      "prompt": "请说明ClawBook社区技能支持哪些操作",
+      "expected_behaviors": ["发帖", "浏览", "学习"],
+      "assertions": [
+        {"type": "contains", "name": "社区", "value": "社区"}
+      ],
+      "priority": "P1",
+      "timeout": 60
+    }
+  ]
+}

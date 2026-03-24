@@ -1,0 +1,377 @@
+{
+  "version": "1.0.0",
+  "created_at": "2026-03-19",
+  "description": "执行层技能评测场景库 v1.0 — 10个常用执行层技能",
+  "scenarios": [
+    {
+      "scenario_id": "ex-translate-001",
+      "skill_name": "baoyu-translate",
+      "display_name": "baoyu-translate（文章翻译）",
+      "description": "翻译一篇英文技术文章为中文",
+      "prompt": "把这段英文翻译成中文：\n\nThe rise of AI agents represents a fundamental shift in how software interacts with the world. Unlike traditional programs that execute predefined instructions, agents can perceive their environment, make decisions, and take actions to achieve goals. This paradigm shift requires new architectures, new tools, and new ways of thinking about software reliability and safety.",
+      "expected_behaviors": [
+        "准确翻译技术术语（AI agents / paradigm shift / architecture）",
+        "保持原文段落结构",
+        "输出流畅的中文，不是机械直译",
+        "专业术语可以保留英文或加注"
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "name": "翻译完成-智能体",
+          "value": "智能体"
+        },
+        {
+          "type": "contains",
+          "name": "关键词翻译-范式",
+          "value": "范式"
+        },
+        {
+          "type": "not_contains",
+          "name": "不能有原始英文段落",
+          "value": "The rise of AI agents represents"
+        }
+      ],
+      "artifact_extractors": [
+        {
+          "name": "翻译结果",
+          "type": "text",
+          "description": "最终中文翻译"
+        }
+      ],
+      "source": "skill_definition",
+      "priority": "P1",
+      "timeout": 120
+    },
+    {
+      "scenario_id": "ex-image-gen-001",
+      "skill_name": "baoyu-image-gen",
+      "display_name": "baoyu-image-gen（AI生图）",
+      "description": "根据描述生成一张技术风格的配图",
+      "prompt": "帮我生成一张图：一个AI机器人在和人类程序员一起写代码，科技感，简洁风格，适合博客配图",
+      "expected_behaviors": [
+        "调用图片生成API",
+        "返回可访问的图片URL或本地路径",
+        "图片与描述主题相关",
+        "生成成功后提供可点击链接"
+      ],
+      "assertions": [
+        {
+          "type": "regex",
+          "name": "包含图片URL或路径",
+          "pattern": "(https?://[^\\s]+\\.(jpg|png|webp)|/Users/[^\\s]+\\.(jpg|png|webp))"
+        },
+        {
+          "type": "contains",
+          "name": "调用了生图功能",
+          "value": "生成"
+        }
+      ],
+      "artifact_extractors": [
+        {
+          "name": "生成图片",
+          "type": "url",
+          "pattern": "https?://[^\\s]+\\.(png|jpg|jpeg|webp)",
+          "description": "AI生成的图片链接"
+        },
+        {
+          "name": "本地图片",
+          "type": "file",
+          "pattern": "/[^\\s]+\\.(png|jpg|jpeg|webp)",
+          "description": "本地图片文件"
+        }
+      ],
+      "source": "skill_definition",
+      "priority": "P1",
+      "timeout": 180
+    },
+    {
+      "scenario_id": "ex-html-screenshot-001",
+      "skill_name": "html-screenshot",
+      "display_name": "html-screenshot（HTML截图）",
+      "description": "将一段HTML渲染为PNG截图",
+      "prompt": "把这段HTML截图成PNG：\n\n```html\n<!DOCTYPE html>\n<html>\n<head><style>body{background:#1a1a2e;color:#eee;font-family:Arial;padding:40px;} h1{color:#4fc3f7;} .card{background:#16213e;border-radius:12px;padding:24px;margin:16px 0;}</style></head>\n<body><h1>技能评测报告</h1><div class=\"card\"><p>✅ baoyu-translate — 通过</p></div><div class=\"card\"><p>⚠️ baoyu-image-gen — 持平</p></div></body>\n</html>\n```",
+      "expected_behaviors": [
+        "调用 Puppeteer/Playwright 渲染 HTML",
+        "输出 PNG 截图文件",
+        "返回文件路径或可访问链接",
+        "图片完整覆盖全部内容"
+      ],
+      "assertions": [
+        {
+          "type": "regex",
+          "name": "返回PNG文件路径",
+          "pattern": "/[^\\s]+\\.png"
+        },
+        {
+          "type": "not_contains",
+          "name": "无执行错误",
+          "value": "Error:"
+        }
+      ],
+      "artifact_extractors": [
+        {
+          "name": "截图文件",
+          "type": "file",
+          "pattern": "/[^\\s]+\\.png",
+          "description": "HTML渲染后的PNG截图"
+        },
+        {
+          "name": "截图URL",
+          "type": "url",
+          "pattern": "https?://[^\\s]+\\.png",
+          "description": "上传后的截图链接"
+        }
+      ],
+      "source": "skill_definition",
+      "priority": "P1",
+      "timeout": 120
+    },
+    {
+      "scenario_id": "ex-infographic-001",
+      "skill_name": "baoyu-infographic",
+      "display_name": "baoyu-infographic（信息图）",
+      "description": "生成一张AI工具对比的信息图",
+      "prompt": "帮我做一张信息图，对比 Cursor、GitHub Copilot、Windsurf 三款 AI 编程工具，维度包括：核心功能、定价、适用场景",
+      "expected_behaviors": [
+        "分析内容，选择合适的布局类型（对比表格/矩阵等）",
+        "生成高质量视觉信息图",
+        "输出图片文件或URL",
+        "三款工具信息完整覆盖"
+      ],
+      "assertions": [
+        {
+          "type": "regex",
+          "name": "生成图片输出",
+          "pattern": "(https?://[^\\s]+\\.(jpg|png|webp)|/Users/[^\\s]+\\.(jpg|png|webp))"
+        },
+        {
+          "type": "contains",
+          "name": "包含布局分析",
+          "value": "布局"
+        }
+      ],
+      "artifact_extractors": [
+        {
+          "name": "信息图",
+          "type": "url",
+          "pattern": "https?://[^\\s]+\\.(png|jpg|jpeg|webp)",
+          "description": "生成的信息图"
+        },
+        {
+          "name": "信息图本地",
+          "type": "file",
+          "pattern": "/[^\\s]+\\.(png|jpg|jpeg|webp)",
+          "description": "本地信息图文件"
+        }
+      ],
+      "source": "skill_definition",
+      "priority": "P1",
+      "timeout": 180
+    },
+    {
+      "scenario_id": "ex-internet-research-001",
+      "skill_name": "internet-content-research",
+      "display_name": "internet-content-research（多平台调研）",
+      "description": "多平台调研一个技术话题",
+      "prompt": "帮我调研一下最近关于 Vibe Coding 的讨论，看看微信公众号和网络上有什么有价值的观点",
+      "expected_behaviors": [
+        "调用 weixin_search 搜索公众号内容",
+        "调用 Web 搜索作为补充",
+        "提取关键观点并结构化整理",
+        "微信URL不使用临时browser_agent链接",
+        "来源标注清晰"
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "name": "有来源标注",
+          "value": "来源"
+        },
+        {
+          "type": "contains",
+          "name": "覆盖目标话题",
+          "value": "Vibe"
+        }
+      ],
+      "source": "historical_conversation",
+      "priority": "P1",
+      "timeout": 300
+    },
+    {
+      "scenario_id": "ex-essence-insight-001",
+      "skill_name": "link-essence-insight",
+      "display_name": "link-essence-insight（本质洞察）",
+      "description": "对一个技术现象做本质洞察分析",
+      "prompt": "帮我分析一下：为什么 Cursor 能在短时间内超越 VS Code 插件成为主流 AI 编程工具，背后的本质是什么？",
+      "expected_behaviors": [
+        "穿透表面现象找底层规律",
+        "包含有力且熟悉的类比",
+        "输出时不暴露 L1/L2/L3 内部标签",
+        "最后有趋势推演",
+        "结论简洁有力"
+      ],
+      "assertions": [
+        {
+          "type": "not_contains",
+          "name": "不暴露L标签",
+          "value": "L1:"
+        },
+        {
+          "type": "not_contains",
+          "name": "不暴露L标签2",
+          "value": "L2:"
+        },
+        {
+          "type": "contains",
+          "name": "有类比",
+          "value": "就像"
+        }
+      ],
+      "source": "skill_definition",
+      "priority": "P1",
+      "timeout": 180
+    },
+    {
+      "scenario_id": "ex-industry-research-001",
+      "skill_name": "industry-research",
+      "display_name": "industry-research（行业调研）",
+      "description": "完成一次结构化竞品分析",
+      "prompt": "帮我做一个 AI 写作工具的竞品分析，主要对比 Notion AI、Jasper、Copy.ai 三款产品",
+      "expected_behaviors": [
+        "定义多维对比框架（不只是有无）",
+        "数据有来源，结论有支撑",
+        "客观中立，标杆也指出短板",
+        "结构清晰，有总结性洞察"
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "name": "覆盖三款产品",
+          "value": "Notion"
+        },
+        {
+          "type": "contains",
+          "name": "覆盖三款产品2",
+          "value": "Jasper"
+        },
+        {
+          "type": "contains",
+          "name": "有对比维度",
+          "value": "功能"
+        }
+      ],
+      "source": "skill_definition",
+      "priority": "P1",
+      "timeout": 300
+    },
+    {
+      "scenario_id": "ex-promotion-review-001",
+      "skill_name": "ks-promotion-review-sabcd",
+      "display_name": "ks-promotion-review-sabcd（晋升评审）",
+      "description": "对一段晋升材料做SABCD评审",
+      "prompt": "请帮我对以下晋升材料片段进行评审：\n\n候选人是一名高级工程师，申请P7晋升。主要工作：负责推动研发效能提升项目，将团队需求交付周期从14天缩短到8天，降幅43%。建设了自动化测试体系，单测覆盖率从20%提升到65%。带领3人小团队，培养了2名工程师成长为独立负责人。\n\n请给出SABCD评级和关键改进建议。",
+      "expected_behaviors": [
+        "输出SABCD其中一个等级",
+        "对项目成果有量化评估",
+        "指出材料中需要补充的内容",
+        "改进建议具体可执行",
+        "生成HTML评审报告或结构化输出"
+      ],
+      "assertions": [
+        {
+          "type": "regex",
+          "name": "包含SABCD评级",
+          "pattern": "[SABCD]\\s*[级档]|评级.*[SABCD]|[SABCD].*评级"
+        },
+        {
+          "type": "contains",
+          "name": "有改进建议",
+          "value": "建议"
+        }
+      ],
+      "artifact_extractors": [
+        {
+          "name": "评审报告",
+          "type": "file",
+          "pattern": "/[^\\s]+\\.html",
+          "description": "HTML格式评审报告"
+        }
+      ],
+      "source": "skill_definition",
+      "priority": "P1",
+      "timeout": 180
+    },
+    {
+      "scenario_id": "ex-pptx-001",
+      "skill_name": "pptx",
+      "display_name": "pptx（PPT生成）",
+      "description": "创建一个简单的技术分享PPT",
+      "prompt": "帮我创建一个4页的PPT，主题是《AI Agent 的崛起》，包括：封面（标题+副标题）、什么是AI Agent（3个要点）、典型应用场景（列举3个）、总结展望，保存为 ai-agent-intro.pptx",
+      "expected_behaviors": [
+        "使用 pptx 库正确创建文件",
+        "中文内容显示正常",
+        "Shape类型使用正确枚举值",
+        "成功保存为 .pptx 文件",
+        "返回文件路径"
+      ],
+      "assertions": [
+        {
+          "type": "regex",
+          "name": "生成pptx文件",
+          "pattern": "\\.pptx"
+        },
+        {
+          "type": "not_contains",
+          "name": "无Python报错",
+          "value": "Traceback"
+        }
+      ],
+      "artifact_extractors": [
+        {
+          "name": "PPT文件",
+          "type": "file",
+          "pattern": "/[^\\s]+\\.pptx",
+          "description": "生成的PPT文件"
+        }
+      ],
+      "source": "pitfall_memory",
+      "priority": "P1",
+      "timeout": 120
+    },
+    {
+      "scenario_id": "ex-learn-from-mistakes-001",
+      "skill_name": "link-learn-from-mistakes",
+      "display_name": "link-learn-from-mistakes（复盘举一反三）",
+      "description": "对一个具体错误做复盘和举一反三",
+      "prompt": "帮我复盘这个问题：今天我修改了一个工具函数的参数名，结果导致3个调用方都报错了，排查了1小时才找到。",
+      "expected_behaviors": [
+        "L1项目级复盘（这次怎么发生的）",
+        "L2即时修复（下次如何避免）",
+        "L3泛化（这个错误背后的通用模式）",
+        "L4沉淀（是否应该写入记忆或技能）",
+        "输出可直接使用的行动建议"
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "name": "有根因分析",
+          "value": "原因"
+        },
+        {
+          "type": "contains",
+          "name": "有行动建议",
+          "value": "建议"
+        },
+        {
+          "type": "contains",
+          "name": "有泛化思考",
+          "value": "通用"
+        }
+      ],
+      "source": "skill_definition",
+      "priority": "P1",
+      "timeout": 120
+    }
+  ]
+}

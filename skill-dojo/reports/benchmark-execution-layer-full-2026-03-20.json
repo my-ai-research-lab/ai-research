@@ -1,0 +1,911 @@
+{
+  "timestamp": "2026-03-20T06:11:59.753037",
+  "categories": {
+    "🔍 信息获取": [
+      {
+        "name": "industry-research",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.3.1",
+        "has_description": true,
+        "has_meta_execution": true,
+        "line_count": 386,
+        "issues": [],
+        "score": 100
+      },
+      {
+        "name": "apify-competitor-intelligence",
+        "exists": false,
+        "has_skill_md": false,
+        "version": null,
+        "has_description": false,
+        "has_meta_execution": false,
+        "line_count": 0,
+        "issues": [
+          "技能目录不存在"
+        ],
+        "score": 0
+      },
+      {
+        "name": "apify-market-research",
+        "exists": false,
+        "has_skill_md": false,
+        "version": null,
+        "has_description": false,
+        "has_meta_execution": false,
+        "line_count": 0,
+        "issues": [
+          "技能目录不存在"
+        ],
+        "score": 0
+      },
+      {
+        "name": "apify-trend-analysis",
+        "exists": false,
+        "has_skill_md": false,
+        "version": null,
+        "has_description": false,
+        "has_meta_execution": false,
+        "line_count": 0,
+        "issues": [
+          "技能目录不存在"
+        ],
+        "score": 0
+      },
+      {
+        "name": "baoyu-url-to-markdown",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.58.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 262,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "baoyu-danger-x-to-markdown",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.56.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 225,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "internet-content-research",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "3.0.1",
+        "has_description": true,
+        "has_meta_execution": true,
+        "line_count": 529,
+        "issues": [],
+        "score": 100
+      },
+      {
+        "name": "xiaohongshu",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 204,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-kstack",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 38,
+        "issues": [],
+        "score": 90
+      }
+    ],
+    "📝 内容写作": [
+      {
+        "name": "sl-ai-column-writer",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "2.0.0",
+        "has_description": true,
+        "has_meta_execution": true,
+        "line_count": 274,
+        "issues": [],
+        "score": 100
+      },
+      {
+        "name": "copywriting",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 252,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "humanize-writing",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.1.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 219,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "baoyu-translate",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.56.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 285,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "baoyu-format-markdown",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.57.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 367,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "baoyu-markdown-to-html",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.56.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 270,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-promotion-coaching",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.2.0",
+        "has_description": true,
+        "has_meta_execution": true,
+        "line_count": 175,
+        "issues": [],
+        "score": 100
+      },
+      {
+        "name": "ks-promotion-review-sabcd",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.3.0",
+        "has_description": true,
+        "has_meta_execution": true,
+        "line_count": 557,
+        "issues": [],
+        "score": 100
+      },
+      {
+        "name": "executive-report-writing",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.1.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 192,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "personal-assistant",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 133,
+        "issues": [],
+        "score": 95
+      }
+    ],
+    "🌐 网页开发": [
+      {
+        "name": "web-dev-workflow",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.7.0",
+        "has_description": true,
+        "has_meta_execution": true,
+        "line_count": 433,
+        "issues": [],
+        "score": 100
+      },
+      {
+        "name": "ui-ux-pro-max",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 650,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "frontend-design",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 147,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "canvas-design",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 131,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "theme-factory",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 61,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "zelda-style",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "4.1.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 766,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "qingshuang-research-style",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "3.2.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 350,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "pixel-action-game",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 566,
+        "issues": [],
+        "score": 95
+      }
+    ],
+    "📁 文件处理": [
+      {
+        "name": "xlsx",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 296,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "pdf",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 319,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "docx",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 487,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "openai-whisper",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 21,
+        "issues": [],
+        "score": 90
+      },
+      {
+        "name": "ks-kim-docs-shuttle",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "2.2.0",
+        "has_description": true,
+        "has_meta_execution": true,
+        "line_count": 711,
+        "issues": [],
+        "score": 100
+      }
+    ],
+    "🎬 演示制作": [
+      {
+        "name": "pptx",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.1.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 277,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "baoyu-slide-deck",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.56.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 715,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-work-report-ppt",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 367,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "artistic-ppt",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 308,
+        "issues": [],
+        "score": 95
+      }
+    ],
+    "📤 发布推送": [
+      {
+        "name": "baoyu-post-to-wechat",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.56.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 509,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "baoyu-post-to-weibo",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.56.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 163,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "baoyu-post-to-x",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.56.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 224,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "sl-yuque-publisher",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.2.0",
+        "has_description": true,
+        "has_meta_execution": true,
+        "line_count": 358,
+        "issues": [],
+        "score": 100
+      },
+      {
+        "name": "github",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 51,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "link-ks-kim-send-message",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "4.0.0",
+        "has_description": true,
+        "has_meta_execution": true,
+        "line_count": 409,
+        "issues": [],
+        "score": 100
+      },
+      {
+        "name": "sl-feishu-assistant",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.1.0",
+        "has_description": true,
+        "has_meta_execution": true,
+        "line_count": 121,
+        "issues": [],
+        "score": 100
+      },
+      {
+        "name": "sl-codeflicker-weekly-report",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "2.0.0",
+        "has_description": true,
+        "has_meta_execution": true,
+        "line_count": 208,
+        "issues": [],
+        "score": 100
+      }
+    ],
+    "🏢 办公协作": [
+      {
+        "name": "ks-kwaibi-data-query",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 179,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-kwaibi-sql-exec",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 195,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-tianwen-monitor-query",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 321,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-hive-data-agent",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 196,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-meeting-room-booking",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 206,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-onepoint-meeting",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 152,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-kim-skills-assistant",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 503,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-kuaishou-sso-login",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 190,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-file-upload",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 205,
+        "issues": [],
+        "score": 95
+      }
+    ],
+    "🖼️ 图像生成": [
+      {
+        "name": "ai-image-generator",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.3.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 444,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "baoyu-danger-gemini-web",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.56.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 169,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "baoyu-article-illustrator",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.56.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 187,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "baoyu-infographic",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.56.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 267,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "baoyu-xhs-images",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.56.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 591,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "baoyu-comic",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.56.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 312,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "baoyu-compress-image",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.56.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 105,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "html-screenshot",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 360,
+        "issues": [],
+        "score": 95
+      }
+    ],
+    "🤖 AI工程": [
+      {
+        "name": "mcp-builder",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 238,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "context-window-management",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 60,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "workflow-orchestration-patterns",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 318,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-mcp-to-skill",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 283,
+        "issues": [],
+        "score": 95
+      }
+    ],
+    "🔧 软件工程": [
+      {
+        "name": "vercel-composition-patterns",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 86,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "vercel-react-best-practices",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 138,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "vercel-react-native-skills",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 119,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "remotion-best-practices",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 50,
+        "issues": [],
+        "score": 90
+      },
+      {
+        "name": "web-design-guidelines",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 41,
+        "issues": [],
+        "score": 90
+      },
+      {
+        "name": "error-handling-patterns",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 634,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "seo-audit",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 414,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-kate-prd-understand",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 63,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-kate-brief-design",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 60,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-kmodel",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "0.1.174",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 1708,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-commit-msg",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.1",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 349,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-browser-testing-doc",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.0.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 371,
+        "issues": [],
+        "score": 95
+      },
+      {
+        "name": "ks-qa-test-case",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.2.0",
+        "has_description": true,
+        "has_meta_execution": false,
+        "line_count": 151,
+        "issues": [],
+        "score": 95
+      }
+    ],
+    "🌐 社交学习": [
+      {
+        "name": "ks-clawbook",
+        "exists": true,
+        "has_skill_md": true,
+        "version": "1.5.1",
+        "has_description": true,
+        "has_meta_execution": true,
+        "line_count": 789,
+        "issues": [],
+        "score": 100
+      }
+    ]
+  },
+  "summary": {
+    "total_skills": 79,
+    "existing_skills": 76,
+    "missing_skills": 3,
+    "avg_score": 95.5,
+    "healthy_count": 76,
+    "warning_count": 0,
+    "critical_count": 0
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "run_id": "test-20260319-191424",
+    "timestamp": "2026-03-19T19:14:24.050542",
+    "total_scenarios": 1,
+    "duration_seconds": 32.55783772468567
+  },
+  "summary": {
+    "pass_rate": 0.0,
+    "passed": 0,
+    "failed": 1,
+    "errors": 0,
+    "by_priority": {
+      "P1": {
+        "passed": 0,
+        "total": 1
+      }
+    },
+    "by_skill": {
+      "ai-image-generator": {
+        "passed": 0,
+        "failed": 1,
+        "total": 1
+      }
+    }
+  },
+  "results": [
+    {
+      "scenario_id": "ai-img-001",
+      "skill_name": "ai-image-generator",
+      "description": "根据描述生成一张技术风格的配图",
+      "status": "failed",
+      "duration_ms": 32557,
+      "assertions": [
+        {
+          "name": "包含图片URL或路径",
+          "passed": false,
+          "actual": "无匹配",
+          "expected": "正则: (https?://[^\\s]+\\.(jpg|png|webp)|/[^\\s]+\\.(jpg|png|webp))",
+          "evidence": "正则匹配结果: 无"
+        },
+        {
+          "name": "有生成相关关键词",
+          "passed": true,
+          "actual": "找到",
+          "expected": "包含: 生成",
+          "evidence": "搜索 '生成' - 匹配"
+        }
+      ],
+      "artifacts": [],
+      "transcript": {
+        "session_id": "A2B7644A-F94A-4E92-9A0B-FB6F97FDDDFD",
+        "messages_count": 6,
+        "transcript_path": "/Users/[USER]/.codeflicker/skills/link-skill-dojo/transcripts/ai-img-001.json"
+      },
+      "key_outputs": [],
+      "error_message": ""
+    }
+  ]
+}

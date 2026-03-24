@@ -1,0 +1,97 @@
+[
+  {
+    "ts": 1774009320771,
+    "type": "say",
+    "say": "completion_result",
+    "text": "",
+    "agentType": "agent",
+    "sessionId": "7E0AA1D7-2F39-4D2F-AEB5-EFE2A8415444",
+    "chatId": "chat-1774009294899-ujquyl",
+    "stopReason": "",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009309297,
+    "sessionId": "7E0AA1D7-2F39-4D2F-AEB5-EFE2A8415444",
+    "chatId": "chat-1774009294899-ujquyl",
+    "type": "say",
+    "say": "text",
+    "text": "---\n\n## KIM Skills Assistant 使用方式说明\n\n### ✅ 完成状态\n技能已加载成功，以下是 `ks-kim-skills-assistant` 的完整使用说明。\n\n---\n\n### 📌 技能定位\n\n这是**快手 KIM 平台的通用底层 API 封装**，提供与具体应用无关的基础能力。它是一个**底层技能**，可被其他技能（如 `link-ks-kim-send-message`）调用。\n\n| 场景 | 使用此技能 |\n|------|----------|\n| 发KIM消息、群消息、拉群消息 | ✅ 适用 |\n| 创建待办 | ✅ 适用 |\n| 预订会议室、创建日程 | ✅ 适用 |\n| 涉及林克机器人专属功能 | ❌ 使用 `link-ks-kim-send-message` |\n\n---\n\n### 🔑 配置要求\n\n**Token 配置**（优先级从高到低）：\n1. 配置文件：`~/.openclaw/openclaw.json`\n2. 环境变量：`MARIO_KD_MCP_TOKEN`\n\n---\n\n### 📊 核心能力矩阵\n\n| 功能 | API 函数 | 说明 |\n|------|---------|------|\n| 📨 消息发送 | `send_message()` | 单聊/群聊、MixCard/文本 |\n| 📥 消息拉取 | `pull_messages()` | 按时间范围拉取聊天记录 |\n| 👥 群列表 | `get_bot_groups()` | 获取机器人所在的群 |\n| 👤 群成员 | `query_group_members()` | 查询群成员列表 |\n| ✅ 待办创建 | `create_todo()` | 创建待办任务 |\n| 🏢 会议室 | `query_available_rooms()` | 查询空闲会议室 |\n| 📅 日程 | `create_calendar_event()` | 创建日程 |\n| 🕐 时间转换 | `parse_natural_time()` | 自然语言→时间戳 |\n\n---\n\n### 🌐 API 域名\n\n| 服务 | 域名 |\n|------|------|\n| 消息网关 | `https://is-gateway.corp.kuaishou.com` |\n| IM 消息 | `https://im-api.qingque.cn` |\n| 待办任务 | `https://kim-todo-api.qingque.cn` |\n| 会议室/日程 | `http://kim-calendar.internal` |\n\n---\n\n### ⚠️ 重要注意事项\n\n1. **限流错误码 42900**：不保证消息未投递，记录但**不自动重试**\n2. **批量操作间隔**：每次调用间隔 ≥ 1秒\n3. **与 linke-kim-message 的区别**：本技能是通用封装，不含林克凭证和专属模板\n\n---\n\n### 🔑 关键输出\n\n- **技能路径**：`/Users/[USER]/.codeflicker/skills/ks-kim-skills-assistant`\n- **支持 6 大能力模块**：消息发送/拉取、群管理、待办、日程、会议室、时间转换\n- **导出策略**：`never`（公司IM平台API封装，不可公开导出）",
+    "partial": false,
+    "lastCheckpointHash": "73ffacbcadf810e52a85616027bec7948361a2ff",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009304578,
+    "sessionId": "7E0AA1D7-2F39-4D2F-AEB5-EFE2A8415444",
+    "chatId": "chat-1774009294899-ujquyl",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": false,
+    "lastCheckpointHash": "73ffacbcadf810e52a85616027bec7948361a2ff",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009303496,
+    "sessionId": "7E0AA1D7-2F39-4D2F-AEB5-EFE2A8415444",
+    "chatId": "chat-1774009294899-ujquyl",
+    "type": "say",
+    "say": "text",
+    "text": "",
+    "partial": true,
+    "lastCheckpointHash": "73ffacbcadf810e52a85616027bec7948361a2ff",
+    "agentType": "agent",
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  },
+  {
+    "ts": 1774009295206,
+    "role": "user",
+    "type": "say",
+    "say": "text",
+    "text": "[测试模式] 请使用 ks-kim-skills-assistant 技能执行以下任务：\n\n请说明KIM Skills Assistant的使用方式\n\n执行完成后，请明确说明完成状态和关键输出。",
+    "sessionId": "7E0AA1D7-2F39-4D2F-AEB5-EFE2A8415444",
+    "agentType": "agent",
+    "chatId": "chat-1774009294899-ujquyl",
+    "editorState": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "[测试模式] 请使用 ks-kim-skills-assistant 技能执行以下任务：\n\n请说明KIM Skills Assistant的使用方式\n\n执行完成后，请明确说明完成状态和关键输出。",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "contextItems": [],
+    "diagnostics": [],
+    "indexed": true,
+    "chatMode": "agent",
+    "chatModel": "CLAUDE_OPUS_4_5"
+  }
+]

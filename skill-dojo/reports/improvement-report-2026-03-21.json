@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "run_id": "skill-dojo-continuous-improvement-20260321",
+    "timestamp": "2026-03-21T05:50:00",
+    "report_type": "continuous_improvement",
+    "evaluator": "skill-dojo v1.9.0",
+    "mode": "方式A (轻量评测 + 自动修复)"
+  },
+  "top_10_skills": {
+    "description": "基于评测记录和使用频率识别的高频技能",
+    "skills": [
+      {"rank": 1, "name": "ai-image-generator", "description": "AI生图", "test_count": 6},
+      {"rank": 2, "name": "html-screenshot", "description": "HTML截图", "test_count": 4},
+      {"rank": 3, "name": "baoyu-translate", "description": "文章翻译", "test_count": 4},
+      {"rank": 4, "name": "internet-content-research", "description": "多平台调研", "test_count": 3},
+      {"rank": 5, "name": "humanize-writing", "description": "去AI痕迹", "test_count": 3},
+      {"rank": 6, "name": "qingshuang-research-style", "description": "清爽调研风格", "test_count": 2},
+      {"rank": 7, "name": "baoyu-markdown-to-html", "description": "MD转HTML", "test_count": 2},
+      {"rank": 8, "name": "pptx", "description": "PPT生成", "test_count": 1},
+      {"rank": 9, "name": "link-essence-insight", "description": "本质洞察", "test_count": 1},
+      {"rank": 10, "name": "baoyu-infographic", "description": "信息图生成", "test_count": 1}
+    ]
+  },
+  "evaluation_results": {
+    "summary": {
+      "total_evaluated": 10,
+      "passed": 2,
+      "failed_config": 2,
+      "failed_dependency": 1,
+      "failed_race_condition": 2,
+      "pending": 3
+    },
+    "pass_rate": "20%",
+    "results": [
+      {
+        "skill": "ai-image-generator",
+        "status": "failed",
+        "failure_type": "config_missing",
+        "root_cause": "~/.baoyu-skills/.env 中所有 API Key 均被注释，无可用图片生成服务",
+        "auto_fixable": false,
+        "fix_action": "用户需配置至少一个 API Key (DASHSCOPE/OPENAI/GOOGLE)",
+        "priority": "P1"
+      },
+      {
+        "skill": "html-screenshot",
+        "status": "fixed",
+        "failure_type": "dependency_missing",
+        "root_cause": "puppeteer 未安装",
+        "auto_fixable": true,
+        "fix_action": "已执行 npm install puppeteer",
+        "priority": "P0"
+      },
+      {
+        "skill": "baoyu-translate",
+        "status": "fixed",
+        "failure_type": "config_missing",
+        "root_cause": "EXTEND.md 配置文件缺失",
+        "auto_fixable": true,
+        "fix_action": "已创建 EXTEND.md 配置文件（含术语表和翻译偏好）",
+        "priority": "P0"
+      },
+      {
+        "skill": "internet-content-research",
+        "status": "failed",
+        "failure_type": "race_condition",
+        "root_cause": "task-wait.sh 在工具调用间隙误判任务完成（transcript只有5条消息）",
+        "auto_fixable": false,
+        "fix_action": "建议：task-wait grace period 增加到 >=30s，或连续3次 isRunning=false 才确认完成",
+        "priority": "P1"
+      },
+      {
+        "skill": "humanize-writing",
+        "status": "passed",
+        "note": "断言全部通过",
+        "priority": "N/A"
+      },
+      {
+        "skill": "qingshuang-research-style",
+        "status": "passed",
+        "note": "断言全部通过",
+        "priority": "N/A"
+      },
+      {
+        "skill": "baoyu-markdown-to-html",
+        "status": "failed",
+        "failure_type": "race_condition",
+        "root_cause": "任务被提前截断，transcript不完整",
+        "auto_fixable": false,
+        "fix_action": "同 internet-content-research",
+        "priority": "P1"
+      },
+      {
+        "skill": "pptx",
+        "status": "pending",
+        "note": "最近手动测试成功，需场景化验证",
+        "priority": "P2"
+      },
+      {
+        "skill": "link-essence-insight",
+        "status": "pending",
+        "note": "待场景化验证",
+        "priority": "P2"
+      },
+      {
+        "skill": "baoyu-infographic",
+        "status": "pending",
+        "note": "依赖 ai-image-generator，需先修复图片生成配置",
+        "priority": "P2"
+      }
+    ]
+  },
+  "fixes_applied": {
+    "count": 2,
+    "details": [
+      {
+        "skill": "html-screenshot",
+        "fix_type": "dependency_install",
+        "action": "npm install puppeteer --save",
+        "status": "success",
+        "timestamp": "2026-03-21T05:50:00"
+      },
+      {
+        "skill": "baoyu-translate",
+        "fix_type": "config_creation",
+        "action": "创建 EXTEND.md 配置文件（术语表 + 翻译偏好）",
+        "status": "success",
+        "timestamp": "2026-03-21T05:50:00"
+      }
+    ]
+  },
+  "pending_actions": {
+    "user_required": [
+      {
+        "priority": "P1",
+        "skill": "ai-image-generator",
+        "action": "配置 ~/.baoyu-skills/.env 文件，启用至少一个图片生成 API Key",
+        "details": "取消注释并填入: DASHSCOPE_API_KEY / OPENAI_API_KEY / GOOGLE_API_KEY"
+      }
+    ],
+    "system_improvement": [
+      {
+        "priority": "P1",
+        "component": "task-wait.sh",
+        "action": "修复竞态条件：增加 grace period 到 >=30s，或实现连续3次确认机制",
+        "impact": "影响所有耗时 >30s 的技能自动化评测"
+      }
+    ]
+  },
+  "recommendations": {
+    "immediate": [
+      "配置图片生成 API Key 以启用 ai-image-generator / baoyu-infographic",
+      "重新运行 html-screenshot 和 baoyu-translate 测试验证修复效果"
+    ],
+    "weekly": [
+      "对 Top 5 高频技能执行轻量评测",
+      "检查新版本外部技能（社区对标）"
+    ],
+    "monthly": [
+      "全量技能深度评测",
+      "清理低频/废弃技能"
+    ]
+  }
+}

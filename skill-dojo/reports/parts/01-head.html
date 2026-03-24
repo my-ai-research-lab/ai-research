@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>执行层技能评测报告 · 2026-03-20</title>
+  <style>
+    /* ── Reset & Base ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:         #0f1117;
+      --surface:    #1a1d27;
+      --surface2:   #21263a;
+      --border:     rgba(255,255,255,0.08);
+      --border2:    rgba(255,255,255,0.04);
+      --text:       #e2e4ef;
+      --text-muted: #6b7280;
+      --green:      #22c55e;
+      --red:        #ef4444;
+      --yellow:     #f59e0b;
+      --blue:       #3b82f6;
+      --cyan:       #06b6d4;
+      --purple:     #8b5cf6;
+      --accent:     #6366f1;
+    }
+    html { font-size: 14px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 20px 60px;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Layout ─────────────────────────────────── */
+    .page { max-width: 1100px; margin: 0 auto; }
+
+    /* ── Header ─────────────────────────────────── */
+    .page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-title { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+    .page-title span { color: var(--accent); }
+    .page-meta { text-align: right; color: var(--text-muted); font-size: 0.8rem; line-height: 1.8; }
+
+    /* ── Summary Bar ─────────────────────────────── */
+    .summary-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .stat-card {
+      flex: 1;
+      min-width: 100px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .stat-card.accent { border-color: rgba(99,102,241,0.4); background: rgba(99,102,241,0.08); }
+    .stat-value  { font-size: 1.6rem; font-weight: 700; line-height: 1; }
+    .stat-label  { font-size: 0.75rem; color: var(--text-muted); }
+    .color-pass  { color: var(--green); }
+    .color-fail  { color: var(--red); }
+    .color-warn  { color: var(--yellow); }
+    .color-acc   { color: var(--accent); }
+
+    /* ── Skill Overview ──────────────────────────── */
+    .skill-overview {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .section-heading {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 8px;
+    }
+    .skill-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .skill-chip:hover { background: rgba(255,255,255,0.05); }
+    .skill-chip-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-pass   { background: var(--green); box-shadow: 0 0 6px var(--green); }
+    .dot-fail   { background: var(--red);   box-shadow: 0 0 6px var(--red); }
+    .skill-chip-name  { font-size: 0.8rem; font-weight: 500; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    /* ── Category Section ──────────────────────────── */
+    .category-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .category-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      cursor: pointer;
+      user-select: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .category-header:hover { background: rgba(255,255,255,0.02); }
+    .category-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .category-icon { font-size: 1.2rem; }
+    .category-stats {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .category-badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .badge-green { background: rgba(34,197,94,0.15); color: var(--green); }
+    .badge-orange { background: rgba(245,158,11,0.15); color: var(--yellow); }
+    .badge-red { background: rgba(239,68,68,0.15); color: var(--red); }
+    .category-rate { font-size: 0.85rem; color: var(--text-muted); }
+    .chevron { font-size: 0.7rem; color: var(--text-muted); transition: transform 0.2s; }
+    .category-section.open .chevron { transform: rotate(180deg); }
+    .category-body { display: none; }
+    .category-section.open .category-body { display: block; }
+
+    /* ── Scenario Table ──────────────────────────── */
+    .scenario-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .scenario-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+    }
+    .scenario-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .scenario-table tr:last-child td { border-bottom: none; }
+    .scenario-table tr:hover { background: rgba(255,255,255,0.02); }
+
+    /* Column widths */
+    .col-skill { width: 22%; }
+    .col-status { width: 8%; }
+    .col-method { width: 8%; }
+    .col-detail { width: 30%; }
+    .col-artifacts { width: 22%; }
+    .col-time { width: 10%; }
+
+    /* Skill cell */
+    .skill-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+    .skill-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* Status badge */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .status-pass { background: rgba(34,197,94,0.15); color: var(--green); }
+    .status-fail { background: rgba(239,68,68,0.15); color: var(--red); }
+    .status-partial { background: rgba(245,158,11,0.15); color: var(--yellow); }
+
+    /* Method badge */
+    .method-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      background: rgba(99,102,241,0.15);
+      color: var(--accent);
+    }
+
+    /* Detail cell */
+    .detail-note { font-size: 0.8rem; margin-bottom: 8px; line-height: 1.5; }
+    .assertion-list { margin: 0; padding: 0; list-style: none; }
+    .assertion-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 6px 10px;
+      margin-bottom: 4px;
+      background: var(--surface2);
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+    .assertion-icon { flex-shrink: 0; }
+    .assertion-text { flex: 1; }
+    .assertion-evidence { color: var(--text-muted); font-size: 0.7rem; margin-top: 2px; }
+
+    /* Artifacts cell */
+    .artifact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      margin: 2px 4px 2px 0;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      transition: background 0.2s;
+    }
+    .artifact-link:hover { background: rgba(255,255,255,0.08); }
+    .artifact-transcript { background: rgba(59,130,246,0.15); color: var(--blue); }
+    .artifact-output { background: rgba(34,197,94,0.15); color: var(--green); }
+    .artifact-none { background: rgba(107,114,128,0.15); color: var(--text-muted); }
+
+    /* Time cell */
+    .time-value { font-size: 0.85rem; font-weight: 500; }
+    .time-pass { color: var(--green); }
+    .time-fail { color: var(--text-muted); }
+
+    /* ── Failed Summary ──────────────────────────── */
+    .failed-summary {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .failed-summary h3 {
+      color: var(--red);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .failed-list { margin: 0; padding: 0; list-style: none; }
+    .failed-item {
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      background: rgba(239,68,68,0.05);
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+    .failed-item:last-child { margin-bottom: 0; }
+    .failed-skill { font-weight: 600; color: var(--text); }
+    .failed-reason { color: var(--text-muted); margin-top: 4px; font-size: 0.8rem; }
+
+    /* ── Footer ──────────────────────────────────── */
+    .page-footer {
+      text-align: center;
+      padding-top: 32px;
+      margin-top: 32px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
